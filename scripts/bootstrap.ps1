@@ -1,6 +1,7 @@
 # Downloads a pinned, project-local toolchain into .tools/ (no admin rights, no system changes).
 #   - Eclipse Temurin JDK 25 (LTS)            -> .tools/jdk
 #   - WinLibs MinGW-w64 GCC/gfortran (UCRT)   -> .tools/mingw64
+#   - Apache Maven 3.9.9 (releases only)      -> .tools/maven
 #   - JMH 1.37 jars (Maven Central)           -> .tools/jmh
 #   - Python venv with pinned NumPy           -> .venv  (+ NumExpr/Numba from bench/requirements-compare.txt)
 # Every archive is verified against a pinned SHA-256 before extraction.
@@ -18,7 +19,13 @@ $Pins = @(
   @{ Name   = 'mingw64'
      Url    = 'https://github.com/brechtsanders/winlibs_mingw/releases/download/16.2.0posix-14.0.0-ucrt-r2/winlibs-x86_64-posix-seh-gcc-16.2.0-mingw-w64ucrt-14.0.0-r2.zip'
      Sha256 = 'd5dbafc4a170e762ca6143151ec918fb9e2c72736fb14cd704abebc6bdd5276a'
-     Probe  = 'bin\gfortran.exe' }
+     Probe  = 'bin\gfortran.exe' },
+  # Apache Maven (only for scripts/release.ps1). SHA-256 of the archive whose SHA-512 matches Apache's published
+  # apache-maven-3.9.9-bin.zip.sha512 (8beac8d1...c4418ba).
+  @{ Name   = 'maven'
+     Url    = 'https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip'
+     Sha256 = '4ec3f26fb1a692473aea0235c300bd20f0f9fe741947c82c1234cefd76ac3a3c'
+     Probe  = 'bin\mvn.cmd' }
 )
 
 New-Item -ItemType Directory -Force $Tools | Out-Null

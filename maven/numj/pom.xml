@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.github.hareramray</groupId>
+    <artifactId>numj-parent</artifactId>
+    <version>0.2.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>numj</artifactId>
+  <packaging>jar</packaging>
+  <name>numj</name>
+  <description>NumPy-like float64 arrays for Java 25 (n-d strided views, broadcasting, elementwise arithmetic, sum/mean,
+    explicit fusion), backed by Fortran kernels through the FFM API. Needs a platform natives artifact such as
+    numj-natives-windows-x86_64 at run time, and --enable-native-access=ALL-UNNAMED.</description>
+  <url>https://github.com/hareramray/numj</url>
+
+  <build>
+    <sourceDirectory>${project.basedir}/../../java/src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${project.basedir}/../..</directory>
+        <targetPath>META-INF</targetPath>
+        <includes><include>LICENSE</include></includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerArgs><arg>-Xlint:all</arg><arg>-Werror</arg></compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>io.github.hareramray.numj</Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution><id>attach-sources</id><goals><goal>jar-no-fork</goal></goals></execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <doclint>none</doclint>
+          <quiet>true</quiet>
+        </configuration>
+        <executions>
+          <execution><id>attach-javadocs</id><goals><goal>jar</goal></goals></execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

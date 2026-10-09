@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Maven build for publishing numj to Maven Central (see docs/PACKAGING.md and scripts/release.ps1).
+  The day-to-day build and tests stay in scripts/*.ps1; this reactor only packages what they produced:
+    numj                          Java API (pure Java, from java/src)
+    numj-natives-windows-x86_64   the native library, staged by scripts/release.ps1 into build/stage/natives
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.github.hareramray</groupId>
+  <artifactId>numj-parent</artifactId>
+  <version>0.2.0</version>
+  <packaging>pom</packaging>
+
+  <name>numj (parent)</name>
+  <description>NumPy-like float64 arrays for Java 25, backed by Fortran kernels through the Foreign Function and Memory API.</description>
+  <url>https://github.com/hareramray/numj</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>hareramray</id>
+      <name>Hareram</name>
+      <url>https://github.com/hareramray</url>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/hareramray/numj.git</connection>
+    <developerConnection>scm:git:https://github.com/hareramray/numj.git</developerConnection>
+    <url>https://github.com/hareramray/numj</url>
+    <tag>v${project.version}</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/hareramray/numj/issues</url>
+  </issueManagement>
+
+  <modules>
+    <module>maven/numj</module>
+    <module>maven/numj-natives-windows-x86_64</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>25</maven.compiler.release>
+    <!-- reproducible builds: fixed archive timestamps -->
+    <project.build.outputTimestamp>2026-10-10T00:00:00Z</project.build.outputTimestamp>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-clean-plugin</artifactId><version>3.4.1</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId><version>3.3.1</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.13.0</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.5.2</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.2</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.3.1</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.12.0</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId><version>3.2.8</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId><version>3.1.3</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId><version>3.1.3</version></plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <!-- Every artifact is signed. scripts/release.ps1 passes -Dgpg.skip=true for local dry runs. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals><goal>sign</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Sonatype Central Portal. autoPublish=false: the deployment waits in the portal until you press "Publish". -->
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.11.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>central</publishingServerId>
+          <autoPublish>false</autoPublish>
+          <waitUntil>validated</waitUntil>
+          <deploymentName>numj ${project.version}</deploymentName>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
