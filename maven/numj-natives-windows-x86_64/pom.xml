@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.github.hareramray</groupId>
+    <artifactId>numj-parent</artifactId>
+    <version>0.2.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>numj-natives-windows-x86_64</artifactId>
+  <packaging>jar</packaging>
+  <name>numj natives (Windows x86-64)</name>
+  <description>Native library for numj on Windows x86-64: an x86-64-v3 (AVX2/FMA) build and an SSE2 baseline build,
+    chosen at load time. Built with GCC/gfortran 16.2 (MinGW-w64), strict IEEE floating point, GCC runtime libraries
+    statically linked (GCC Runtime Library Exception; see META-INF/NOTICE).</description>
+  <url>https://github.com/hareramray/numj</url>
+
+  <properties>
+    <!-- staged by scripts/release.ps1 from build/native (numj.dll -> x86-64-v3, numj-sse2.dll -> baseline) -->
+    <numj.natives.dir>${project.basedir}/../../build/stage/natives</numj.natives.dir>
+  </properties>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>${numj.natives.dir}</directory>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/src/meta</directory>
+        <targetPath>META-INF</targetPath>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/../..</directory>
+        <targetPath>META-INF</targetPath>
+        <includes><include>LICENSE</include></includes>
+      </resource>
+    </resources>
+    <plugins>
+      <!-- Central requires -sources and -javadoc jars for every jar artifact; this module has no Java code, so both
+           carry a README that points to the Fortran sources and the API documentation. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sources-jar</id>
+            <phase>package</phase>
+            <goals><goal>jar</goal></goals>
+            <configuration>
+              <classifier>sources</classifier>
+              <classesDirectory>${project.basedir}/src/companion</classesDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>javadoc-jar</id>
+            <phase>package</phase>
+            <goals><goal>jar</goal></goals>
+            <configuration>
+              <classifier>javadoc</classifier>
+              <classesDirectory>${project.basedir}/src/companion</classesDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

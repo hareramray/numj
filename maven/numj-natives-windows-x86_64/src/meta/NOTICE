@@ -1,0 +1,13 @@
+numj natives for Windows x86-64
+Copyright 2026 Hareram. Licensed under the Apache License, Version 2.0 (META-INF/LICENSE).
+
+The DLLs in numj/native/windows-x86_64/ were compiled from native/*.f90 of https://github.com/hareramray/numj with
+GCC/gfortran 16.2.0 (WinLibs MinGW-w64 UCRT r2) and statically linked with the GCC runtime libraries (libgfortran,
+libgomp, libgcc, and libquadmath where libgfortran uses it). Those libraries are licensed under the GNU General Public License version 3 with the
+GCC Runtime Library Exception, version 3.1, which permits distributing code linked with them under licence terms of
+your choice: https://www.gnu.org/licenses/gcc-exception-3.1.html
+The DLLs also link dynamically against the Windows Universal C Runtime (UCRT), which is part of Windows.
+
+  x86-64-v3/numj.dll   -O3 -march=x86-64-v3 -ffp-contract=off  (AVX2/FMA CPUs; Haswell 2013 / Excavator 2015 or newer)
+  baseline/numj.dll    -O3 -march=x86-64    -ffp-contract=off  (any x86-64 CPU)
+Both give bitwise-identical results. numj chooses one at load time (override: -Dnumj.cpu=baseline).

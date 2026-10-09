@@ -1,7 +1,9 @@
 # Packaging and runtime requirements
 
-Status: a **prototype** of the artifact layout exists (`scripts/package.ps1`). It builds the jars and runs the example
-from them in an empty directory. Nothing has been published, and no Maven/Gradle build exists yet.
+Status: a Maven build for Maven Central exists (`pom.xml`, `maven/*/pom.xml`). `scripts/release.ps1` dry-runs it
+(build, tests on both shipped DLLs, package, jar checks, smoke test from the jars in an empty directory) and, with
+`-Publish`, signs and uploads it to the Central Portal for a manual final review. The steps are in
+[RELEASING.md](RELEASING.md). Nothing has been published yet.
 
 ## Runtime requirements
 
@@ -45,11 +47,8 @@ Users add the API artifact plus the natives artifact for their platform, or the 
 jar alone works with `-Dnumj.library`. `scripts/package.ps1` produces `numj-<v>.jar`,
 `numj-natives-windows-x86_64-<v>.jar`, `-sources.jar` and `-javadoc.jar` under `build/dist` and smoke-tests them.
 
-## Before a first release (not done)
+## Still open after the first release
 
-* A Maven or Gradle build that compiles the Java code, runs the three test suites (the Java-only `NDArrayTests`
-  needs the natives jar), attaches sources/javadoc, and signs artifacts (Central requires GPG signatures, POM
-  metadata, and a verified `io.github.hareramray` namespace).
 * CI that builds the native library on each platform (Windows MinGW-w64, Linux GCC, macOS with gfortran from
   Homebrew or LLVM Flang) and runs the full suite against every CPU level, including the NumPy differential tests.
 * A JPMS `module-info.java` (`module numj { exports numj; }`), so users can grant `--enable-native-access=numj`
