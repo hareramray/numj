@@ -1,0 +1,3556 @@
+[
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.fused",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 120.22244887178728,
+            "scoreError" : 7.7247140467446505,
+            "scoreConfidence" : [
+                112.49773482504263,
+                127.94716291853193
+            ],
+            "scorePercentiles" : {
+                "0.0" : 112.3430779911747,
+                "50.0" : 117.88407464587821,
+                "90.0" : 133.3272145002908,
+                "95.0" : 135.33851115194028,
+                "99.0" : 135.33851115194028,
+                "99.9" : 135.33851115194028,
+                "99.99" : 135.33851115194028,
+                "99.999" : 135.33851115194028,
+                "99.9999" : 135.33851115194028,
+                "100.0" : 135.33851115194028
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    117.43168081360594,
+                    112.77206776536082,
+                    113.84897626381591,
+                    122.69642255625149,
+                    116.22795541367942
+                ],
+                [
+                    130.4486950698312,
+                    135.33851115194028,
+                    116.681982998291,
+                    131.98635006585783,
+                    119.33335394663455
+                ],
+                [
+                    123.89237759044586,
+                    112.3430779911747,
+                    114.32823952721603,
+                    117.88407464587821,
+                    118.12296727682607
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.fused",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 31769.644158986506,
+            "scoreError" : 1848.0624320349593,
+            "scoreConfidence" : [
+                29921.581726951546,
+                33617.706591021466
+            ],
+            "scorePercentiles" : {
+                "0.0" : 29264.670658682633,
+                "50.0" : 31218.661100803958,
+                "90.0" : 34697.24038643941,
+                "95.0" : 35376.73562412342,
+                "99.0" : 35376.73562412342,
+                "99.9" : 35376.73562412342,
+                "99.99" : 35376.73562412342,
+                "99.999" : 35376.73562412342,
+                "99.9999" : 35376.73562412342,
+                "100.0" : 35376.73562412342
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    34155.88633288227,
+                    29973.907225691346,
+                    29264.670658682633,
+                    34244.24356131673,
+                    32151.65998396151
+                ],
+                [
+                    31118.5794044665,
+                    35376.73562412342,
+                    32452.24338282763,
+                    32019.439579684764,
+                    32086.677316293928
+                ],
+                [
+                    31017.69993800372,
+                    30990.097477951414,
+                    31218.661100803958,
+                    30497.16408856536,
+                    29976.996709542327
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.fused",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 2.4772259764143266E7,
+            "scoreError" : 6736587.49216124,
+            "scoreConfidence" : [
+                1.8035672271982025E7,
+                3.1508847256304506E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.5266257142857144E7,
+                "50.0" : 2.4805588888888888E7,
+                "90.0" : 3.389149047619048E7,
+                "95.0" : 3.7760233333333336E7,
+                "99.0" : 3.7760233333333336E7,
+                "99.9" : 3.7760233333333336E7,
+                "99.99" : 3.7760233333333336E7,
+                "99.999" : 3.7760233333333336E7,
+                "99.9999" : 3.7760233333333336E7,
+                "100.0" : 3.7760233333333336E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    1.735945E7,
+                    2.3374522222222224E7,
+                    2.3148833333333332E7,
+                    3.131232857142857E7,
+                    2.4805588888888888E7
+                ],
+                [
+                    3.088655714285714E7,
+                    3.7760233333333336E7,
+                    2.5663325E7,
+                    2.5043277777777776E7,
+                    2.188756E7
+                ],
+                [
+                    2.81564125E7,
+                    3.097634285714286E7,
+                    1.96344E7,
+                    1.5266257142857144E7,
+                    1.6308807692307692E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.fused",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 1360.4163751270673,
+            "scoreError" : 28.189157435238144,
+            "scoreConfidence" : [
+                1332.227217691829,
+                1388.6055325623056
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1331.4573836531326,
+                "50.0" : 1351.1125447739628,
+                "90.0" : 1408.3672930451826,
+                "95.0" : 1423.8706980237657,
+                "99.0" : 1423.8706980237657,
+                "99.9" : 1423.8706980237657,
+                "99.99" : 1423.8706980237657,
+                "99.999" : 1423.8706980237657,
+                "99.9999" : 1423.8706980237657,
+                "100.0" : 1423.8706980237657
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    1331.4573836531326,
+                    1339.9898200424611,
+                    1361.780182920619,
+                    1340.6886517943744,
+                    1338.431575868762
+                ],
+                [
+                    1391.6877622498873,
+                    1338.1978080548986,
+                    1351.1125447739628,
+                    1364.497944883339,
+                    1361.8048161886873
+                ],
+                [
+                    1342.132869463217,
+                    1423.8706980237657,
+                    1350.1047208002944,
+                    1372.4571584624837,
+                    1398.031689726127
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.fused",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 163226.91658662757,
+            "scoreError" : 18268.764166501467,
+            "scoreConfidence" : [
+                144958.1524201261,
+                181495.68075312904
+            ],
+            "scorePercentiles" : {
+                "0.0" : 143921.83499288763,
+                "50.0" : 158658.83739198744,
+                "90.0" : 199127.48477329122,
+                "95.0" : 201376.92307692306,
+                "99.0" : 201376.92307692306,
+                "99.9" : 201376.92307692306,
+                "99.99" : 201376.92307692306,
+                "99.999" : 201376.92307692306,
+                "99.9999" : 201376.92307692306,
+                "100.0" : 201376.92307692306
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    153024.7908745247,
+                    158053.22327044024,
+                    163048.25345247766,
+                    157032.31850117096,
+                    201376.92307692306
+                ],
+                [
+                    150871.23493975904,
+                    166410.89108910892,
+                    143921.83499288763,
+                    178524.688057041,
+                    146636.79590343818
+                ],
+                [
+                    159096.20253164557,
+                    158658.83739198744,
+                    164852.66175266175,
+                    149267.23372781064,
+                    197627.85923753664
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.fused",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 7.64775111111111E7,
+            "scoreError" : 9276750.166511772,
+            "scoreConfidence" : [
+                6.720076094459933E7,
+                8.575426127762288E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6.2764075E7,
+                "50.0" : 7.638726666666667E7,
+                "90.0" : 9.334881333333333E7,
+                "95.0" : 9.408953333333333E7,
+                "99.0" : 9.408953333333333E7,
+                "99.9" : 9.408953333333333E7,
+                "99.99" : 9.408953333333333E7,
+                "99.999" : 9.408953333333333E7,
+                "99.9999" : 9.408953333333333E7,
+                "100.0" : 9.408953333333333E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    7.858533333333333E7,
+                    7.646596666666667E7,
+                    9.2855E7,
+                    7.864476666666667E7,
+                    8.20557E7
+                ],
+                [
+                    6.803466666666667E7,
+                    7.638726666666667E7,
+                    6.884716666666667E7,
+                    8.046496666666667E7,
+                    9.408953333333333E7
+                ],
+                [
+                    6.2764075E7,
+                    6.82613E7,
+                    7.322243333333333E7,
+                    7.201476666666667E7,
+                    7.4469725E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 457.7624132267949,
+            "scoreError" : 28.151779414387814,
+            "scoreConfidence" : [
+                429.61063381240706,
+                485.9141926411827
+            ],
+            "scorePercentiles" : {
+                "0.0" : 437.79604125379876,
+                "50.0" : 453.3181646661396,
+                "90.0" : 500.65419785589813,
+                "95.0" : 546.2797433745702,
+                "99.0" : 546.2797433745702,
+                "99.9" : 546.2797433745702,
+                "99.99" : 546.2797433745702,
+                "99.999" : 546.2797433745702,
+                "99.9999" : 546.2797433745702,
+                "100.0" : 546.2797433745702
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    440.0698855164894,
+                    437.79604125379876,
+                    441.0388309637345,
+                    438.80247445659035,
+                    448.48423071236226
+                ],
+                [
+                    452.05700015087746,
+                    460.90156582704014,
+                    470.2371675101167,
+                    546.2797433745702,
+                    444.17248360011945
+                ],
+                [
+                    457.84835930821333,
+                    460.98006549089445,
+                    453.8728260943321,
+                    460.57735947664474,
+                    453.3181646661396
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 59853.353780278274,
+            "scoreError" : 13603.006617514155,
+            "scoreConfidence" : [
+                46250.34716276412,
+                73456.36039779242
+            ],
+            "scorePercentiles" : {
+                "0.0" : 48500.265957446805,
+                "50.0" : 57199.49037372594,
+                "90.0" : 86278.23650604326,
+                "95.0" : 95952.93836598184,
+                "99.0" : 95952.93836598184,
+                "99.9" : 95952.93836598184,
+                "99.99" : 95952.93836598184,
+                "99.999" : 95952.93836598184,
+                "99.9999" : 95952.93836598184,
+                "100.0" : 95952.93836598184
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    79828.4352660842,
+                    57082.6852114675,
+                    57199.49037372594,
+                    50014.39243027889,
+                    58865.77555816686
+                ],
+                [
+                    63266.48835745752,
+                    53832.48322147651,
+                    50547.26079272911,
+                    48500.265957446805,
+                    51141.14942528736
+                ],
+                [
+                    49552.72277227723,
+                    61743.535539215685,
+                    58937.04138538303,
+                    61335.64204719583,
+                    95952.93836598184
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 1.5765165529507529E7,
+            "scoreError" : 2195172.305583377,
+            "scoreConfidence" : [
+                1.3569993223924153E7,
+                1.7960337835090905E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.4045053333333334E7,
+                "50.0" : 1.5478992857142856E7,
+                "90.0" : 1.8957996752136756E7,
+                "95.0" : 2.2843811111111112E7,
+                "99.0" : 2.2843811111111112E7,
+                "99.9" : 2.2843811111111112E7,
+                "99.99" : 2.2843811111111112E7,
+                "99.999" : 2.2843811111111112E7,
+                "99.9999" : 2.2843811111111112E7,
+                "100.0" : 2.2843811111111112E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    2.2843811111111112E7,
+                    1.4045053333333334E7,
+                    1.508392857142857E7,
+                    1.5540292307692308E7,
+                    1.5715661538461538E7
+                ],
+                [
+                    1.6367453846153846E7,
+                    1.5124507142857144E7,
+                    1.5825653846153846E7,
+                    1.577863076923077E7,
+                    1.57248E7
+                ],
+                [
+                    1.5478992857142856E7,
+                    1.445922857142857E7,
+                    1.4424233333333334E7,
+                    1.5095257142857144E7,
+                    1.496997857142857E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 486.3935044431058,
+            "scoreError" : 54.50418095271732,
+            "scoreConfidence" : [
+                431.8893234903885,
+                540.8976853958231
+            ],
+            "scorePercentiles" : {
+                "0.0" : 436.10431699995223,
+                "50.0" : 464.5766149524593,
+                "90.0" : 566.0627042626728,
+                "95.0" : 574.2879034356175,
+                "99.0" : 574.2879034356175,
+                "99.9" : 574.2879034356175,
+                "99.99" : 574.2879034356175,
+                "99.999" : 574.2879034356175,
+                "99.9999" : 574.2879034356175,
+                "100.0" : 574.2879034356175
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    464.5766149524593,
+                    459.1160800388476,
+                    574.2879034356175,
+                    550.0591087710849,
+                    505.5381787979996
+                ],
+                [
+                    439.53846153846155,
+                    438.35380480459446,
+                    480.53717166585994,
+                    521.4571659405776,
+                    560.5792381473764
+                ],
+                [
+                    439.52749982506475,
+                    541.7959828615034,
+                    447.50955973888637,
+                    436.10431699995223,
+                    436.9214791283022
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 51245.80896159834,
+            "scoreError" : 3318.3904470903576,
+            "scoreConfidence" : [
+                47927.41851450798,
+                54564.1994086887
+            ],
+            "scorePercentiles" : {
+                "0.0" : 47081.48320895522,
+                "50.0" : 51082.716364564716,
+                "90.0" : 56207.11469708641,
+                "95.0" : 56455.18602029312,
+                "99.0" : 56455.18602029312,
+                "99.9" : 56455.18602029312,
+                "99.99" : 56455.18602029312,
+                "99.999" : 56455.18602029312,
+                "99.9999" : 56455.18602029312,
+                "100.0" : 56455.18602029312
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    47105.83703011907,
+                    50429.26215059179,
+                    56041.733814948595,
+                    56455.18602029312,
+                    51082.716364564716
+                ],
+                [
+                    50016.97877652934,
+                    47081.48320895522,
+                    55572.67457907811,
+                    50056.85,
+                    48560.550458715596
+                ],
+                [
+                    47399.03461266777,
+                    52831.85979597175,
+                    53051.43610013175,
+                    51593.424094528644,
+                    51408.10741687979
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 1.5828592231879232E7,
+            "scoreError" : 1938780.7449605672,
+            "scoreConfidence" : [
+                1.3889811486918665E7,
+                1.77673729768398E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.3599626666666666E7,
+                "50.0" : 1.5640215384615384E7,
+                "90.0" : 1.9365565454545453E7,
+                "95.0" : 1.955349090909091E7,
+                "99.0" : 1.955349090909091E7,
+                "99.9" : 1.955349090909091E7,
+                "99.99" : 1.955349090909091E7,
+                "99.999" : 1.955349090909091E7,
+                "99.9999" : 1.955349090909091E7,
+                "100.0" : 1.955349090909091E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    1.5640215384615384E7,
+                    1.598693076923077E7,
+                    1.3599626666666666E7,
+                    1.6134446153846154E7,
+                    1.8068591666666668E7
+                ],
+                [
+                    1.4118273333333334E7,
+                    1.4118786666666666E7,
+                    1.955349090909091E7,
+                    1.9240281818181816E7,
+                    1.4741014285714285E7
+                ],
+                [
+                    1.5656376923076924E7,
+                    1.5357892857142856E7,
+                    1.47194E7,
+                    1.447207142857143E7,
+                    1.6021484615384616E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedAlloc",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 701.3850644572029,
+            "scoreError" : 11.934539867968228,
+            "scoreConfidence" : [
+                689.4505245892346,
+                713.3196043251712
+            ],
+            "scorePercentiles" : {
+                "0.0" : 686.776390271265,
+                "50.0" : 700.691097508778,
+                "90.0" : 717.3960834344498,
+                "95.0" : 722.4091448290736,
+                "99.0" : 722.4091448290736,
+                "99.9" : 722.4091448290736,
+                "99.99" : 722.4091448290736,
+                "99.999" : 722.4091448290736,
+                "99.9999" : 722.4091448290736,
+                "100.0" : 722.4091448290736
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    698.825947699731,
+                    696.9181596317045,
+                    686.776390271265,
+                    700.691097508778,
+                    713.0506664585278
+                ],
+                [
+                    705.5352033867886,
+                    691.8778656549846,
+                    706.618801805672,
+                    714.0540425047005,
+                    709.2047177344182
+                ],
+                [
+                    722.4091448290736,
+                    709.3331264086457,
+                    690.7640907351283,
+                    687.6173696827327,
+                    687.0993425458919
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedAlloc",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 137106.65437199658,
+            "scoreError" : 26694.010328656066,
+            "scoreConfidence" : [
+                110412.64404334052,
+                163800.66470065265
+            ],
+            "scorePercentiles" : {
+                "0.0" : 112298.15332960269,
+                "50.0" : 122759.08256880734,
+                "90.0" : 172132.1911619079,
+                "95.0" : 172624.6987951807,
+                "99.0" : 172624.6987951807,
+                "99.9" : 172624.6987951807,
+                "99.99" : 172624.6987951807,
+                "99.999" : 172624.6987951807,
+                "99.9999" : 172624.6987951807,
+                "100.0" : 172624.6987951807
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    167590.12552301254,
+                    172624.6987951807,
+                    170496.0983884648,
+                    167733.8628762542,
+                    171803.85273972602
+                ],
+                [
+                    117904.05405405405,
+                    119910.46650717703,
+                    112304.45186421814,
+                    116766.85979142526,
+                    119635.05032563648
+                ],
+                [
+                    117954.70588235294,
+                    112298.15332960269,
+                    122759.08256880734,
+                    127614.25855513308,
+                    139204.09437890354
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedAlloc",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 1.1404580000000001E8,
+            "scoreError" : 2.658378339732207E7,
+            "scoreConfidence" : [
+                8.746201660267794E7,
+                1.406295833973221E8
+            ],
+            "scorePercentiles" : {
+                "0.0" : 9.230046666666667E7,
+                "50.0" : 1.0481306666666667E8,
+                "90.0" : 1.5654404000000003E8,
+                "95.0" : 1.8872675E8,
+                "99.0" : 1.8872675E8,
+                "99.9" : 1.8872675E8,
+                "99.99" : 1.8872675E8,
+                "99.999" : 1.8872675E8,
+                "99.9999" : 1.8872675E8,
+                "100.0" : 1.8872675E8
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    9.510306666666667E7,
+                    9.334773333333333E7,
+                    1.213433E8,
+                    1.0481306666666667E8,
+                    1.1892165E8
+                ],
+                [
+                    1.128663E8,
+                    9.230046666666667E7,
+                    9.807503333333333E7,
+                    1.145126E8,
+                    1.350889E8
+                ],
+                [
+                    9.634776666666667E7,
+                    1.0406895E8,
+                    1.3370825E8,
+                    1.0146316666666667E8,
+                    1.8872675E8
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedAlloc",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 2396.3304965678294,
+            "scoreError" : 111.1206132202136,
+            "scoreConfidence" : [
+                2285.2098833476157,
+                2507.451109788043
+            ],
+            "scorePercentiles" : {
+                "0.0" : 2153.182037662965,
+                "50.0" : 2413.6940023889097,
+                "90.0" : 2508.2757195095205,
+                "95.0" : 2511.7550354520927,
+                "99.0" : 2511.7550354520927,
+                "99.9" : 2511.7550354520927,
+                "99.99" : 2511.7550354520927,
+                "99.999" : 2511.7550354520927,
+                "99.9999" : 2511.7550354520927,
+                "100.0" : 2511.7550354520927
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    2477.868046508198,
+                    2185.163114727456,
+                    2443.2480615422187,
+                    2404.7216991880646,
+                    2153.182037662965
+                ],
+                [
+                    2368.5691762851056,
+                    2394.3179389766115,
+                    2505.9561755478057,
+                    2387.6181980374668,
+                    2413.6940023889097
+                ],
+                [
+                    2473.096739370446,
+                    2419.232108758572,
+                    2511.7550354520927,
+                    2350.2742445063013,
+                    2456.2608695652175
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedAlloc",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 431059.4818633347,
+            "scoreError" : 555970.4753795192,
+            "scoreConfidence" : [
+                -124910.99351618445,
+                987029.9572428539
+            ],
+            "scorePercentiles" : {
+                "0.0" : 197274.24094025465,
+                "50.0" : 262131.5514993481,
+                "90.0" : 1290587.714407624,
+                "95.0" : 2266087.6404494382,
+                "99.0" : 2266087.6404494382,
+                "99.9" : 2266087.6404494382,
+                "99.99" : 2266087.6404494382,
+                "99.999" : 2266087.6404494382,
+                "99.9999" : 2266087.6404494382,
+                "100.0" : 2266087.6404494382
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    321885.92,
+                    258149.3556701031,
+                    266010.2631578947,
+                    257268.67007672635,
+                    275308.1967213115
+                ],
+                [
+                    262131.5514993481,
+                    240477.79111644658,
+                    251626.25,
+                    428386.1995753716,
+                    640254.4303797468
+                ],
+                [
+                    2266087.6404494382,
+                    379618.3712121212,
+                    223320.06651884702,
+                    197274.24094025465,
+                    198093.28063241107
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedAlloc",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 6.5726048E8,
+            "scoreError" : 2.662381371597931E8,
+            "scoreConfidence" : [
+                3.9102234284020686E8,
+                9.234986171597931E8
+            ],
+            "scorePercentiles" : {
+                "0.0" : 4.870908E8,
+                "50.0" : 5.361155E8,
+                "90.0" : 1.1448650000000002E9,
+                "95.0" : 1.3937789E9,
+                "99.0" : 1.3937789E9,
+                "99.9" : 1.3937789E9,
+                "99.99" : 1.3937789E9,
+                "99.999" : 1.3937789E9,
+                "99.9999" : 1.3937789E9,
+                "100.0" : 1.3937789E9
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    8.313886E8,
+                    6.754825E8,
+                    5.101338E8,
+                    9.789224E8,
+                    1.3937789E9
+                ],
+                [
+                    4.979271E8,
+                    5.485993E8,
+                    5.647646E8,
+                    5.128642E8,
+                    5.249098E8
+                ],
+                [
+                    7.449834E8,
+                    4.870908E8,
+                    5.174656E8,
+                    5.361155E8,
+                    5.344807E8
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedReuse",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 341.5128381113428,
+            "scoreError" : 29.368182244747153,
+            "scoreConfidence" : [
+                312.1446558665956,
+                370.88102035608995
+            ],
+            "scorePercentiles" : {
+                "0.0" : 313.6588585142721,
+                "50.0" : 331.131809108578,
+                "90.0" : 386.81687046491487,
+                "95.0" : 423.78324123868185,
+                "99.0" : 423.78324123868185,
+                "99.9" : 423.78324123868185,
+                "99.99" : 423.78324123868185,
+                "99.999" : 423.78324123868185,
+                "99.9999" : 423.78324123868185,
+                "100.0" : 423.78324123868185
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    323.90461187111214,
+                    362.17262328240355,
+                    423.78324123868185,
+                    357.63618151034046,
+                    339.71035969284657
+                ],
+                [
+                    321.9475130142306,
+                    321.0939250212826,
+                    332.70070579679003,
+                    329.8587140091445,
+                    313.6588585142721
+                ],
+                [
+                    352.8790620212312,
+                    359.26211129076927,
+                    331.131809108578,
+                    325.1618791012994,
+                    327.7909761971583
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedReuse",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 86142.83396811943,
+            "scoreError" : 5286.672008818659,
+            "scoreConfidence" : [
+                80856.16195930078,
+                91429.50597693809
+            ],
+            "scorePercentiles" : {
+                "0.0" : 79833.39936608558,
+                "50.0" : 85330.04219409282,
+                "90.0" : 93550.37566211763,
+                "95.0" : 95759.41821649976,
+                "99.0" : 95759.41821649976,
+                "99.9" : 95759.41821649976,
+                "99.99" : 95759.41821649976,
+                "99.999" : 95759.41821649976,
+                "99.9999" : 95759.41821649976,
+                "100.0" : 95759.41821649976
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    88733.42105263157,
+                    89314.89741302408,
+                    84492.12299915754,
+                    83623.12811980033,
+                    85330.04219409282
+                ],
+                [
+                    80645.69138276554,
+                    81527.4414850686,
+                    79833.39936608558,
+                    80672.29593888219,
+                    81193.86602098467
+                ],
+                [
+                    89841.72274562584,
+                    87886.55278142795,
+                    91210.82917988219,
+                    92077.68062586286,
+                    95759.41821649976
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedReuse",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "contig",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 7.573846677777778E7,
+            "scoreError" : 2.3353904480427243E7,
+            "scoreConfidence" : [
+                5.238456229735053E7,
+                9.909237125820503E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 4.910726E7,
+                "50.0" : 7.0771075E7,
+                "90.0" : 1.1318394E8,
+                "95.0" : 1.213365E8,
+                "99.0" : 1.213365E8,
+                "99.9" : 1.213365E8,
+                "99.99" : 1.213365E8,
+                "99.999" : 1.213365E8,
+                "99.9999" : 1.213365E8,
+                "100.0" : 1.213365E8
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    8.178303333333333E7,
+                    5.6114875E7,
+                    6.870726666666667E7,
+                    8.012933333333333E7,
+                    8.132016666666667E7
+                ],
+                [
+                    4.910726E7,
+                    5.27454E7,
+                    6.3451225E7,
+                    6.10331E7,
+                    7.0771075E7
+                ],
+                [
+                    1.077489E8,
+                    1.213365E8,
+                    1.0654873333333333E8,
+                    8.078213333333333E7,
+                    5.4498E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedReuse",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 2131.688548462013,
+            "scoreError" : 335.3049834913937,
+            "scoreConfidence" : [
+                1796.3835649706193,
+                2466.9935319534065
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1691.7762469553281,
+                "50.0" : 2185.0032665505228,
+                "90.0" : 2673.1109658668124,
+                "95.0" : 2732.7984354907844,
+                "99.0" : 2732.7984354907844,
+                "99.9" : 2732.7984354907844,
+                "99.99" : 2732.7984354907844,
+                "99.999" : 2732.7984354907844,
+                "99.9999" : 2732.7984354907844,
+                "100.0" : 2732.7984354907844
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    2201.786162698023,
+                    2212.536562213711,
+                    1974.6204966086932,
+                    2117.185045554508,
+                    1937.3865401124713
+                ],
+                [
+                    2300.0377963578057,
+                    2185.0032665505228,
+                    2409.2906287069986,
+                    2197.5116538638304,
+                    2732.7984354907844
+                ],
+                [
+                    2633.319319450831,
+                    1705.8416570109187,
+                    1714.923606261391,
+                    1961.310809094373,
+                    1691.7762469553281
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedReuse",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 269661.441598315,
+            "scoreError" : 246457.49470091477,
+            "scoreConfidence" : [
+                23203.946897400252,
+                516118.9362992298
+            ],
+            "scorePercentiles" : {
+                "0.0" : 145288.54466858789,
+                "50.0" : 152472.69288956127,
+                "90.0" : 730496.1156412158,
+                "95.0" : 942232.3943661972,
+                "99.0" : 942232.3943661972,
+                "99.9" : 942232.3943661972,
+                "99.99" : 942232.3943661972,
+                "99.999" : 942232.3943661972,
+                "99.9999" : 942232.3943661972,
+                "100.0" : 942232.3943661972
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    148195.4310980103,
+                    147679.70588235295,
+                    145288.54466858789,
+                    156479.09516380655,
+                    148193.6624907885
+                ],
+                [
+                    156648.59594383775,
+                    150068.1784386617,
+                    147084.3338213763,
+                    152472.69288956127,
+                    145658.3393501805
+                ],
+                [
+                    230895.87628865978,
+                    942232.3943661972,
+                    476108.0760095012,
+                    308578.1010719755,
+                    589338.5964912281
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.FusedBench.unfusedReuse",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "layout" : "transposed",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 4.7726208E8,
+            "scoreError" : 1.5344553780508113E8,
+            "scoreConfidence" : [
+                3.238165421949189E8,
+                6.307076178050811E8
+            ],
+            "scorePercentiles" : {
+                "0.0" : 2.342026E8,
+                "50.0" : 4.546091E8,
+                "90.0" : 6.8268536E8,
+                "95.0" : 6.997841E8,
+                "99.0" : 6.997841E8,
+                "99.9" : 6.997841E8,
+                "99.99" : 6.997841E8,
+                "99.999" : 6.997841E8,
+                "99.9999" : 6.997841E8,
+                "100.0" : 6.997841E8
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    6.997841E8,
+                    6.484946E8,
+                    6.712862E8,
+                    5.762785E8,
+                    5.467967E8
+                ],
+                [
+                    2.811798E8,
+                    2.647365E8,
+                    2.342026E8,
+                    4.276392E8,
+                    4.546091E8
+                ],
+                [
+                    4.36183E8,
+                    4.454281E8,
+                    4.988478E8,
+                    4.223589E8,
+                    5.511061E8
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "all",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 456.04530331454924,
+            "scoreError" : 26.76682437253822,
+            "scoreConfidence" : [
+                429.278478942011,
+                482.81212768708747
+            ],
+            "scorePercentiles" : {
+                "0.0" : 438.50942954583735,
+                "50.0" : 446.52134021644207,
+                "90.0" : 507.9715194464157,
+                "95.0" : 534.3178524048869,
+                "99.0" : 534.3178524048869,
+                "99.9" : 534.3178524048869,
+                "99.99" : 534.3178524048869,
+                "99.999" : 534.3178524048869,
+                "99.9999" : 534.3178524048869,
+                "100.0" : 534.3178524048869
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    442.1387285779639,
+                    443.1716900613438,
+                    442.3507552618548,
+                    449.948242827216,
+                    446.52134021644207
+                ],
+                [
+                    443.3621205530149,
+                    450.95013765403473,
+                    462.256308326486,
+                    534.3178524048869,
+                    490.4072974741015
+                ],
+                [
+                    446.1732469796986,
+                    444.0286536486909,
+                    454.7521292809247,
+                    438.50942954583735,
+                    451.7916169057427
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "all",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 57849.70450639555,
+            "scoreError" : 11548.57517852352,
+            "scoreConfidence" : [
+                46301.12932787203,
+                69398.27968491908
+            ],
+            "scorePercentiles" : {
+                "0.0" : 47279.38895417156,
+                "50.0" : 52556.059421422986,
+                "90.0" : 75727.91182813395,
+                "95.0" : 77731.46284829722,
+                "99.0" : 77731.46284829722,
+                "99.9" : 77731.46284829722,
+                "99.99" : 77731.46284829722,
+                "99.999" : 77731.46284829722,
+                "99.9999" : 77731.46284829722,
+                "100.0" : 77731.46284829722
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    49128.33374113042,
+                    50368.79680479281,
+                    48763.94359348407,
+                    47279.38895417156,
+                    48637.23869713175
+                ],
+                [
+                    74392.2111480251,
+                    72960.83966702859,
+                    63647.993680884676,
+                    77731.46284829722,
+                    68486.12342311627
+                ],
+                [
+                    48801.20889748549,
+                    50046.10599651655,
+                    59400.91472410741,
+                    55544.94599833841,
+                    52556.059421422986
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "all",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 7281613.42665125,
+            "scoreError" : 581704.8939681622,
+            "scoreConfidence" : [
+                6699908.5326830875,
+                7863318.320619412
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6344465.625,
+                "50.0" : 7297475.0,
+                "90.0" : 8146010.641025641,
+                "95.0" : 8424495.833333334,
+                "99.0" : 8424495.833333334,
+                "99.9" : 8424495.833333334,
+                "99.99" : 8424495.833333334,
+                "99.999" : 8424495.833333334,
+                "99.9999" : 8424495.833333334,
+                "100.0" : 8424495.833333334
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    6808806.666666667,
+                    6981813.793103448,
+                    7368764.285714285,
+                    7199042.857142857,
+                    7283392.857142857
+                ],
+                [
+                    6712963.333333333,
+                    7463211.111111111,
+                    7810065.384615385,
+                    8424495.833333334,
+                    7520042.857142857
+                ],
+                [
+                    6607925.806451613,
+                    7960353.846153846,
+                    6344465.625,
+                    7441382.142857143,
+                    7297475.0
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis0",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 354.65198549520454,
+            "scoreError" : 20.94709313718271,
+            "scoreConfidence" : [
+                333.7048923580218,
+                375.59907863238726
+            ],
+            "scorePercentiles" : {
+                "0.0" : 336.22760185525044,
+                "50.0" : 350.4500026935863,
+                "90.0" : 389.9968541585815,
+                "95.0" : 420.68842208722384,
+                "99.0" : 420.68842208722384,
+                "99.9" : 420.68842208722384,
+                "99.99" : 420.68842208722384,
+                "99.999" : 420.68842208722384,
+                "99.9999" : 420.68842208722384,
+                "100.0" : 420.68842208722384
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    420.68842208722384,
+                    350.4500026935863,
+                    345.1039008760573,
+                    348.13461568546336,
+                    343.5728508943615
+                ],
+                [
+                    350.5774196195228,
+                    346.2567182125538,
+                    350.9329430278599,
+                    336.22760185525044,
+                    348.61165495995925
+                ],
+                [
+                    350.2088444174381,
+                    356.32364368184335,
+                    351.9129637250047,
+                    369.53580887282,
+                    351.24239181912264
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis0",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 32623.958133074,
+            "scoreError" : 2280.5318515759454,
+            "scoreConfidence" : [
+                30343.426281498054,
+                34904.48998464995
+            ],
+            "scorePercentiles" : {
+                "0.0" : 30208.484026522,
+                "50.0" : 31707.649842271294,
+                "90.0" : 36582.703378748694,
+                "95.0" : 36723.1778425656,
+                "99.0" : 36723.1778425656,
+                "99.9" : 36723.1778425656,
+                "99.99" : 36723.1778425656,
+                "99.999" : 36723.1778425656,
+                "99.9999" : 36723.1778425656,
+                "100.0" : 36723.1778425656
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    31213.426573426572,
+                    33073.19960539296,
+                    31607.705614090264,
+                    30576.243177683446,
+                    31707.649842271294
+                ],
+                [
+                    31214.130265816882,
+                    30208.484026522,
+                    32671.221969450762,
+                    31646.545226130653,
+                    30492.144373673036
+                ],
+                [
+                    36489.05373620409,
+                    33897.45577085089,
+                    32275.39874335428,
+                    36723.1778425656,
+                    35563.53522867738
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis0",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 1.0472302165890008E7,
+            "scoreError" : 5132525.600557699,
+            "scoreConfidence" : [
+                5339776.565332309,
+                1.5604827766447708E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6849413.333333333,
+                "50.0" : 9564542.857142856,
+                "90.0" : 1.8640395000000004E7,
+                "95.0" : 2.62848875E7,
+                "99.0" : 2.62848875E7,
+                "99.9" : 2.62848875E7,
+                "99.99" : 2.62848875E7,
+                "99.999" : 2.62848875E7,
+                "99.9999" : 2.62848875E7,
+                "100.0" : 2.62848875E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    7793877.777777778,
+                    1.3544066666666666E7,
+                    1.065032105263158E7,
+                    2.62848875E7,
+                    1.284839375E7
+                ],
+                [
+                    6967396.551724138,
+                    6849413.333333333,
+                    8121360.0,
+                    7299935.714285715,
+                    1.0655452631578946E7
+                ],
+                [
+                    8609745.833333334,
+                    8522383.333333334,
+                    9674938.095238095,
+                    9564542.857142856,
+                    9697817.391304348
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis1",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 247.26361269991565,
+            "scoreError" : 34.0235272445035,
+            "scoreConfidence" : [
+                213.24008545541216,
+                281.28713994441915
+            ],
+            "scorePercentiles" : {
+                "0.0" : 218.5098329495792,
+                "50.0" : 236.47090439130295,
+                "90.0" : 300.3054309972787,
+                "95.0" : 320.05426466896796,
+                "99.0" : 320.05426466896796,
+                "99.9" : 320.05426466896796,
+                "99.99" : 320.05426466896796,
+                "99.999" : 320.05426466896796,
+                "99.9999" : 320.05426466896796,
+                "100.0" : 320.05426466896796
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    249.02650515474107,
+                    218.5098329495792,
+                    236.47090439130295,
+                    222.10381582035487,
+                    223.57427378905766
+                ],
+                [
+                    224.4911550235325,
+                    219.74287996730266,
+                    220.48193301302751,
+                    249.3866711054081,
+                    218.88123350617136
+                ],
+                [
+                    320.05426466896796,
+                    283.9767480117536,
+                    276.94428180772434,
+                    287.1395418828191,
+                    258.1701494069929
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis1",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 43135.74207687561,
+            "scoreError" : 6569.090337536106,
+            "scoreConfidence" : [
+                36566.651739339504,
+                49704.83241441172
+            ],
+            "scorePercentiles" : {
+                "0.0" : 38383.909142966215,
+                "50.0" : 40150.598324690865,
+                "90.0" : 53793.08576702685,
+                "95.0" : 54115.633423180596,
+                "99.0" : 54115.633423180596,
+                "99.9" : 54115.633423180596,
+                "99.99" : 54115.633423180596,
+                "99.999" : 54115.633423180596,
+                "99.9999" : 54115.633423180596,
+                "100.0" : 54115.633423180596
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    38383.909142966215,
+                    39314.9375975039,
+                    40297.85140562249,
+                    39443.40886699507,
+                    39727.71513353116
+                ],
+                [
+                    40150.598324690865,
+                    40932.008964955174,
+                    38668.0694980695,
+                    40208.74174834967,
+                    39399.901980003924
+                ],
+                [
+                    51308.835546475995,
+                    54115.633423180596,
+                    52527.25377800938,
+                    53578.05399625769,
+                    38979.211746522415
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis1",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 1.1186433649504816E7,
+            "scoreError" : 5358354.157174103,
+            "scoreConfidence" : [
+                5828079.492330713,
+                1.654478780667892E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6954356.666666667,
+                "50.0" : 8666195.833333334,
+                "90.0" : 2.0746768E7,
+                "95.0" : 2.115907E7,
+                "99.0" : 2.115907E7,
+                "99.9" : 2.115907E7,
+                "99.99" : 2.115907E7,
+                "99.999" : 2.115907E7,
+                "99.9999" : 2.115907E7,
+                "100.0" : 2.115907E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    7372825.0,
+                    7155027.586206896,
+                    7063572.413793104,
+                    6954356.666666667,
+                    7460951.851851852
+                ],
+                [
+                    7279157.142857143,
+                    8666195.833333334,
+                    2.115907E7,
+                    1.7265141666666668E7,
+                    1.4302593333333334E7
+                ],
+                [
+                    2.04719E7,
+                    1.35007E7,
+                    9247300.0,
+                    8217457.692307692,
+                    1.1680255555555556E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "allT",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 471.40891396177005,
+            "scoreError" : 50.92105159903313,
+            "scoreConfidence" : [
+                420.4878623627369,
+                522.3299655608032
+            ],
+            "scorePercentiles" : {
+                "0.0" : 429.2556674337706,
+                "50.0" : 449.47030835740685,
+                "90.0" : 564.0513164719205,
+                "95.0" : 601.6990747789949,
+                "99.0" : 601.6990747789949,
+                "99.9" : 601.6990747789949,
+                "99.99" : 601.6990747789949,
+                "99.999" : 601.6990747789949,
+                "99.9999" : 601.6990747789949,
+                "100.0" : 601.6990747789949
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    439.9420100407728,
+                    449.47030835740685,
+                    473.5103091566094,
+                    507.99139789304104,
+                    498.9617128501107
+                ],
+                [
+                    429.2556674337706,
+                    447.86704514565054,
+                    445.8839712599161,
+                    447.3143527376031,
+                    538.9528109338708
+                ],
+                [
+                    433.4532023650499,
+                    433.57435297873536,
+                    458.0829613964707,
+                    465.1745320985484,
+                    601.6990747789949
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "allT",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 48790.06262078013,
+            "scoreError" : 954.9240828812949,
+            "scoreConfidence" : [
+                47835.138537898834,
+                49744.98670366143
+            ],
+            "scorePercentiles" : {
+                "0.0" : 47464.83180428135,
+                "50.0" : 48680.024242424246,
+                "90.0" : 50292.89409027345,
+                "95.0" : 50725.59838750315,
+                "99.0" : 50725.59838750315,
+                "99.9" : 50725.59838750315,
+                "99.99" : 50725.59838750315,
+                "99.999" : 50725.59838750315,
+                "99.9999" : 50725.59838750315,
+                "100.0" : 50725.59838750315
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    48824.045432576124,
+                    49854.0192926045,
+                    48578.588690188495,
+                    48456.20332450012,
+                    48938.04083616918
+                ],
+                [
+                    48919.97073884418,
+                    47920.842306771956,
+                    48680.024242424246,
+                    47616.80113906028,
+                    48059.27342256214
+                ],
+                [
+                    49187.512218963835,
+                    47464.83180428135,
+                    48620.76291646548,
+                    50725.59838750315,
+                    50004.424558786974
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.java",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "allT",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 1.3043442124108981E7,
+            "scoreError" : 6936083.952459978,
+            "scoreConfidence" : [
+                6107358.171649003,
+                1.997952607656896E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 7246839.285714285,
+                "50.0" : 9666076.19047619,
+                "90.0" : 2.3186048888888888E7,
+                "95.0" : 2.3643055555555556E7,
+                "99.0" : 2.3643055555555556E7,
+                "99.9" : 2.3643055555555556E7,
+                "99.99" : 2.3643055555555556E7,
+                "99.999" : 2.3643055555555556E7,
+                "99.9999" : 2.3643055555555556E7,
+                "100.0" : 2.3643055555555556E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    7313517.857142857,
+                    7862396.153846154,
+                    7792096.153846154,
+                    7739511.538461538,
+                    7849350.0
+                ],
+                [
+                    7246839.285714285,
+                    9666076.19047619,
+                    8995647.826086957,
+                    1.0310165E7,
+                    1.272618125E7
+                ],
+                [
+                    2.041627E7,
+                    2.3643055555555556E7,
+                    2.2881377777777776E7,
+                    2.0322727272727273E7,
+                    2.088642E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "all",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 48.565218834953114,
+            "scoreError" : 10.516481230595467,
+            "scoreConfidence" : [
+                38.04873760435765,
+                59.08170006554858
+            ],
+            "scorePercentiles" : {
+                "0.0" : 41.741017413077174,
+                "50.0" : 45.67186559280253,
+                "90.0" : 67.52781260870984,
+                "95.0" : 79.58802358951517,
+                "99.0" : 79.58802358951517,
+                "99.9" : 79.58802358951517,
+                "99.99" : 79.58802358951517,
+                "99.999" : 79.58802358951517,
+                "99.9999" : 79.58802358951517,
+                "100.0" : 79.58802358951517
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    59.487671954839605,
+                    52.407227920847994,
+                    79.58802358951517,
+                    42.420915890175216,
+                    47.3253480540874
+                ],
+                [
+                    42.14674526874271,
+                    41.741017413077174,
+                    45.62111730675719,
+                    42.42765199046816,
+                    42.63133416417715
+                ],
+                [
+                    44.056690668383055,
+                    45.67186559280253,
+                    46.023486626458485,
+                    45.77138436232603,
+                    51.15780172163879
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "all",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 5448.610484657949,
+            "scoreError" : 862.0495082825305,
+            "scoreConfidence" : [
+                4586.560976375418,
+                6310.65999294048
+            ],
+            "scorePercentiles" : {
+                "0.0" : 4940.420623818989,
+                "50.0" : 5142.156536006358,
+                "90.0" : 7400.902790085658,
+                "95.0" : 7476.377016278897,
+                "99.0" : 7476.377016278897,
+                "99.9" : 7476.377016278897,
+                "99.99" : 7476.377016278897,
+                "99.999" : 7476.377016278897,
+                "99.9999" : 7476.377016278897,
+                "100.0" : 7476.377016278897
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    7476.377016278897,
+                    5125.126773549147,
+                    5305.537597371628,
+                    5121.438232066756,
+                    7350.586639290166
+                ],
+                [
+                    5017.642501936677,
+                    5111.015846283396,
+                    5020.937233455421,
+                    5058.618427691998,
+                    4940.420623818989
+                ],
+                [
+                    5142.156536006358,
+                    5237.189931589117,
+                    5200.070078903655,
+                    5382.984363285852,
+                    5239.055468341183
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "all",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 7071044.181840357,
+            "scoreError" : 548885.8976906673,
+            "scoreConfidence" : [
+                6522158.28414969,
+                7619930.079531025
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6521390.322580645,
+                "50.0" : 6935944.827586207,
+                "90.0" : 8008425.292307693,
+                "95.0" : 8384744.0,
+                "99.0" : 8384744.0,
+                "99.9" : 8384744.0,
+                "99.99" : 8384744.0,
+                "99.999" : 8384744.0,
+                "99.9999" : 8384744.0,
+                "100.0" : 8384744.0
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    6586261.29032258,
+                    6838936.666666667,
+                    6877613.333333333,
+                    7048089.655172414,
+                    7469666.666666667
+                ],
+                [
+                    7395635.714285715,
+                    7197486.206896552,
+                    6775546.666666667,
+                    8384744.0,
+                    6640190.322580645
+                ],
+                [
+                    7105768.9655172415,
+                    6935944.827586207,
+                    6530841.935483871,
+                    6521390.322580645,
+                    7757546.153846154
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis0",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 691.5224594676927,
+            "scoreError" : 206.11364560982614,
+            "scoreConfidence" : [
+                485.40881385786656,
+                897.6361050775188
+            ],
+            "scorePercentiles" : {
+                "0.0" : 552.9775979060586,
+                "50.0" : 597.8620271018193,
+                "90.0" : 1095.4291356440672,
+                "95.0" : 1161.5200350946054,
+                "99.0" : 1161.5200350946054,
+                "99.9" : 1161.5200350946054,
+                "99.99" : 1161.5200350946054,
+                "99.999" : 1161.5200350946054,
+                "99.9999" : 1161.5200350946054,
+                "100.0" : 1161.5200350946054
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    552.9775979060586,
+                    570.9740630404716,
+                    566.0173837535488,
+                    567.6439971259979,
+                    584.5446607875666
+                ],
+                [
+                    576.2140207863977,
+                    1051.368536010375,
+                    597.8620271018193,
+                    844.1389073324731,
+                    839.4638604218543
+                ],
+                [
+                    660.8829818732112,
+                    600.2170472664218,
+                    611.5056219576994,
+                    587.5061515568899,
+                    1161.5200350946054
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis0",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 18271.878444393053,
+            "scoreError" : 1768.6346762233272,
+            "scoreConfidence" : [
+                16503.243768169727,
+                20040.51312061638
+            ],
+            "scorePercentiles" : {
+                "0.0" : 15773.512536351489,
+                "50.0" : 18299.219742333516,
+                "90.0" : 20897.036342207197,
+                "95.0" : 22230.316091954024,
+                "99.0" : 22230.316091954024,
+                "99.9" : 22230.316091954024,
+                "99.99" : 22230.316091954024,
+                "99.999" : 22230.316091954024,
+                "99.9999" : 22230.316091954024,
+                "100.0" : 22230.316091954024
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    16708.08676861702,
+                    16880.57680988817,
+                    15773.512536351489,
+                    17490.41489084109,
+                    16669.1144886833
+                ],
+                [
+                    18899.55756377671,
+                    22230.316091954024,
+                    20008.18317570931,
+                    17758.235919234856,
+                    16855.76425411136
+                ],
+                [
+                    18811.587942529815,
+                    18954.63742081876,
+                    18299.219742333516,
+                    19382.48006915762,
+                    19356.48899188876
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis0",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 6963821.200873907,
+            "scoreError" : 1565793.6292156999,
+            "scoreConfidence" : [
+                5398027.571658207,
+                8529614.830089606
+            ],
+            "scorePercentiles" : {
+                "0.0" : 5468162.162162162,
+                "50.0" : 6122050.0,
+                "90.0" : 9609549.454545455,
+                "95.0" : 1.003741E7,
+                "99.0" : 1.003741E7,
+                "99.9" : 1.003741E7,
+                "99.99" : 1.003741E7,
+                "99.999" : 1.003741E7,
+                "99.9999" : 1.003741E7,
+                "100.0" : 1.003741E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    5949247.05882353,
+                    5628105.555555556,
+                    5748157.142857143,
+                    5750048.571428572,
+                    6122050.0
+                ],
+                [
+                    9324309.090909092,
+                    8042020.0,
+                    8474583.333333334,
+                    7648196.296296297,
+                    6720493.333333333
+                ],
+                [
+                    5468162.162162162,
+                    5934520.0,
+                    1.003741E7,
+                    7586403.703703703,
+                    6023611.764705882
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis1",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 504.9144026208351,
+            "scoreError" : 160.511398456982,
+            "scoreConfidence" : [
+                344.4030041638531,
+                665.4258010778171
+            ],
+            "scorePercentiles" : {
+                "0.0" : 352.04969621107705,
+                "50.0" : 424.35646554707506,
+                "90.0" : 787.5962047343825,
+                "95.0" : 883.6512910006743,
+                "99.0" : 883.6512910006743,
+                "99.9" : 883.6512910006743,
+                "99.99" : 883.6512910006743,
+                "99.999" : 883.6512910006743,
+                "99.9999" : 883.6512910006743,
+                "100.0" : 883.6512910006743
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    396.81696198482234,
+                    395.262487026594,
+                    389.72543358194224,
+                    402.6128014058769,
+                    408.707960226225
+                ],
+                [
+                    723.5594805568545,
+                    883.6512910006743,
+                    424.35646554707506,
+                    352.04969621107705,
+                    370.1998984095781
+                ],
+                [
+                    598.0468993155699,
+                    559.1171007346338,
+                    560.092285717474,
+                    551.3940216569995,
+                    558.1232559371315
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis1",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 6890.6953674788365,
+            "scoreError" : 837.1935748890071,
+            "scoreConfidence" : [
+                6053.501792589829,
+                7727.888942367844
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6373.040383821053,
+                "50.0" : 6642.753862405916,
+                "90.0" : 8240.730256175011,
+                "95.0" : 9578.145947230805,
+                "99.0" : 9578.145947230805,
+                "99.9" : 9578.145947230805,
+                "99.99" : 9578.145947230805,
+                "99.999" : 9578.145947230805,
+                "99.9999" : 9578.145947230805,
+                "100.0" : 9578.145947230805
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    6373.040383821053,
+                    6512.007925165649,
+                    6642.753862405916,
+                    6498.354454933402,
+                    6756.550174403005
+                ],
+                [
+                    7349.119795471147,
+                    6933.907768663404,
+                    6641.511616378598,
+                    6458.876023541454,
+                    6587.624901393637
+                ],
+                [
+                    6930.556613903224,
+                    6776.63708484604,
+                    6509.5539951888695,
+                    6811.789964836354,
+                    9578.145947230805
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "axis1",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 7131679.55524093,
+            "scoreError" : 1792185.046264615,
+            "scoreConfidence" : [
+                5339494.508976315,
+                8923864.601505544
+            ],
+            "scorePercentiles" : {
+                "0.0" : 5763448.571428572,
+                "50.0" : 6292012.121212121,
+                "90.0" : 1.0020445473145781E7,
+                "95.0" : 1.187419411764706E7,
+                "99.0" : 1.187419411764706E7,
+                "99.9" : 1.187419411764706E7,
+                "99.99" : 1.187419411764706E7,
+                "99.999" : 1.187419411764706E7,
+                "99.9999" : 1.187419411764706E7,
+                "100.0" : 1.187419411764706E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    7051500.0,
+                    6292012.121212121,
+                    8723704.347826088,
+                    8784613.043478262,
+                    1.187419411764706E7
+                ],
+                [
+                    6610825.806451613,
+                    6049779.411764706,
+                    6236684.848484849,
+                    6088158.823529412,
+                    8458454.166666666
+                ],
+                [
+                    5763448.571428572,
+                    7067103.448275862,
+                    5972902.857142857,
+                    5941994.117647059,
+                    6059817.647058823
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "allT",
+            "n" : "1000"
+        },
+        "primaryMetric" : {
+            "score" : 728.3536876021273,
+            "scoreError" : 141.42021676070382,
+            "scoreConfidence" : [
+                586.9334708414234,
+                869.7739043628311
+            ],
+            "scorePercentiles" : {
+                "0.0" : 616.9800815582333,
+                "50.0" : 648.2184153069003,
+                "90.0" : 971.6608150670774,
+                "95.0" : 1083.005155165648,
+                "99.0" : 1083.005155165648,
+                "99.9" : 1083.005155165648,
+                "99.99" : 1083.005155165648,
+                "99.999" : 1083.005155165648,
+                "99.9999" : 1083.005155165648,
+                "100.0" : 1083.005155165648
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    847.9577661638023,
+                    790.8124519479704,
+                    690.7275903610323,
+                    642.3762540950041,
+                    641.8957631160318
+                ],
+                [
+                    804.6810524247394,
+                    897.4312550013635,
+                    616.9800815582333,
+                    1083.005155165648,
+                    694.8041408729126
+                ],
+                [
+                    647.2810381461492,
+                    644.2282571110229,
+                    627.9128568120514,
+                    648.2184153069003,
+                    646.9932359490457
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "allT",
+            "n" : "100000"
+        },
+        "primaryMetric" : {
+            "score" : 46949.638152301595,
+            "scoreError" : 5044.623376093395,
+            "scoreConfidence" : [
+                41905.0147762082,
+                51994.26152839499
+            ],
+            "scorePercentiles" : {
+                "0.0" : 40559.983831851256,
+                "50.0" : 47682.71867612293,
+                "90.0" : 54096.062772914556,
+                "95.0" : 55887.39740534816,
+                "99.0" : 55887.39740534816,
+                "99.9" : 55887.39740534816,
+                "99.99" : 55887.39740534816,
+                "99.999" : 55887.39740534816,
+                "99.9999" : 55887.39740534816,
+                "100.0" : 55887.39740534816
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    44314.8884470952,
+                    48585.07821901324,
+                    48433.765298776096,
+                    52901.83968462549,
+                    55887.39740534816
+                ],
+                [
+                    50348.68979286249,
+                    47682.71867612293,
+                    52334.863102998694,
+                    49757.951747907435,
+                    43739.08220965637
+                ],
+                [
+                    40559.983831851256,
+                    42119.42521501993,
+                    42221.50084317032,
+                    43755.357142857145,
+                    41602.03066721923
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "numj.ReduceBench.numj",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 3,
+        "jvm" : "C:\\Users\\Hareram ray\\AI\\numJ\\.tools\\jdk\\bin\\java.exe",
+        "jvmArgs" : [
+            "--enable-native-access=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED",
+            "-Xms2g",
+            "-Xmx2g",
+            "-XX:+AlwaysPreTouch"
+        ],
+        "jdkVersion" : "25.0.4.1",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.0.4.1+1-LTS",
+        "warmupIterations" : 5,
+        "warmupTime" : "200 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "200 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "kind" : "allT",
+            "n" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 2.8281287153198652E7,
+            "scoreError" : 1.3172577354160635E7,
+            "scoreConfidence" : [
+                1.5108709799038017E7,
+                4.145386450735929E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.83862E7,
+                "50.0" : 2.5288211111111112E7,
+                "90.0" : 5.271101600000001E7,
+                "95.0" : 6.81476E7,
+                "99.0" : 6.81476E7,
+                "99.9" : 6.81476E7,
+                "99.99" : 6.81476E7,
+                "99.999" : 6.81476E7,
+                "99.9999" : 6.81476E7,
+                "100.0" : 6.81476E7
+            },
+            "scoreUnit" : "ns/op",
+            "rawData" : [
+                [
+                    2.5126644444444444E7,
+                    6.81476E7,
+                    4.241996E7,
+                    2.6084055555555556E7,
+                    2.9205875E7
+                ],
+                [
+                    2.6322575E7,
+                    2.5958825E7,
+                    2.163583E7,
+                    2.2491111111111112E7,
+                    1.930469090909091E7
+                ],
+                [
+                    2.5288211111111112E7,
+                    2.66092625E7,
+                    2.3508322222222224E7,
+                    1.83862E7,
+                    2.3730144444444444E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    }
+]
+
+

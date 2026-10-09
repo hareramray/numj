@@ -99,6 +99,13 @@ def main():
     jm_before_short = load_jmh("jmh_main.json")
     jm = dict(jm_before_short)
     jm.update(load_jmh("jmh_shortfix.json"))         # ShortRowBench re-measured after the short-row fix
+    jm_round1 = dict(jm)
+    jm.update(load_jmh("jmh_fix2.json"))             # Reduce/Fused/ShortRow re-measured after round 2 (gather)
+    jm_gather = dict(jm)
+    jm.update(load_jmh("jmh_fix3.json"))             # Reduce/Fused after the tiled gather (all sizes)
+    jm_tiled = dict(jm)
+    jm.update(load_jmh("jmh_fix4.json"))             # final: size/op-based path choice
+    jm_repeat = load_jmh("jmh_fix4repeat.json")     # independent repeat of the 10^7 cases
     jd_before = load_jmh("jmh_decision.json")      # before the contiguous fast path (kept as evidence)
     jd = dict(jd_before)
     jd.update(load_jmh("jmh_decision2.json"))      # SmallBench / AllocBench re-measured after it
@@ -252,6 +259,45 @@ def main():
             jv = j(jm, "ShortRowBench", "javaSumRows", k=k)
             r = f"{a0['median'] / b0['median']:.2f}" if a0 and b0 else "-"
             w(f"| {k} | {fmt(b0 and b0['median'])} | {fmt(a0 and a0['median'])} | {fmt(jv and jv['median'])} | {r} |")
+        w("")
+
+    if load_jmh("jmh_fix2.json"):
+        w("## Round 2: fixes for measured losses (same benchmarks before and after)\n")
+        w("Three changes, all bitwise-identical (every test unchanged): column sums use groups of up to 4096 columns "
+          "(512 KiB of accumulators, L2-resident) so each row is streamed once; strided sequences (transposed views, "
+          "fused kernels on strided inputs) gather each 4096-element block into a buffer and run the vectorised block "
+          "kernel; rows of at most 8 elements use the lane tree's closed form. The first gather version read one "
+          "block at a time down a memory column (a page per element) and regressed large transposed inputs; the "
+          "retained version reads 8 neighbouring logical rows per memory row (tiled). Columns: before round 2, the "
+          "intermediate untiled gather, the tiled gather used at every size, and the final code, which picks the measured best "
+          "path by size and operation (tiled for >= 2^20 elements, untiled gather for smaller plain sums, the direct lane "
+          "loop for smaller fused kernels). `repeat` is an independent second run of the final code at 10^7 elements; "
+          "the spread between `final` and `repeat` shows the run-to-run variability. NumPy figures are from the same "
+          "`python_main.csv` as above.\n")
+        w("| case | n / k | before | untiled gather | tiled everywhere | final | repeat | final/before | NumPy (out= where available) | NumPy/final |")
+        w("|---|---|---|---|---|---|---|---|---|---|")
+        rows = []
+        for kind in ("axis0", "allT", "all", "axis1"):
+            for n in (1000, 100000, 10000000):
+                rows.append((f"sum {kind}", f"{n:,}", ("ReduceBench", "numj", {"n": n, "kind": kind}),
+                             py.get(("reduce", "sum", kind, n, "numpy-out")) or py.get(("reduce", "sum", kind, n, "numpy"))))
+        for layout in ("transposed", "contig"):
+            for n in (1000, 100000, 10000000):
+                rows.append((f"fused {layout}", f"{n:,}", ("FusedBench", "fused", {"n": n, "layout": layout}),
+                             py.get(("fused", "muladd", layout, n, "numpy-out"))))
+        for k in (2, 4, 8, 16, 64):
+            rows.append(("short-row sum", f"k={k}", ("ShortRowBench", "sumRows", {"k": k}),
+                         py.get(("short", "sumRows", f"k={k}", 1000000, "numpy-out"))))
+        for name, size, (cls, m, prm), npv in rows:
+            b0 = j(jm_round1, cls, m, **prm)
+            g0 = j(jm_gather, cls, m, **prm)
+            t0 = j(jm_tiled, cls, m, **prm)
+            a0 = j(jm, cls, m, **prm)
+            r0 = j(jm_repeat, cls, m, **prm)
+            r = f"{a0['median'] / b0['median']:.2f}" if a0 and b0 else "-"
+            w(f"| {name} | {size} | {fmt(b0 and b0['median'])} | {fmt(g0 and g0['median'])} | {fmt(t0 and t0['median'])} | "
+              f"{fmt(a0 and a0['median'])} | {fmt(r0 and r0['median'])} | {r} | "
+              f"{fmt(npv and npv['median'])} | {ratio(a0, npv)} |")
         w("")
 
     # ---------------------------------------------------------------- decision benchmarks

@@ -24,8 +24,8 @@ ranges do not overlap. Full tables: [`results/nd/RESULTS.md`](results/nd/RESULTS
   * Contiguous elementwise `a + b` into a reused buffer: 6.6–19× faster than NumPy with `out=` at 16–10³ elements and
     1.7× at 10⁵.
   * Full and row sums: 4.6–47× faster than NumPy up to 10⁵ elements (the full sum at 10⁵, 2.4×, is a tie by the p10–p90 rule).
-  * The explicitly fused `sum((a*b+c)**2)`: 3.3–25× faster than NumPy with reused buffers, 3.1–91× faster than
-    NumExpr, and 1.1–6.4× faster than Numba on contiguous data.
+  * The explicitly fused `sum((a*b+c)**2)`: faster than NumPy with reused buffers in all 6 cells (1.5–25×, contiguous
+    and transposed), faster than NumExpr in 5 of 6, faster than Numba in 3 of 6.
   * Across the 16 elementwise cells, numj beats NumPy-out in 13 and ties 3, beats NumExpr in 13 and ties 3, and beats
     Numba in 12 and ties 4. The main reason is per-call overhead: ~17 ns for numj against 0.3–13 µs.
 * **Where it ties.** At 10⁷ elements, contiguous and stepped elementwise operations are memory-bound and tie with
@@ -33,13 +33,17 @@ ranges do not overlap. Full tables: [`results/nd/RESULTS.md`](results/nd/RESULTS
 * **Where it loses.**
   * Plain Java `double[]` loops win on tiny contiguous inputs (6.5 vs 17.6 ns at 16 elements: the downcall is a fixed
     cost) and on small strided ones (planning overhead). Elementwise vs Java overall: 2 wins, 5 ties, 9 losses.
-  * Several 10⁷-element cases lose: transposed and broadcast elementwise, and column sums (0.68× NumPy).
-  * Sums over transposed views lose (0.16–0.36× NumPy). This is the deliberate cost of results that do not depend on
-    memory layout.
-  * Rows of 2 elements still lose to Java and Numba.
-* **What changed because of measurements.** Two improvements were measured and retained:
+  * Several 10⁷-element cases lose: transposed and broadcast elementwise; column sums narrowly (0.85× NumPy,
+    within run-to-run noise).
+  * Sums over transposed views still lose at 10⁷ (0.25× NumPy, down from 0.16×). This is the deliberate cost of
+    results that do not depend on memory layout.
+  * Numba beats numj on rows of 2–4 elements; plain Java still wins most tiny and strided elementwise cases.
+* **What changed because of measurements.** These improvements were measured and retained:
   * a contiguous fast path: small calls went from ~200 ns to ~17 ns;
-  * short-row sums: 1.25–2.3× faster.
+  * short-row sums: 7.5× faster for rows of 2 (now 5.4× faster than NumPy), 2× for rows of 4;
+  * round 2: transposed sums 1.6–2.5× faster, the fused kernel on transposed views 2.7× faster at 10⁷ (now 2.5× faster
+    than NumPy-out), column sums at 10⁷ ~20% faster. One intermediate version regressed fused kernels on strided
+    inputs; it was measured, diagnosed and replaced, and the regression is documented in `RESULTS.md`.
   Two assumptions were refuted: a Java loop for tiny reductions turned out slower than the downcall, and multi-threaded
   elementwise operations gain at most 1.3×. Critical downcalls save only 4–9 ns and are now opt-in. See
   [docs/PERFORMANCE.md](docs/PERFORMANCE.md).

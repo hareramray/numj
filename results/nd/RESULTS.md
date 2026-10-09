@@ -61,18 +61,18 @@ Layouts: `contig` [n]+[n]; `transposed` A.T+B.T into C-ordered [r,c]; `stepped` 
 
 | kind | n | numj | java | numpy-out | numpy | numba | java/numj | numpy-out/numj | numpy/numj | numba/numj |
 |---|---|---|---|---|---|---|---|---|---|---|
-| all | 1,000 | 47.2 ns | 428.5 ns | - | 2.22 µs | 1.04 µs | 9.1 | - | 47 | 22 |
-| all | 100,000 | 11.76 µs | 51.29 µs | - | 28.69 µs | 72.50 µs | 4.4 | - | 2.4 tie | 6.2 |
-| all | 10,000,000 | 7.05 ms | 7.46 ms | - | 10.33 ms | 7.88 ms | 1.1 tie | - | 1.5 tie | 1.1 tie |
-| axis0 | 1,000 | 548.7 ns | 356.7 ns | 3.03 µs | 3.12 µs | 616.4 ns | 0.65 **loss** | 5.5 | 5.7 | 1.1 tie |
-| axis0 | 100,000 | 16.56 µs | 32.23 µs | 21.15 µs | 24.64 µs | 21.15 µs | 1.9 | 1.3 tie | 1.5 | 1.3 tie |
-| axis0 | 10,000,000 | 7.66 ms | 7.60 ms | 5.20 ms | 5.22 ms | 5.21 ms | 0.99 tie | 0.68 **loss** | 0.68 **loss** | 0.68 **loss** |
-| axis1 | 1,000 | 401.7 ns | 218.3 ns | 3.20 µs | 3.30 µs | 610.8 ns | 0.54 **loss** | 8 | 8.2 | 1.5 tie |
-| axis1 | 100,000 | 7.87 µs | 43.80 µs | 34.64 µs | 36.38 µs | 59.64 µs | 5.6 | 4.4 | 4.6 | 7.6 |
-| axis1 | 10,000,000 | 6.88 ms | 7.98 ms | 8.22 ms | 8.38 ms | 6.86 ms | 1.2 tie | 1.2 tie | 1.2 tie | 1 tie |
-| allT | 1,000 | 1.62 µs | 472.3 ns | - | 2.14 µs | 956.8 ns | 0.29 **loss** | - | 1.3 | 0.59 **loss** |
-| allT | 100,000 | 89.37 µs | 56.93 µs | - | 31.89 µs | 87.37 µs | 0.64 **loss** | - | 0.36 **loss** | 0.98 tie |
-| allT | 10,000,000 | 40.39 ms | 8.55 ms | - | 6.43 ms | 49.03 ms | 0.21 **loss** | - | 0.16 **loss** | 1.2 |
+| all | 1,000 | 45.7 ns | 446.5 ns | - | 2.22 µs | 1.04 µs | 9.8 | - | 49 | 23 |
+| all | 100,000 | 5.14 µs | 52.56 µs | - | 28.69 µs | 72.50 µs | 10 | - | 5.6 | 14 |
+| all | 10,000,000 | 6.94 ms | 7.30 ms | - | 10.33 ms | 7.88 ms | 1.1 tie | - | 1.5 | 1.1 tie |
+| axis0 | 1,000 | 597.9 ns | 350.5 ns | 3.03 µs | 3.12 µs | 616.4 ns | 0.59 **loss** | 5.1 | 5.2 | 1 tie |
+| axis0 | 100,000 | 18.30 µs | 31.71 µs | 21.15 µs | 24.64 µs | 21.15 µs | 1.7 | 1.2 tie | 1.3 | 1.2 tie |
+| axis0 | 10,000,000 | 6.12 ms | 9.56 ms | 5.20 ms | 5.22 ms | 5.21 ms | 1.6 tie | 0.85 **loss** | 0.85 tie | 0.85 tie |
+| axis1 | 1,000 | 424.4 ns | 236.5 ns | 3.20 µs | 3.30 µs | 610.8 ns | 0.56 **loss** | 7.6 | 7.8 | 1.4 tie |
+| axis1 | 100,000 | 6.64 µs | 40.15 µs | 34.64 µs | 36.38 µs | 59.64 µs | 6 | 5.2 | 5.5 | 9 |
+| axis1 | 10,000,000 | 6.29 ms | 8.67 ms | 8.22 ms | 8.38 ms | 6.86 ms | 1.4 tie | 1.3 tie | 1.3 tie | 1.1 tie |
+| allT | 1,000 | 648.2 ns | 449.5 ns | - | 2.14 µs | 956.8 ns | 0.69 **loss** | - | 3.3 | 1.5 |
+| allT | 100,000 | 47.68 µs | 48.68 µs | - | 31.89 µs | 87.37 µs | 1 tie | - | 0.67 tie | 1.8 |
+| allT | 10,000,000 | 25.29 ms | 9.67 ms | - | 6.43 ms | 49.03 ms | 0.38 tie | - | 0.25 **loss** | 1.9 |
 
 ## `sum((a*b + c)**2)`: explicit fusion versus operation-by-operation
 
@@ -80,12 +80,12 @@ Layouts: `contig` [n]+[n]; `transposed` A.T+B.T into C-ordered [r,c]; `stepped` 
 
 | layout | n | numj fused | numj unfused | numj reuse | java | numpy | numpy-out | numexpr | numba | numpy/fused | numpy-out/fused | numexpr/fused | numba/fused | java/fused |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| contig | 1,000 | 112.9 ns | 709.7 ns | 316.8 ns | 436.2 ns | 3.29 µs | 2.82 µs | 10.29 µs | 722.2 ns | 29 | 25 | 91 | 6.4 | 3.9 |
-| contig | 100,000 | 29.87 µs | 112.14 µs | 84.28 µs | 47.61 µs | 127.76 µs | 97.95 µs | 340.13 µs | 48.83 µs | 4.3 | 3.3 | 11 | 1.6 | 1.6 |
-| contig | 10,000,000 | 13.36 ms | 83.96 ms | 52.52 ms | 13.79 ms | 85.84 ms | 46.40 ms | 41.74 ms | 14.74 ms | 6.4 | 3.5 | 3.1 | 1.1 | 1 tie |
-| transposed | 1,000 | 1.25 µs | 2.12 µs | 1.86 µs | 435.8 ns | 3.28 µs | 5.45 µs | 10.16 µs | 872.0 ns | 2.6 | 4.3 | 8.1 | 0.7 **loss** | 0.35 **loss** |
-| transposed | 100,000 | 149.64 µs | 226.22 µs | 198.00 µs | 47.78 µs | 128.24 µs | 245.65 µs | 341.12 µs | 142.13 µs | 0.86 **loss** | 1.6 | 2.3 | 0.95 tie | 0.32 **loss** |
-| transposed | 10,000,000 | 205.81 ms | 270.60 ms | 277.04 ms | 13.86 ms | 86.10 ms | 193.13 ms | 41.85 ms | 209.47 ms | 0.42 **loss** | 0.94 tie | 0.2 **loss** | 1 tie | 0.067 **loss** |
+| contig | 1,000 | 117.9 ns | 700.7 ns | 331.1 ns | 453.3 ns | 3.29 µs | 2.82 µs | 10.29 µs | 722.2 ns | 28 | 24 | 87 | 6.1 | 3.8 |
+| contig | 100,000 | 31.22 µs | 122.76 µs | 85.33 µs | 57.20 µs | 127.76 µs | 97.95 µs | 340.13 µs | 48.83 µs | 4.1 | 3.1 | 11 | 1.6 | 1.8 |
+| contig | 10,000,000 | 24.81 ms | 104.81 ms | 70.77 ms | 15.48 ms | 85.84 ms | 46.40 ms | 41.74 ms | 14.74 ms | 3.5 | 1.9 | 1.7 | 0.59 **loss** | 0.62 **loss** |
+| transposed | 1,000 | 1.35 µs | 2.41 µs | 2.19 µs | 464.6 ns | 3.28 µs | 5.45 µs | 10.16 µs | 872.0 ns | 2.4 | 4 | 7.5 | 0.65 **loss** | 0.34 **loss** |
+| transposed | 100,000 | 158.66 µs | 262.13 µs | 152.47 µs | 51.08 µs | 128.24 µs | 245.65 µs | 341.12 µs | 142.13 µs | 0.81 **loss** | 1.5 | 2.2 | 0.9 tie | 0.32 **loss** |
+| transposed | 10,000,000 | 76.39 ms | 536.12 ms | 454.61 ms | 15.64 ms | 86.10 ms | 193.13 ms | 41.85 ms | 209.47 ms | 1.1 tie | 2.5 | 0.55 **loss** | 2.7 | 0.2 **loss** |
 
 Numba compilation (excluded from the timings above): first call per kernel, seconds — `nb_add1:contig` 0.56, `nb_add2:transposed` 0.14, `nb_add1:stepped` 0.11, `nb_addrow:bcast` 0.12, `nb_sum` 0.11, `nb_sum_axis0` 0.13, `nb_sum_axis1` 0.12, `nb_sum:T` 0.08, `nb_muladd:contig` 0.07, `nb_muladd:transposed` 0.07, `nb_sum_axis1:short` 0.00, `nb_add2:short` 0.08.
 
@@ -95,11 +95,11 @@ Numba compilation (excluded from the timings above): first call per kernel, seco
 
 | k | sumRows numj | java | numpy-out | numba | java/numj | numpy-out/numj | numba/numj | addRows numj | java | numpy-out | numexpr | numba | java/numj | numpy-out/numj | numexpr/numj | numba/numj |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2 | 4.65 ms | 946.80 µs | 3.34 ms | 730.82 µs | 0.2 **loss** | 0.72 **loss** | 0.16 **loss** | 3.35 ms | 2.15 ms | 3.97 ms | 3.84 ms | 1.99 ms | 0.64 **loss** | 1.2 tie | 1.1 | 0.6 **loss** |
-| 4 | 841.67 µs | 673.30 µs | 1.60 ms | 497.23 µs | 0.8 tie | 1.9 | 0.59 **loss** | 2.53 ms | 1.79 ms | 2.91 ms | 2.74 ms | 1.73 ms | 0.71 **loss** | 1.1 tie | 1.1 tie | 0.68 **loss** |
-| 8 | 513.61 µs | 528.93 µs | 1.01 ms | 370.67 µs | 1 tie | 2 tie | 0.72 **loss** | 1.84 ms | 1.64 ms | 2.71 ms | 2.57 ms | 1.47 ms | 0.89 **loss** | 1.5 tie | 1.4 tie | 0.8 tie |
-| 16 | 394.72 µs | 420.57 µs | 545.34 µs | 294.82 µs | 1.1 tie | 1.4 tie | 0.75 **loss** | 1.65 ms | 1.55 ms | 1.94 ms | 1.97 ms | 1.46 ms | 0.94 tie | 1.2 | 1.2 | 0.89 tie |
-| 64 | 223.74 µs | 304.07 µs | 323.43 µs | 296.13 µs | 1.4 | 1.4 | 1.3 | 1.52 ms | 1.46 ms | 2.09 ms | 2.01 ms | 1.44 ms | 0.96 tie | 1.4 tie | 1.3 tie | 0.95 tie |
+| 2 | 624.35 µs | 1.13 ms | 3.34 ms | 730.82 µs | 1.8 | 5.4 | 1.2 | 3.19 ms | 2.46 ms | 3.97 ms | 3.84 ms | 1.99 ms | 0.77 **loss** | 1.2 tie | 1.2 tie | 0.63 **loss** |
+| 4 | 423.62 µs | 712.11 µs | 1.60 ms | 497.23 µs | 1.7 | 3.8 | 1.2 | 2.17 ms | 2.05 ms | 2.91 ms | 2.74 ms | 1.73 ms | 0.94 tie | 1.3 | 1.3 | 0.79 tie |
+| 8 | 449.62 µs | 502.46 µs | 1.01 ms | 370.67 µs | 1.1 tie | 2.2 | 0.82 **loss** | 2.22 ms | 1.92 ms | 2.71 ms | 2.57 ms | 1.47 ms | 0.86 tie | 1.2 tie | 1.2 tie | 0.66 **loss** |
+| 16 | 455.44 µs | 458.14 µs | 545.34 µs | 294.82 µs | 1 tie | 1.2 tie | 0.65 **loss** | 1.92 ms | 1.82 ms | 1.94 ms | 1.97 ms | 1.46 ms | 0.95 tie | 1 tie | 1 tie | 0.76 **loss** |
+| 64 | 250.86 µs | 368.22 µs | 323.43 µs | 296.13 µs | 1.5 | 1.3 | 1.2 | 1.73 ms | 1.51 ms | 2.09 ms | 2.01 ms | 1.44 ms | 0.87 tie | 1.2 tie | 1.2 tie | 0.84 tie |
 
 ### Candidate retained: short-row sums (same benchmark before and after)
 
@@ -107,11 +107,41 @@ Before: every output computed its offsets with a 64-bit div/mod unravel and went
 
 | k | sumRows before | after | java | after/before |
 |---|---|---|---|---|
-| 2 | 7.93 ms | 4.65 ms | 946.80 µs | 0.59 |
-| 4 | 1.91 ms | 841.67 µs | 673.30 µs | 0.44 |
-| 8 | 1.06 ms | 513.61 µs | 528.93 µs | 0.49 |
-| 16 | 551.10 µs | 394.72 µs | 420.57 µs | 0.72 |
-| 64 | 278.07 µs | 223.74 µs | 304.07 µs | 0.80 |
+| 2 | 7.93 ms | 624.35 µs | 1.13 ms | 0.08 |
+| 4 | 1.91 ms | 423.62 µs | 712.11 µs | 0.22 |
+| 8 | 1.06 ms | 449.62 µs | 502.46 µs | 0.43 |
+| 16 | 551.10 µs | 455.44 µs | 458.14 µs | 0.83 |
+| 64 | 278.07 µs | 250.86 µs | 368.22 µs | 0.90 |
+
+## Round 2: fixes for measured losses (same benchmarks before and after)
+
+Three changes, all bitwise-identical (every test unchanged): column sums use groups of up to 4096 columns (512 KiB of accumulators, L2-resident) so each row is streamed once; strided sequences (transposed views, fused kernels on strided inputs) gather each 4096-element block into a buffer and run the vectorised block kernel; rows of at most 8 elements use the lane tree's closed form. The first gather version read one block at a time down a memory column (a page per element) and regressed large transposed inputs; the retained version reads 8 neighbouring logical rows per memory row (tiled). Columns: before round 2, the intermediate untiled gather, the tiled gather used at every size, and the final code, which picks the measured best path by size and operation (tiled for >= 2^20 elements, untiled gather for smaller plain sums, the direct lane loop for smaller fused kernels). `repeat` is an independent second run of the final code at 10^7 elements; the spread between `final` and `repeat` shows the run-to-run variability. NumPy figures are from the same `python_main.csv` as above.
+
+| case | n / k | before | untiled gather | tiled everywhere | final | repeat | final/before | NumPy (out= where available) | NumPy/final |
+|---|---|---|---|---|---|---|---|---|---|
+| sum axis0 | 1,000 | 548.7 ns | 559.9 ns | 554.8 ns | 597.9 ns | - | 1.09 | 3.03 µs | 5.1 |
+| sum axis0 | 100,000 | 16.56 µs | 18.63 µs | 16.76 µs | 18.30 µs | - | 1.10 | 21.15 µs | 1.2 tie |
+| sum axis0 | 10,000,000 | 7.66 ms | 5.50 ms | 8.18 ms | 6.12 ms | 6.44 ms | 0.80 | 5.20 ms | 0.85 **loss** |
+| sum allT | 1,000 | 1.62 µs | 724.0 ns | 1.06 µs | 648.2 ns | - | 0.40 | 2.14 µs | 3.3 |
+| sum allT | 100,000 | 89.37 µs | 45.44 µs | 69.24 µs | 47.68 µs | - | 0.53 | 31.89 µs | 0.67 tie |
+| sum allT | 10,000,000 | 40.39 ms | 50.53 ms | 23.97 ms | 25.29 ms | 23.87 ms | 0.63 | 6.43 ms | 0.25 **loss** |
+| sum all | 1,000 | 47.2 ns | 42.4 ns | 40.8 ns | 45.7 ns | - | 0.97 | 2.22 µs | 49 |
+| sum all | 100,000 | 11.76 µs | 5.11 µs | 5.04 µs | 5.14 µs | - | 0.44 | 28.69 µs | 5.6 |
+| sum all | 10,000,000 | 7.05 ms | 6.89 ms | 7.92 ms | 6.94 ms | 6.97 ms | 0.98 | 10.33 ms | 1.5 |
+| sum axis1 | 1,000 | 401.7 ns | 349.9 ns | 445.8 ns | 424.4 ns | - | 1.06 | 3.20 µs | 7.6 |
+| sum axis1 | 100,000 | 7.87 µs | 6.90 µs | 6.69 µs | 6.64 µs | - | 0.84 | 34.64 µs | 5.2 |
+| sum axis1 | 10,000,000 | 6.88 ms | 7.23 ms | 7.92 ms | 6.29 ms | 11.88 ms | 0.91 | 8.22 ms | 1.3 tie |
+| fused transposed | 1,000 | 1.25 µs | 1.47 µs | 2.37 µs | 1.35 µs | - | 1.08 | 5.45 µs | 4 |
+| fused transposed | 100,000 | 149.64 µs | 314.68 µs | 275.44 µs | 158.66 µs | - | 1.06 | 245.65 µs | 1.5 |
+| fused transposed | 10,000,000 | 205.81 ms | 518.65 ms | 78.31 ms | 76.39 ms | 84.26 ms | 0.37 | 193.13 ms | 2.5 |
+| fused contig | 1,000 | 112.9 ns | 129.6 ns | 112.7 ns | 117.9 ns | - | 1.04 | 2.82 µs | 24 |
+| fused contig | 100,000 | 29.87 µs | 30.64 µs | 30.67 µs | 31.22 µs | - | 1.05 | 97.95 µs | 3.1 |
+| fused contig | 10,000,000 | 13.36 ms | 15.33 ms | 17.22 ms | 24.81 ms | 15.06 ms | 1.86 | 46.40 ms | 1.9 |
+| short-row sum | k=2 | 4.65 ms | 624.35 µs | 624.35 µs | 624.35 µs | - | 0.13 | 3.34 ms | 5.4 |
+| short-row sum | k=4 | 841.67 µs | 423.62 µs | 423.62 µs | 423.62 µs | - | 0.50 | 1.60 ms | 3.8 |
+| short-row sum | k=8 | 513.61 µs | 449.62 µs | 449.62 µs | 449.62 µs | - | 0.88 | 1.01 ms | 2.2 |
+| short-row sum | k=16 | 394.72 µs | 455.44 µs | 455.44 µs | 455.44 µs | - | 1.15 | 545.34 µs | 1.2 tie |
+| short-row sum | k=64 | 223.74 µs | 250.86 µs | 250.86 µs | 250.86 µs | - | 1.12 | 323.43 µs | 1.3 |
 
 ## Path selection: Java loop versus native downcall (tiny inputs)
 
@@ -186,19 +216,19 @@ Before: every call built an iteration plan and descriptor and allocated segment 
 | elementwise vs numexpr | 13 | 3 | 0 |
 | elementwise vs numba | 12 | 4 | 0 |
 | elementwise alloc vs numpy | 10 | 5 | 1 |
-| sum vs java | 4 | 3 | 5 |
-| sum vs numpy | 5 | 4 | 3 |
-| sum vs numba | 4 | 6 | 2 |
-| fused vs numpy | 4 | 0 | 2 |
-| fused vs numpy-out | 5 | 1 | 0 |
+| sum vs java | 4 | 5 | 3 |
+| sum vs numpy | 7 | 3 | 2 |
+| sum vs numba | 6 | 6 | 0 |
+| fused vs numpy | 4 | 1 | 1 |
+| fused vs numpy-out | 6 | 0 | 0 |
 | fused vs numexpr | 5 | 0 | 1 |
-| fused vs numba | 3 | 2 | 1 |
-| fused vs java | 2 | 1 | 3 |
-| short-row sum vs java | 1 | 3 | 1 |
-| short-row sum vs numpy-out | 2 | 2 | 1 |
-| short-row sum vs numba | 1 | 0 | 4 |
-| short-row add vs java | 0 | 2 | 3 |
+| fused vs numba | 3 | 1 | 2 |
+| fused vs java | 2 | 0 | 4 |
+| short-row sum vs java | 3 | 2 | 0 |
+| short-row sum vs numpy-out | 4 | 1 | 0 |
+| short-row sum vs numba | 3 | 0 | 2 |
+| short-row add vs java | 0 | 4 | 1 |
 | short-row add vs numpy-out | 1 | 4 | 0 |
-| short-row add vs numexpr | 2 | 3 | 0 |
-| short-row add vs numba | 0 | 3 | 2 |
+| short-row add vs numexpr | 1 | 4 | 0 |
+| short-row add vs numba | 0 | 2 | 3 |
 

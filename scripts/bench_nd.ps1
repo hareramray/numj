@@ -11,6 +11,7 @@ $ErrorActionPreference = 'Stop'
 $Root = Split-Path -Parent $PSScriptRoot
 . (Join-Path $PSScriptRoot 'env.ps1')
 Set-Location $Root
+$JmhExtra = @($JmhExtra | ForEach-Object { $_ -split ',' } | Where-Object { $_ })   # accept "a,b" from -File
 New-Item -ItemType Directory -Force $OutDir | Out-Null
 $JavaExe = Join-Path $Root '.tools\jdk\bin\java.exe'
 $JmhCp = (@('build\classes', 'build\bench-classes', 'build\jmh-classes') +

@@ -14,10 +14,12 @@ Ordered by impact in [`results/nd/RESULTS.md`](../results/nd/RESULTS.md) and [PE
 3. **Cache-blocked strided elementwise kernels** (transposed operands), plus an optional result layout that
    follows the inputs (NumPy's `order='K'`). That choice alone makes NumPy's allocating transposed add 3× faster
    than numj's.
-4. **Column sums:** wider or L2-sized tiles, measured against NumPy's row-wise accumulation (currently 0.68×).
-5. **Rows of ≤ 4 elements:** inline the lane tree for tiny K (rows of 2 cost ~9 ns per row versus ~2 ns in Java).
+4. **Column sums:** done in round 2 (L2-sized groups): 0.68× → 0.85× NumPy at 10⁷; confirm with repeated runs.
+5. **Rows of ≤ 8 elements:** done in round 2 (closed-form lane tree); Numba still wins at k = 2–4, a vectorised
+   multi-row kernel is the next step.
 6. **An opt-in memory-order reduction** for transposed and other strided inputs: deterministic for a given layout,
-   but explicitly not layout-independent. It would remove the 0.16–0.36× loss without weakening the default contract.
+   but explicitly not layout-independent. Round 2 (gather + tiling) brought the transposed sum at 10⁷ from 0.16× to
+   0.25× NumPy while keeping layout-independent bits; closing the rest needs this opt-in.
 7. **Repeat the benchmarks** on a fixed-frequency machine with ≥ 3 independent runs (only one run per configuration
    exists for milestone 1), and add the JDK Vector API as a pure-Java baseline. The tiny-input results suggest that a
    Java path that is fast enough for small arrays needs the Vector API or heap arrays, not `MemorySegment` loops.
