@@ -65,7 +65,7 @@ Status key: **implemented** · **partial** (subset, see notes) · **different** 
 | duplicate / out-of-range axes | `ValueError` / `AxisError` | `IllegalArgumentException` | implemented, verified |
 | empty reductions | sum `0.0`; mean `nan` **with RuntimeWarning** | sum `+0.0`; mean NaN, no warning | implemented (warning: different) |
 | sum of `-0.0` values | `+0.0` | `+0.0` | implemented, verified |
-| summation order | pairwise for contiguous inner loops, sequential otherwise; depends on layout | fixed blocked order on the logical sequence; **independent of layout, path and thread count** | **different** (results differ in the last bits; bounded, verified: max observed difference 0.2× the derived tolerance) |
+| summation order | pairwise for contiguous inner loops, sequential otherwise; depends on layout | default `SumOrder.LOGICAL`: fixed blocked order on the logical sequence, **independent of layout, path and thread count**; opt-in `SumOrder.MEMORY`: same algorithm over memory order (layout-dependent, like NumPy, faster for transposed views) | **different** (results differ in the last bits; bounded, verified: max observed difference 0.2× the derived tolerance) |
 | `dtype=`, `initial=`, `where=` | yes | — | unsupported |
 | other reductions (`prod`, `min`, `max`, `var`, `std`, `argmax`, `any`, `all`, `cumsum`) | yes | — | unsupported (roadmap stage 1) |
 

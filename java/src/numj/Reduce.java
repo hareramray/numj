@@ -26,10 +26,10 @@ final class Reduce {
     // ================================================================== whole-array reductions
 
     /** Sum of all elements of {@code x} (C order sequence). */
-    static double sumAll(F64Array x) {
+    static double sumAll(F64Array x, SumOrder order) {
         x.requireAlive();
         if (x.size() == 0) return 0.0;
-        return seq(K_SUM, x, x, x, javaMaxElements);
+        return seq(K_SUM, x, x, x, javaMaxElements, order == SumOrder.MEMORY);
     }
 
     /**
@@ -37,6 +37,14 @@ final class Reduce {
      * {@code K_MULADD} sums (a*b+c)^2, {@code K_SUM} sums a. Same bits as the contiguous kernels.
      */
     static double seq(int op, F64Array a, F64Array b, F64Array c, long javaMax) {
+        return seq(op, a, b, c, javaMax, false);
+    }
+
+    /**
+     * {@code memoryOrder}: sum in memory order (axes reversed where operand 0's stride is negative and ordered
+     * by decreasing stride, as for elementwise plans) instead of logical C order; see {@link SumOrder}.
+     */
+    static double seq(int op, F64Array a, F64Array b, F64Array c, long javaMax, boolean memoryOrder) {
         long[] shape = a.layout.shape;
         if (a.size() == 0) return 0.0;
         if (a.cContig && b.cContig && c.cContig) {            // fast path: no plan, cached segments
@@ -54,7 +62,7 @@ final class Reduce {
             }
         }
         Plan p = Plan.of(shape, new long[][] {a.layout.strides, b.layout.strides, c.layout.strides},
-                new long[] {a.layout.offset, b.layout.offset, c.layout.offset}, false);
+                new long[] {a.layout.offset, b.layout.offset, c.layout.offset}, memoryOrder);
         long n = p.size();
         try {
             if (n <= javaMax)
@@ -80,6 +88,10 @@ final class Reduce {
 
     /** NumPy {@code sum}/{@code mean} with {@code axis} ({@code null} = all), {@code keepdims} and {@code out}. */
     static F64Array sum(F64Array x, int[] axes, boolean keepdims, F64Array out, boolean mean) {
+        return sum(x, axes, keepdims, out, mean, SumOrder.LOGICAL);
+    }
+
+    static F64Array sum(F64Array x, int[] axes, boolean keepdims, F64Array out, boolean mean, SumOrder order) {
         x.requireAlive();
         int nd = x.ndim();
         boolean[] red = new boolean[nd];
@@ -118,7 +130,7 @@ final class Reduce {
                 out.fill(mean ? Double.NaN : 0.0);
                 return out;
             }
-            reduceInto(x, red, keepdims, out, K);
+            reduceInto(x, red, keepdims, out, K, order == SumOrder.MEMORY);
             if (mean) Elementwise.scalar(Elementwise.DIV, out, (double) K, out);
             return out;
         } catch (RuntimeException | Error e) {
@@ -130,7 +142,7 @@ final class Reduce {
     }
 
     /** out = sum over the reduced axes; out.size() > 0 and every reduced extent > 0. */
-    private static void reduceInto(F64Array x, boolean[] red, boolean keepdims, F64Array out, long K) {
+    private static void reduceInto(F64Array x, boolean[] red, boolean keepdims, F64Array out, long K, boolean memoryOrder) {
         int nd = x.ndim();
         long[] xs = x.layout.shape, xst = x.layout.strides, ost = out.layout.strides;
         long[] ksh = new long[nd], kx = new long[nd], ko = new long[nd], rsh = new long[nd], rx = new long[nd];
@@ -158,9 +170,25 @@ final class Reduce {
         }
         nk = merge(nk, ksh, kx, ko);
         // reduced axes: logical order is the summation order; merge only adjacent contiguous axes.
+        long xfirst = x.layout.offset;   // byte offset of the first element of the summed sequence
+        if (memoryOrder) {
+            // memory order: walk reversed reduced axes forwards and order reduced axes by decreasing |stride|
+            for (int i = 0; i < nr; i++) {
+                if (rx[i] < 0) {
+                    xfirst += rx[i] * (rsh[i] - 1);
+                    rx[i] = -rx[i];
+                }
+            }
+            for (int i = 1; i < nr; i++) {
+                long a = rsh[i], b = rx[i];
+                int j = i - 1;
+                while (j >= 0 && rx[j] < b) { rsh[j + 1] = rsh[j]; rx[j + 1] = rx[j]; j--; }
+                rsh[j + 1] = a; rx[j + 1] = b;
+            }
+        }
         nr = merge(nr, rsh, rx, null);
 
-        long xlo = x.layout.offset, xhi = x.layout.offset, olo = out.layout.offset, ohi = out.layout.offset;
+        long xlo = xfirst, xhi = xfirst, olo = out.layout.offset, ohi = out.layout.offset;
         for (int i = 0; i < nk; i++) {
             long e = ksh[i] - 1;
             if (kx[i] < 0) xlo += kx[i] * e; else xhi += kx[i] * e;
@@ -173,7 +201,7 @@ final class Reduce {
         long nout = out.size();
         try {
             if (nout * K <= javaMaxElements) {
-                javaSum(nk, ksh, kx, ko, nr, rsh, rx, x.base, x.layout.offset, out.base, out.layout.offset);
+                javaSum(nk, ksh, kx, ko, nr, rsh, rx, x.base, xfirst, out.base, out.layout.offset);
                 return;
             }
             MemorySegment sc = Plan.scratch();
@@ -191,7 +219,7 @@ final class Reduce {
             }
             MemorySegment.copy(desc, 0, sc, ValueLayout.JAVA_LONG, 0, desc.length);
             Native.SUM_ND.invokeExact(nk, nr, sc, x.base.asSlice(xlo, xhi + F64Array.ITEM - xlo),
-                    (x.layout.offset - xlo) / F64Array.ITEM, out.base.asSlice(olo, ohi + F64Array.ITEM - olo),
+                    (xfirst - xlo) / F64Array.ITEM, out.base.asSlice(olo, ohi + F64Array.ITEM - olo),
                     (out.layout.offset - olo) / F64Array.ITEM, NumJ.threadsFor(nout * K, parallelMinElements));
         } catch (Throwable e) {
             throw Native.rethrow(e);

@@ -35,8 +35,9 @@ ranges do not overlap. Full tables: [`results/nd/RESULTS.md`](results/nd/RESULTS
     cost) and on small strided ones (planning overhead). Elementwise vs Java overall: 2 wins, 5 ties, 9 losses.
   * Several 10⁷-element cases lose: transposed and broadcast elementwise; column sums narrowly (0.85× NumPy,
     within run-to-run noise).
-  * Sums over transposed views still lose at 10⁷ (0.25× NumPy, down from 0.16×). This is the deliberate cost of
-    results that do not depend on memory layout.
+  * Sums over transposed views with the default, layout-independent order still lose at 10⁵–10⁷ (0.26–0.51× NumPy).
+    The opt-in `SumOrder.MEMORY` sums them in memory order: 7.7× faster than NumPy at 10³, 4× at 10⁵, 0.8× at 10⁷
+    (memory-bound).
   * Numba beats numj on rows of 2–4 elements; plain Java still wins most tiny and strided elementwise cases.
 * **What changed because of measurements.** These improvements were measured and retained:
   * a contiguous fast path: small calls went from ~200 ns to ~17 ns;
@@ -162,7 +163,7 @@ try (F64Array x = F64Array.arange(24).reshapeCopy(2, 3, 4);       // owner: clos
 | topic | behaviour |
 |---|---|
 | FP semantics | Strict IEEE-754: `-ffp-contract=off`, no fast-math. Every `+ − × ÷` is rounded separately, so **elementwise results are bitwise identical to NumPy's and to Java arithmetic** (verified, including NaN, ±Inf, ±0 and subnormals) for every layout, path and thread count. |
-| summation order | Every reduction sums the output's logical sequence (C order of the reduced axes) in blocks of 4096. Inside a block, element *j* goes to lane *j* mod 16, and lanes and blocks are combined by fixed pairwise trees. **Results depend only on the values and the shape**: not on memory layout, code path, SIMD width or thread count (tested). |
+| summation order | Every reduction sums the output's logical sequence (C order of the reduced axes) in blocks of 4096. Inside a block, element *j* goes to lane *j* mod 16, and lanes and blocks are combined by fixed pairwise trees. **Results depend only on the values and the shape**: not on memory layout, code path, SIMD width or thread count (tested). The opt-in `SumOrder.MEMORY` applies the same algorithm in memory order instead: much faster for transposed views, deterministic per layout, same error bound. |
 | accuracy | `|computed − exact| ≤ γ(k)·Σ|tᵢ|`, `γ(k) = k·u/(1−k·u)`, `u = 2⁻⁵³`, `k = NumJ.summationDepth(n) ≤ 260 + ⌈log₂(n/4096)⌉`, where a naive loop has `k = n−1`. Compared with NumPy, which uses a different order, sums differ in the last bits. Over 4,212 tested outputs the largest difference was 0.2× the derived bound. |
 | signed zero | Sums start from `+0.0`, as in NumPy: a sum of `−0.0` values is `+0.0`, and `axis=()` maps `−0.0` to `+0.0`. |
 | empty | `sum` → `+0.0`; `mean` → NaN (NumPy also warns; numj never warns). |

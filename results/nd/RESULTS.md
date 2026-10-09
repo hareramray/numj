@@ -57,7 +57,7 @@ Layouts: `contig` [n]+[n]; `transposed` A.T+B.T into C-ordered [r,c]; `stepped` 
 
 ## Sums of a C-ordered [r, c] array (outputs reused)
 
-`all` every element; `axis0` column sums; `axis1` row sums; `allT` every element of the transposed view (numj sums in the view's logical order, which makes its result layout-independent but walks memory with a stride). `java` and `numba` are sequential loops in memory order (one rounding chain; less accurate than numj or NumPy).
+`all` every element; `axis0` column sums; `axis1` row sums; `allT` every element of the transposed view (numj sums in the view's logical order, which makes its result layout-independent but walks memory with a stride); `allTmem` is the same sum with the opt-in `SumOrder.MEMORY` (memory order; compared with NumPy's `allT`). `java` and `numba` are sequential loops in memory order (one rounding chain; less accurate than numj or NumPy).
 
 | kind | n | numj | java | numpy-out | numpy | numba | java/numj | numpy-out/numj | numpy/numj | numba/numj |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -73,6 +73,9 @@ Layouts: `contig` [n]+[n]; `transposed` A.T+B.T into C-ordered [r,c]; `stepped` 
 | allT | 1,000 | 648.2 ns | 449.5 ns | - | 2.14 µs | 956.8 ns | 0.69 **loss** | - | 3.3 | 1.5 |
 | allT | 100,000 | 47.68 µs | 48.68 µs | - | 31.89 µs | 87.37 µs | 1 tie | - | 0.67 tie | 1.8 |
 | allT | 10,000,000 | 25.29 ms | 9.67 ms | - | 6.43 ms | 49.03 ms | 0.38 tie | - | 0.25 **loss** | 1.9 |
+| allTmem | 1,000 | - | - | - | 2.14 µs | 956.8 ns | - | - | - | - |
+| allTmem | 100,000 | - | - | - | 31.89 µs | 87.37 µs | - | - | - | - |
+| allTmem | 10,000,000 | - | - | - | 6.43 ms | 49.03 ms | - | - | - | - |
 
 ## `sum((a*b + c)**2)`: explicit fusion versus operation-by-operation
 
@@ -142,6 +145,19 @@ Three changes, all bitwise-identical (every test unchanged): column sums use gro
 | short-row sum | k=8 | 513.61 µs | 449.62 µs | 449.62 µs | 449.62 µs | - | 0.88 | 1.01 ms | 2.2 |
 | short-row sum | k=16 | 394.72 µs | 455.44 µs | 455.44 µs | 455.44 µs | - | 1.15 | 545.34 µs | 1.2 tie |
 | short-row sum | k=64 | 223.74 µs | 250.86 µs | 250.86 µs | 250.86 µs | - | 1.12 | 323.43 µs | 1.3 |
+
+## Round 3: sums of transposed views
+
+`allT` = default `SumOrder.LOGICAL` (layout-independent bits) after widening the tiles (up to 64 logical rows, 512 KiB budget) and removing a copy; `allTmem` = opt-in `SumOrder.MEMORY` (memory order, deterministic per layout, same error bound, not layout-independent). Three independent JMH runs (the third at 10^7 only) and a NumPy run taken right after them (`python_round3.csv`). Round-2 `allT` for reference.
+
+| kind | n | round 2 | run 1 | run 2 | run 3 | NumPy (same session) | NumPy/numj (run 2) |
+|---|---|---|---|---|---|---|---|
+| allT | 1,000 | 648.2 ns | 625.7 ns | 603.4 ns | - | 1.36 µs | 2.3 |
+| allT | 100,000 | 47.68 µs | 44.50 µs | 40.65 µs | - | 20.62 µs | 0.51 **loss** |
+| allT | 10,000,000 | 25.29 ms | 16.66 ms | 14.77 ms | 24.07 ms | 6.50 ms | 0.44 **loss** |
+| allTmem | 1,000 | - | 177.0 ns | 175.7 ns | - | 1.36 µs | 7.7 |
+| allTmem | 100,000 | - | 5.09 µs | 5.13 µs | - | 20.62 µs | 4 |
+| allTmem | 10,000,000 | - | 8.26 ms | 8.08 ms | 9.34 ms | 6.50 ms | 0.8 **loss** |
 
 ## Path selection: Java loop versus native downcall (tiny inputs)
 

@@ -15,6 +15,8 @@
 * `NumJ.sum/mean` over all elements or selected axes, with `keepdims` and `out`. The summation order is independent of
   layout, code path and thread count.
 * `Expr`: explicit pattern-based fusion (`sum(a)`, `sum((a-b)**2)`, `sum((a*b+c)**2)`), with an explicit unfused fallback.
+* `SumOrder` (`LOGICAL` default, opt-in `MEMORY`) and `sum`/`mean` overloads taking it: memory-order sums of
+  transposed or reversed views run at contiguous speed (deterministic per layout, same error bound).
 * `ReadOnlyArrayException`; `NumJ.broadcastShapes`; `numj.NativeInfo` diagnostics.
 * Fortran: generated elementwise kernels (`native/gen_elementwise.py` → `numj_elementwise.f90`) and a reduction
   module (`numj_reduce.f90`) with contiguous, column-tile and general strided paths.
@@ -31,7 +33,8 @@
 * Reductions, round 2 (all bit-identical; see results/nd/RESULTS.md): column sums use L2-sized column groups (up to
   4096 columns) so rows stream once; strided sums gather blocks into buffers for the vectorised block kernels, tiled
   over 8 neighbouring rows for large transposed inputs; rows of ≤ 8 elements use the lane tree's closed form; smaller
-  fused kernels on strided inputs keep the direct lane loop, which measured fastest there.
+  fused kernels on strided inputs keep the direct lane loop, which measured fastest there. Round 3 widened the
+  tiles (up to 64 logical rows) and reduces blocks straight from the tile (bit-identical).
 * `sqdist` and `sumSqMulAdd` accept any layout. `sqdistRows` and `normalizeRows` accept row-strided views.
 * Native ABI version 2: the row kernels take leading dimensions; new entry points.
 

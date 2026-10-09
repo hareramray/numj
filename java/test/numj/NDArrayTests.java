@@ -44,6 +44,7 @@ public final class NDArrayTests {
         test("sum/mean: axes, keepdims, negative axes, layouts, paths", NDArrayTests::reductions);
         test("sum/mean: large inputs hit every native path, bitwise", NDArrayTests::reductionsLarge);
         test("sum: short rows K=1..17, specials, strided rows, broadcast inputs", NDArrayTests::reductionShortRows);
+        test("sum: SumOrder.MEMORY (opt-in) semantics", NDArrayTests::memoryOrder);
         test("sum/mean: empty reductions, -0.0, axis=(), errors", NDArrayTests::reductionEdges);
         test("sum/mean: out reuse, overlap, read-only", NDArrayTests::reductionOut);
         test("threads: results identical for 1..8 native threads", NDArrayTests::threadInvariance);
@@ -881,6 +882,58 @@ public final class NDArrayTests {
             allPaths(() -> checkReduction("transposed rows of 9000", big.transpose(), new int[] {1}, false, false));
             big.close();
         }
+    }
+
+    static void memoryOrder() {
+        for (int[] rc : new int[][] {{3, 4}, {40, 50}, {300, 700}, {1100, 1000}}) {
+            int r = rc[0], c = rc[1];
+            double[] v = Data.splitmix(400 + r, r * c);
+            v[0] = -0.0;
+            try (F64Array A = F64Array.copyOf(v, r, c)) {
+                F64Array T = A.transpose(), R = A.slice("::-1, ::-1"), RT = R.transpose();
+                allPaths(() -> {
+                    String w = r + "x" + c;
+                    double s = NumJ.sum(A);
+                    // memory order of a transposed / reversed view is the base's C order
+                    assertBits("MEMORY == contiguous base, T " + w, s, NumJ.sum(T, SumOrder.MEMORY));
+                    assertBits("MEMORY == contiguous base, reversed " + w, s, NumJ.sum(R, SumOrder.MEMORY));
+                    assertBits("MEMORY == contiguous base, reversed T " + w, s, NumJ.sum(RT, SumOrder.MEMORY));
+                    assertBits("MEMORY == LOGICAL on C arrays " + w, s, NumJ.sum(A, SumOrder.MEMORY));
+                    assertBits("mean MEMORY " + w, s / (r * (double) c), NumJ.mean(T, SumOrder.MEMORY));
+                    try (F64Array all = NumJ.sum(T, new int[] {0, 1}, false, SumOrder.MEMORY);
+                         F64Array keep = NumJ.mean(T, null, true, SumOrder.MEMORY);
+                         F64Array ax = NumJ.sum(T, new int[] {1}, false, SumOrder.MEMORY);
+                         F64Array axL = NumJ.sum(T, new int[] {1}, false)) {
+                        assertBits("axes (0,1) MEMORY " + w, s, all.get());
+                        assertShape("keepdims MEMORY", new long[] {1, 1}, keep.shape());
+                        assertBits("mean keepdims MEMORY", s / (r * (double) c), keep.get(0));
+                        // a single reduced axis with positive stride: both orders are the same sequence
+                        for (long i = 0; i < ax.size(); i++) assertBits("single axis " + i, axL.get(i), ax.get(i));
+                    }
+                    // the exact-sum bound holds for the memory-order result too
+                    java.math.BigDecimal exact = java.math.BigDecimal.ZERO, abs = java.math.BigDecimal.ZERO;
+                    for (double x : v) { exact = exact.add(new java.math.BigDecimal(x)); abs = abs.add(new java.math.BigDecimal(Math.abs(x))); }
+                    double m = NumJ.sum(T, SumOrder.MEMORY);
+                    check("bound " + w, new java.math.BigDecimal(m).subtract(exact).abs()
+                            .compareTo(abs.multiply(new java.math.BigDecimal(gamma(NumJ.summationDepth(v.length))))) <= 0);
+                });
+                // thread invariance of MEMORY order
+                long save = Reduce.parallelMinElements;
+                Reduce.parallelMinElements = 0;
+                try {
+                    double one = NumJ.sum(T, SumOrder.MEMORY);
+                    for (int t = 2; t <= 8; t *= 2) {
+                        NumJ.setThreads(t);
+                        assertBits("MEMORY threads " + t, one, NumJ.sum(T, SumOrder.MEMORY));
+                        assertBits("LOGICAL threads " + t, NumJ.sum(T), NumJ.sum(T));
+                    }
+                } finally {
+                    NumJ.setThreads(1);
+                    Reduce.parallelMinElements = save;
+                }
+            }
+        }
+        throwsType("null order", NullPointerException.class, () -> NumJ.sum(F64Array.of(1), (SumOrder) null));
     }
 
     static void reductionEdges() {

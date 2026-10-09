@@ -34,7 +34,9 @@ import java.lang.foreign.MemorySegment;
  *   <li><b>Summation order.</b> Every reduction sums a logical sequence (C order of the reduced axes) in blocks of
  *       {@value #BLOCK} elements; inside a block element {@code j} goes to partial sum {@code j mod 16}; partials and
  *       block results are combined by fixed pairwise trees. Results depend only on the values and the shape, never
- *       on the memory layout, the code path or the thread count. Partial sums start at {@code +0.0}, so (as in
+ *       on the memory layout, the code path or the thread count. The opt-in {@link SumOrder#MEMORY} sums the same
+ *       way over memory order instead: faster for transposed or reversed views, deterministic for a given layout,
+ *       same error bound, but not layout-independent. Partial sums start at {@code +0.0}, so (as in
  *       NumPy) a sum of {@code -0.0} values is {@code +0.0}.</li>
  *   <li><b>Accuracy.</b> For a sum of {@code n} terms {@code t_i}:
  *       {@code |computed - sum t_i| <= gamma(k) * sum |t_i|}, {@code gamma(k) = k u / (1 - k u)},
@@ -151,8 +153,25 @@ public final class NumJ {
 
     // ================================================================== reductions
 
-    /** Sum of all elements ({@code +0.0} if empty). */
-    public static double sum(F64Array a) { return Reduce.sumAll(a); }
+    /** Sum of all elements ({@code +0.0} if empty), in {@link SumOrder#LOGICAL} order. */
+    public static double sum(F64Array a) { return Reduce.sumAll(a, SumOrder.LOGICAL); }
+
+    /**
+     * Sum of all elements in the given order. {@link SumOrder#MEMORY} sums transposed or reversed views at contiguous
+     * speed; its result is deterministic for the layout but may differ in the last bits from the logical-order sum
+     * of the same values. Same error bound.
+     */
+    public static double sum(F64Array a, SumOrder order) { return Reduce.sumAll(a, java.util.Objects.requireNonNull(order)); }
+
+    /** Sum over {@code axes} ({@code null} = all) in the given order; new array. */
+    public static F64Array sum(F64Array a, int[] axes, boolean keepdims, SumOrder order) {
+        return Reduce.sum(a, axes, keepdims, null, false, java.util.Objects.requireNonNull(order));
+    }
+
+    /** Sum over {@code axes} in the given order, into {@code out}. */
+    public static F64Array sum(F64Array a, int[] axes, boolean keepdims, F64Array out, SumOrder order) {
+        return Reduce.sum(a, axes, keepdims, nn(out), false, java.util.Objects.requireNonNull(order));
+    }
 
     /** Sum over one axis (negative counts from the end); new array. */
     public static F64Array sum(F64Array a, int axis, boolean keepdims) {
@@ -171,9 +190,24 @@ public final class NumJ {
 
     /** Mean of all elements (NaN if empty). */
     public static double mean(F64Array a) {
+        return mean(a, SumOrder.LOGICAL);
+    }
+
+    /** Mean of all elements, summed in the given order (NaN if empty). */
+    public static double mean(F64Array a, SumOrder order) {
         long n = a.size();
-        double s = Reduce.sumAll(a);
+        double s = Reduce.sumAll(a, java.util.Objects.requireNonNull(order));
         return n == 0 ? Double.NaN : s / n;
+    }
+
+    /** Mean over {@code axes} ({@code null} = all), summed in the given order; new array. */
+    public static F64Array mean(F64Array a, int[] axes, boolean keepdims, SumOrder order) {
+        return Reduce.sum(a, axes, keepdims, null, true, java.util.Objects.requireNonNull(order));
+    }
+
+    /** Mean over {@code axes}, summed in the given order, into {@code out}. */
+    public static F64Array mean(F64Array a, int[] axes, boolean keepdims, F64Array out, SumOrder order) {
+        return Reduce.sum(a, axes, keepdims, nn(out), true, java.util.Objects.requireNonNull(order));
     }
 
     /** Mean over one axis; new array. */

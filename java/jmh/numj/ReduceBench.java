@@ -9,7 +9,8 @@ import java.util.concurrent.TimeUnit;
  * Sums of a [r, c] C-ordered array (same shapes and input bits as bench/numpy_nd_bench.py), single-threaded.
  * {@code all}: every element; {@code axis0}: column sums [c]; {@code axis1}: row sums [r];
  * {@code allT}: every element of the transposed view (numj sums in the view's logical order, so this measures the
- * cost of layout-independent results). Outputs are reused.
+ * cost of layout-independent results); {@code allTmem}: the same with the opt-in {@link SumOrder#MEMORY}.
+ * Outputs are reused.
  * {@code java}: straightforward loops in memory order (sequential accumulation: different rounding, see report).
  */
 @State(Scope.Thread)
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class ReduceBench {
     @Param({"1000", "100000", "10000000"})
     public int n;
-    @Param({"all", "axis0", "axis1", "allT"})
+    @Param({"all", "axis0", "axis1", "allT", "allTmem"})
     public String kind;
 
     F64Array A, out0, out1;
@@ -55,6 +56,7 @@ public class ReduceBench {
             case "all" -> NumJ.sum(A);
             case "axis0" -> NumJ.sum(A, AX0, false, out0);
             case "axis1" -> NumJ.sum(A, AX1, false, out1);
+            case "allTmem" -> NumJ.sum(A.transpose(), SumOrder.MEMORY);
             default -> NumJ.sum(A.transpose());
         };
     }
