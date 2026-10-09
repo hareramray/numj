@@ -264,3 +264,12 @@ Further measurements (all in `results/RESULTS.md`):
   for the 16-element rows.
 * The test suite has no JUnit. It is a 20-test harness with derived tolerances that exits non-zero on failure.
 * Results come from one laptop on the *Balanced* power plan. The drift between runs is documented above, and ratios inside it should be read as ties.
+
+## License
+
+Copyright 2026 Hareram
+
+Licensed under the [Apache License, Version 2.0](LICENSE). Unless required by applicable law or agreed to in
+writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+and limitations under the License.
