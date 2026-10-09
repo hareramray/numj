@@ -332,6 +332,7 @@ public final class NumJTests {
         b.close();
     }
 
+    @SuppressWarnings("deprecation") // flatten(): kept as a view in 0.2, see docs/MIGRATION.md
     static void bounds() {
         try (F64Array m = F64Array.allocate(3, 4)) {
             throwsType("get(-1)", IndexOutOfBoundsException.class, () -> m.get(-1));

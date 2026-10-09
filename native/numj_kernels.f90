@@ -2,8 +2,8 @@
 !>
 !> Contract (enforced by the Java layer, NOT re-checked here):
 !>   * all array pointers are valid for the stated extents and 8-byte aligned;
-!>   * 2-D arrays are row-major (C order): a [nrows x ncols] array is seen here as x(ncols, nrows),
-!>     so row i is the contiguous column x(:, i);
+!>   * 2-D arrays are row-major (C order) with contiguous rows: a [nrows x ncols] array whose rows are
+!>     ld >= ncols elements apart is seen here as x(ld, nrows), so row i is the contiguous x(1:ncols, i);
 !>   * arrays written by a routine do not overlap any other argument of that routine
 !>     (in-place row normalization has its own single-argument entry point);
 !>   * read-only arguments may alias each other freely.
@@ -28,11 +28,13 @@ module numj_kernels
   integer(c_int64_t), parameter :: STACK_BLOCKS = 256_c_int64_t
   !> Row sums of squares below this (or +Inf) are recomputed with scaling (see row_norm).
   real(dp), parameter :: SS_LO = 2.0_dp**(-968)
-  integer, parameter :: ABI_VERSION = 1
-  integer, parameter :: K_SQDIST = 1, K_MULADD = 2, K_SUMSQ = 3   ! block-kernel selectors
+  integer, parameter :: ABI_VERSION = 2
+  integer, parameter :: K_SQDIST = 1, K_MULADD = 2, K_SUMSQ = 3, K_SUM = 4   ! block-kernel selectors
 
-  public :: numj_abi_version, numj_build_info, numj_sqdist, numj_sumsq_muladd, numj_sqdist_rows, &
+  public :: numj_abi_version, numj_build_info, numj_sqdist, numj_sumsq_muladd, numj_sum, numj_sqdist_rows, &
             numj_normalize_rows, numj_normalize_rows_inplace
+  ! Building blocks shared with numj_reduce (same summation order everywhere).
+  public :: dp, LANES, BLOCK, STACK_BLOCKS, K_SQDIST, K_MULADD, K_SUM, reduce_blocks, lane_tree, pairwise
 
 contains
 
@@ -105,6 +107,26 @@ contains
     end if
     s = lane_tree(acc)
   end function blk_sumsq
+
+  !> Plain sum. Lanes start at +0.0 (NumPy's identity: a sum of only -0.0 values is +0.0); the tail is
+  !> padded with +0.0, which is a bitwise no-op because a lane that started at +0.0 can never hold -0.0.
+  pure function blk_sum(x, m) result(s)
+    integer(c_int64_t), intent(in) :: m
+    real(dp), intent(in) :: x(m)
+    real(dp) :: s, acc(LANES), v(LANES)
+    integer(c_int64_t) :: i, m0
+    acc = 0.0_dp
+    m0 = m - mod(m, int(LANES, c_int64_t))
+    do i = 1, m0, LANES
+      acc = acc + x(i:i+LANES-1)
+    end do
+    if (m > m0) then
+      v = 0.0_dp
+      v(1:m-m0) = x(m0+1:m)
+      acc = acc + v
+    end if
+    s = lane_tree(acc)
+  end function blk_sum
 
   !> In-place pairwise reduction with a fixed shape: p(1)+p(2), p(3)+p(4), ... repeated.
   function pairwise(p, n) result(s)
@@ -200,6 +222,8 @@ contains
       s = blk_sqdist(a(lo), b(lo), m)         ! sequence association: no copies
     case (K_MULADD)
       s = blk_sumsq_muladd(a(lo), b(lo), c(lo), m)
+    case (K_SUM)
+      s = blk_sum(a(lo), m)
     case default
       s = blk_sumsq(a(lo), m)
     end select
@@ -299,12 +323,21 @@ contains
     s = reduce_blocks(K_MULADD, n, a, b, c, nthreads)
   end function numj_sumsq_muladd
 
-  !> out(i) = sum_j (x(j,i) - q(j))**2 for each row i. Each out(i) is bit-identical to
-  !> numj_sqdist(row_i, q, ncols, 1).
-  subroutine numj_sqdist_rows(q, x, nrows, ncols, out, nthreads) bind(C, name='numj_sqdist_rows')
-    integer(c_int64_t), value :: nrows, ncols
+  !> sum_i x_i (plain sum, same blocked order as the other reductions)
+  function numj_sum(x, n, nthreads) bind(C, name='numj_sum') result(s)
+    integer(c_int64_t), value :: n
     integer(c_int), value :: nthreads
-    real(c_double), intent(in) :: q(ncols), x(ncols, nrows)
+    real(c_double), intent(in) :: x(*)
+    real(c_double) :: s
+    s = reduce_blocks(K_SUM, n, x, x, x, nthreads)
+  end function numj_sum
+
+  !> out(i) = sum_j (x(j,i) - q(j))**2 for each row i. Each out(i) is bit-identical to
+  !> numj_sqdist(row_i, q, ncols, 1). Rows are ldx >= ncols elements apart.
+  subroutine numj_sqdist_rows(q, x, nrows, ncols, ldx, out, nthreads) bind(C, name='numj_sqdist_rows')
+    integer(c_int64_t), value :: nrows, ncols, ldx
+    integer(c_int), value :: nthreads
+    real(c_double), intent(in) :: q(ncols), x(ldx, nrows)
     real(c_double), intent(out) :: out(nrows)
     integer(c_int64_t) :: i
     if (nthreads > 1) then
@@ -358,12 +391,13 @@ contains
 
   !> y(:,i) = x(:,i) / ||x(:,i)||_2 per row; see row_norm for zero/NaN/Inf/overflow rules.
   !> norms is optional (pass NULL to skip); if present norms(i) = ||x(:,i)||_2.
-  subroutine numj_normalize_rows(x, y, nrows, ncols, norms, nthreads) &
+  !> Rows of x are ldx >= ncols elements apart, rows of y ldy >= ncols; elements between rows are untouched.
+  subroutine numj_normalize_rows(x, ldx, y, ldy, nrows, ncols, norms, nthreads) &
       bind(C, name='numj_normalize_rows')
-    integer(c_int64_t), value :: nrows, ncols
+    integer(c_int64_t), value :: ldx, ldy, nrows, ncols
     integer(c_int), value :: nthreads
-    real(c_double), intent(in) :: x(ncols, nrows)
-    real(c_double), intent(out) :: y(ncols, nrows)
+    real(c_double), intent(in) :: x(ldx, nrows)
+    real(c_double), intent(inout) :: y(ldy, nrows)
     real(c_double), intent(out), optional :: norms(nrows)
     integer(c_int64_t) :: i
     real(dp) :: nrm
@@ -383,11 +417,11 @@ contains
   end subroutine numj_normalize_rows
 
   !> In-place variant of numj_normalize_rows (x is both input and output).
-  subroutine numj_normalize_rows_inplace(x, nrows, ncols, norms, nthreads) &
+  subroutine numj_normalize_rows_inplace(x, ldx, nrows, ncols, norms, nthreads) &
       bind(C, name='numj_normalize_rows_inplace')
-    integer(c_int64_t), value :: nrows, ncols
+    integer(c_int64_t), value :: ldx, nrows, ncols
     integer(c_int), value :: nthreads
-    real(c_double), intent(inout) :: x(ncols, nrows)
+    real(c_double), intent(inout) :: x(ldx, nrows)
     real(c_double), intent(out), optional :: norms(nrows)
     integer(c_int64_t) :: i
     real(dp) :: nrm

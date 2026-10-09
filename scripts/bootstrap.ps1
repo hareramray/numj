@@ -1,7 +1,8 @@
 # Downloads a pinned, project-local toolchain into .tools/ (no admin rights, no system changes).
 #   - Eclipse Temurin JDK 25 (LTS)            -> .tools/jdk
 #   - WinLibs MinGW-w64 GCC/gfortran (UCRT)   -> .tools/mingw64
-#   - Python venv with pinned NumPy           -> .venv
+#   - JMH 1.37 jars (Maven Central)           -> .tools/jmh
+#   - Python venv with pinned NumPy           -> .venv  (+ NumExpr/Numba from bench/requirements-compare.txt)
 # Every archive is verified against a pinned SHA-256 before extraction.
 # Re-running is safe: completed steps are skipped.
 $ErrorActionPreference = 'Stop'
@@ -49,6 +50,27 @@ foreach ($p in $Pins) {
   Write-Host "[ok] $($p.Name) -> $dest"
 }
 
+# JMH 1.37 and its dependencies (Maven Central), for the Java microbenchmarks in java/jmh. Pinned by SHA-256
+# (computed on first download after checking Maven Central's published SHA-1).
+$JmhJars = @(
+  @{ Path = 'org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar'; Sha256 = 'dc0eaf2bbf0036a70b60798c785d6e03a9daf06b68b8edb0f1ba9eb3421baeb3' },
+  @{ Path = 'org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar'; Sha256 = '6a5604b5b804e0daca1145df1077609321687734a8b49387e49f10557c186c77' },
+  @{ Path = 'net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar'; Sha256 = 'df26cc58f235f477db07f753ba5a3ab243ebe5789d9f89ecf68dd62ea9a66c28' },
+  @{ Path = 'org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar'; Sha256 = '1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308' }
+)
+$JmhDir = Join-Path $Tools 'jmh'
+New-Item -ItemType Directory -Force $JmhDir | Out-Null
+foreach ($j in $JmhJars) {
+  $dest = Join-Path $JmhDir (Split-Path -Leaf $j.Path)
+  if (-not (Test-Path $dest)) {
+    & curl.exe -fsSL --retry 3 -o $dest "https://repo1.maven.org/maven2/$($j.Path)"
+    if ($LASTEXITCODE -ne 0) { throw "download failed: $($j.Path)" }
+  }
+  $hash = (Get-FileHash -Algorithm SHA256 $dest).Hash.ToLower()
+  if ($hash -ne $j.Sha256) { Remove-Item $dest; throw "SHA-256 mismatch for $($j.Path)" }
+}
+Write-Host "[ok] JMH jars in $JmhDir"
+
 # Python venv with the pinned NumPy (uv if present, else the stdlib venv + pip).
 $venvPy = Join-Path $Root '.venv\Scripts\python.exe'
 if (-not (Test-Path $venvPy)) {
@@ -61,5 +83,10 @@ if (-not (Test-Path $venvPy)) {
   }
   if ($LASTEXITCODE -ne 0) { throw 'venv setup failed' }
 }
+# Optional comparison baselines (NumExpr, Numba) for bench/numpy_nd_bench.py; NumPy stays at the pinned version.
+$cmp = Join-Path $Root 'bench\requirements-compare.txt'
+if (Get-Command uv -ErrorAction SilentlyContinue) { & uv pip install --python $venvPy -r $cmp }
+else { & $venvPy -m pip install -r $cmp }
+if ($LASTEXITCODE -ne 0) { Write-Host '[warn] comparison packages not installed; numpy_nd_bench.py will skip NumExpr/Numba' }
 Write-Host "[ok] python venv: $venvPy"
 & $venvPy -c "import numpy, sys; print('numpy', numpy.__version__, 'python', sys.version.split()[0])"

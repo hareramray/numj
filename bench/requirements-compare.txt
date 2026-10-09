@@ -1,0 +1,6 @@
+# Optional comparison baselines for bench/numpy_nd_bench.py (installed by scripts/bootstrap.ps1).
+# Resolved with uv on 2026-10-09 against numpy==2.5.2 / CPython 3.13.15 (win_amd64 wheels).
+numpy==2.5.2
+numexpr==2.14.2
+numba==0.68.0
+llvmlite==0.50.0

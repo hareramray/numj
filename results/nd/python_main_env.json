@@ -1,0 +1,157 @@
+{
+  "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.2",
+  "numexpr": "2.14.2",
+  "numexpr_threads": 1,
+  "numexpr_vml": false,
+  "numba": "0.68.0",
+  "llvmlite": "0.50.0",
+  "numba_compile_seconds": {
+    "nb_add1:contig": [
+      0.5589018000755459,
+      1.4200108125805855e-05,
+      8.96998681128025e-05,
+      0.019496000139042735
+    ],
+    "nb_add2:transposed": [
+      0.14149509998969734,
+      1.3899989426136017e-05,
+      0.00023319991305470467,
+      0.2307392000220716
+    ],
+    "nb_add1:stepped": [
+      0.11389639996923506,
+      3.760005347430706e-05,
+      0.00012570014223456383,
+      0.04309689998626709
+    ],
+    "nb_addrow:bcast": [
+      0.11635149992071092,
+      1.3500219210982323e-05,
+      4.810001701116562e-05,
+      0.0168163999915123
+    ],
+    "nb_sum": [
+      0.11231450014747679,
+      0.0001354000996798277,
+      0.01324659981764853
+    ],
+    "nb_sum_axis0": [
+      0.1258218998555094,
+      4.20999713242054e-05,
+      0.005673000123351812
+    ],
+    "nb_sum_axis1": [
+      0.12066210014745593,
+      0.00011439993977546692,
+      0.012260900111868978
+    ],
+    "nb_sum:T": [
+      0.07611030014231801,
+      0.0002000001259148121,
+      0.04972549993544817
+    ],
+    "nb_muladd:contig": [
+      0.06966489995829761,
+      0.0001626000739634037,
+      0.015112699940800667
+    ],
+    "nb_muladd:transposed": [
+      0.07342009991407394,
+      0.00023710005916655064,
+      0.21842500008642673
+    ],
+    "nb_sum_axis1:short": [
+      0.0009542000479996204,
+      0.0008980999700725079,
+      0.0008526998572051525,
+      0.0005592000670731068,
+      0.0006119001191109419
+    ],
+    "nb_add2:short": [
+      0.07922680000774562,
+      0.002219000132754445,
+      0.0019811999518424273,
+      0.0017776999156922102,
+      0.0016385000199079514
+    ]
+  },
+  "numpy_config": {
+    "Compilers": {
+      "c": {
+        "name": "msvc",
+        "linker": "link",
+        "version": "19.44.35228",
+        "commands": "cl"
+      },
+      "cython": {
+        "name": "cython",
+        "linker": "cython",
+        "version": "3.2.9",
+        "commands": "cython"
+      },
+      "c++": {
+        "name": "msvc",
+        "linker": "link",
+        "version": "19.44.35228",
+        "commands": "cl"
+      }
+    },
+    "Machine Information": {
+      "host": {
+        "cpu": "x86_64",
+        "family": "x86_64",
+        "endian": "little",
+        "system": "windows"
+      },
+      "build": {
+        "cpu": "x86_64",
+        "family": "x86_64",
+        "endian": "little",
+        "system": "windows"
+      }
+    },
+    "Build Dependencies": {
+      "blas": {
+        "name": "scipy-openblas",
+        "found": true,
+        "version": "0.3.34.0.0",
+        "detection method": "pkgconfig",
+        "include directory": "C:/Users/runneradmin/AppData/Local/Temp/cibw-run-b2ht6fnl/cp313-win_amd64/build/venv/Lib/site-packages/scipy_openblas64/include",
+        "lib directory": "C:/Users/runneradmin/AppData/Local/Temp/cibw-run-b2ht6fnl/cp313-win_amd64/build/venv/Lib/site-packages/scipy_openblas64/lib",
+        "openblas configuration": "OpenBLAS 0.3.34.0.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=24",
+        "pc file directory": "D:/a/numpy-release/numpy-release/.openblas"
+      },
+      "lapack": {
+        "name": "scipy-openblas",
+        "found": true,
+        "version": "0.3.34.0.0",
+        "detection method": "pkgconfig",
+        "include directory": "C:/Users/runneradmin/AppData/Local/Temp/cibw-run-b2ht6fnl/cp313-win_amd64/build/venv/Lib/site-packages/scipy_openblas64/include",
+        "lib directory": "C:/Users/runneradmin/AppData/Local/Temp/cibw-run-b2ht6fnl/cp313-win_amd64/build/venv/Lib/site-packages/scipy_openblas64/lib",
+        "openblas configuration": "OpenBLAS 0.3.34.0.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=24",
+        "pc file directory": "D:/a/numpy-release/numpy-release/.openblas"
+      }
+    },
+    "Python Information": {
+      "path": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\build-env-m8lsj2zx\\Scripts\\python.exe",
+      "version": "3.13"
+    },
+    "SIMD Extensions": {
+      "baseline": [
+        "X86_V2"
+      ],
+      "found": [
+        "X86_V3"
+      ]
+    }
+  },
+  "numpy_runtime": "WARNING: `threadpoolctl` not found in system! Install it by `pip install threadpoolctl`. Once installed, try `np.show_runtime` again for more detailed build information\n[{'numpy_version': '2.5.2',\n  'python': '3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC '\n            'v.1944 64 bit (AMD64)]',\n  'uname': uname_result(system='Windows', node='LAPTOP-36GMT4K1', release='11', version='10.0.26200', machine='AMD64')},\n {'simd_extensions': {'baseline': ['X86_V2'],\n                      'found': ['X86_V3'],\n                      'not_found': []}},\n {'ignore_floating_point_errors_in_matmul': False}]\n",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "thread_env": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "NUMBA_NUM_THREADS": "1"
+  }
+}
