@@ -34,7 +34,7 @@ module numj_kernels
   public :: numj_abi_version, numj_build_info, numj_sqdist, numj_sumsq_muladd, numj_sum, numj_sqdist_rows, &
             numj_normalize_rows, numj_normalize_rows_inplace
   ! Building blocks shared with numj_reduce (same summation order everywhere).
-  public :: dp, LANES, BLOCK, STACK_BLOCKS, K_SQDIST, K_MULADD, K_SUM, reduce_blocks, lane_tree, pairwise
+  public :: dp, LANES, BLOCK, STACK_BLOCKS, K_SQDIST, K_MULADD, K_SUM, reduce_blocks, lane_tree, pairwise, blk
 
 contains
 

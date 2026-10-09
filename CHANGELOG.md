@@ -28,6 +28,10 @@
 * Elementwise operations on ≤ 4 contiguous (≤ 64 strided) elements are computed in Java (bitwise identical); thresholds come from measurements.
 * Operation results are allocated with non-zeroing `malloc` (they are always fully overwritten); `-Dnumj.resultAlloc=arena` restores zero-filled arenas.
 * Parallel thresholds: elementwise 2²³ elements, reductions 2¹⁹ (was 2¹⁸ for everything), from the thread-scaling measurements.
+* Reductions, round 2 (all bit-identical; see results/nd/RESULTS.md): column sums use L2-sized column groups (up to
+  4096 columns) so rows stream once; strided sums gather blocks into buffers for the vectorised block kernels, tiled
+  over 8 neighbouring rows for large transposed inputs; rows of ≤ 8 elements use the lane tree's closed form; smaller
+  fused kernels on strided inputs keep the direct lane loop, which measured fastest there.
 * `sqdist` and `sumSqMulAdd` accept any layout. `sqdistRows` and `normalizeRows` accept row-strided views.
 * Native ABI version 2: the row kernels take leading dimensions; new entry points.
 

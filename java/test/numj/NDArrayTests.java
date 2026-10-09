@@ -43,6 +43,7 @@ public final class NDArrayTests {
         test("copy / copyFrom (broadcast, overlap)", NDArrayTests::copies);
         test("sum/mean: axes, keepdims, negative axes, layouts, paths", NDArrayTests::reductions);
         test("sum/mean: large inputs hit every native path, bitwise", NDArrayTests::reductionsLarge);
+        test("sum: short rows K=1..17, specials, strided rows, broadcast inputs", NDArrayTests::reductionShortRows);
         test("sum/mean: empty reductions, -0.0, axis=(), errors", NDArrayTests::reductionEdges);
         test("sum/mean: out reuse, overlap, read-only", NDArrayTests::reductionOut);
         test("threads: results identical for 1..8 native threads", NDArrayTests::threadInvariance);
@@ -733,7 +734,7 @@ public final class NDArrayTests {
                 exact = exact.add(new BigDecimal(v));
                 abs = abs.add(new BigDecimal(Math.abs(v)));
             }
-            if (finite && t.length > 0) {
+            if (finite && t.length > 0 && Double.isFinite(s)) {
                 BigDecimal err = new BigDecimal(s).subtract(exact).abs();
                 BigDecimal bound = abs.multiply(new BigDecimal(gamma(NumJ.summationDepth(t.length))));
                 if (err.compareTo(bound) > 0) throw new AssertionError("spec sum exceeds bound: " + err + " > " + bound);
@@ -846,6 +847,39 @@ public final class NDArrayTests {
             }
         } finally {
             Reduce.javaMaxElements = saveR;
+        }
+    }
+
+    static void reductionShortRows() {
+        double inf = Double.POSITIVE_INFINITY;
+        double[] sp = {-0.0, 0.0, -0.0, 1e308, 1e308, -1e308, Double.MIN_VALUE, -0.0, 3.5, inf, -inf, Double.NaN};
+        try (Arena ar = Arena.ofConfined()) {
+            for (int k = 1; k <= 17; k++) {
+                int rows = 300;
+                double[] v = Data.splitmix(300 + k, rows * k);
+                for (int i = 0; i < v.length; i += 7) v[i] = sp[(i / 7) % sp.length];
+                for (int r = 0; r < 5; r++) for (int j = 0; j < k; j++) v[r * k + j] = -0.0;   // all -0.0 rows
+                for (V var : variants(ar, v, new long[] {rows, k})) {
+                    final int kk = k;
+                    allPaths(() -> {
+                        checkReduction("short rows k=" + kk + " " + var.name, var.a, new int[] {1}, false, false);
+                        checkReduction("short rows k=" + kk + " mean " + var.name, var.a, new int[] {-1}, true, true);
+                    });
+                }
+                // broadcast input (stride-0 axes) through the general/gather path
+                F64Array row = F64Array.allocate(ar, k);
+                row.copyFrom(java.util.Arrays.copyOf(v, k));
+                F64Array b = row.broadcastTo(rows, k);
+                allPaths(() -> {
+                    checkReduction("broadcast axis 0", b, new int[] {0}, false, false);
+                    checkReduction("broadcast all", b, null, false, false);
+                    checkReduction("broadcast T axis 1", b.transpose(), new int[] {1}, false, false);
+                });
+            }
+            // gather path with more than 512 elements per sequence (heap buffers) and multiple blocks
+            F64Array big = F64Array.copyOf(Data.splitmix(999, 9000 * 3), 9000, 3);
+            allPaths(() -> checkReduction("transposed rows of 9000", big.transpose(), new int[] {1}, false, false));
+            big.close();
         }
     }
 
@@ -968,6 +1002,16 @@ public final class NDArrayTests {
                     assertBits("sqdist " + a.name + "/" + b.name, sd, NumJ.sqdist(a.a, b.a));
                     assertBits("sumSqMulAdd " + a.name, ma, NumJ.sumSqMulAdd(a.a, b.a, c.a));
                 });
+            }
+            // large transposed inputs (>= 2^20 elements: tiled gather path) give the contiguous bits
+            try (F64Array A = F64Array.copyOf(Data.splitmix(36, 1100 * 1000), 1100, 1000);
+                 F64Array B = F64Array.copyOf(Data.splitmix(37, 1100 * 1000), 1100, 1000);
+                 F64Array C = F64Array.copyOf(Data.splitmix(38, 1100 * 1000), 1100, 1000);
+                 F64Array At = A.transpose().copy(); F64Array Bt = B.transpose().copy(); F64Array Ct = C.transpose().copy()) {
+                assertBits("large sqdist T", NumJ.sqdist(At, Bt), NumJ.sqdist(A.transpose(), B.transpose()));
+                assertBits("large muladd T", NumJ.sumSqMulAdd(At, Bt, Ct),
+                        NumJ.sumSqMulAdd(A.transpose(), B.transpose(), C.transpose()));
+                assertBits("large sum T", NumJ.sum(At), NumJ.sum(A.transpose()));
             }
             // row kernels on row-stepped views
             F64Array big = F64Array.copyOf(Data.splitmix(34, 60 * 25), 60, 25);
