@@ -17,9 +17,9 @@ Ordered by impact in [`results/nd/RESULTS.md`](../results/nd/RESULTS.md) and [PE
 4. **Column sums:** done in round 2 (L2-sized groups): 0.68× → 0.85× NumPy at 10⁷; confirm with repeated runs.
 5. **Rows of ≤ 8 elements:** done in round 2 (closed-form lane tree); Numba still wins at k = 2–4, a vectorised
    multi-row kernel is the next step.
-6. **An opt-in memory-order reduction** for transposed and other strided inputs: deterministic for a given layout,
-   but explicitly not layout-independent. Round 2 (gather + tiling) brought the transposed sum at 10⁷ from 0.16× to
-   0.25× NumPy while keeping layout-independent bits; closing the rest needs this opt-in.
+6. **Opt-in memory-order reduction:** done in round 3 (`SumOrder.MEMORY`): 7.7× / 4× faster than NumPy at 10³ / 10⁵,
+   0.8× at 10⁷. Still open: multi-threaded transposed sums (block partials are independent, so bits stay identical),
+   and extending `SumOrder` to the fused kernels.
 7. **Repeat the benchmarks** on a fixed-frequency machine with ≥ 3 independent runs (only one run per configuration
    exists for milestone 1), and add the JDK Vector API as a pure-Java baseline. The tiny-input results suggest that a
    Java path that is fast enough for small arrays needs the Vector API or heap arrays, not `MemorySegment` loops.

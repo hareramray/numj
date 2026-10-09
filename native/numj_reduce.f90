@@ -51,11 +51,13 @@ contains
     ! SMALL: gather buffers up to this size live on the stack. TILED_MIN_N: smallest sequence for the tiled
     ! walk. Paths chosen from measurements (results/nd/RESULTS.md, round 2): tiled for large transposed
     ! inputs, untiled gather for smaller plain sums (smaller fused kernels go to seq_scalar instead).
-    integer(c_int64_t), parameter :: SMALL = 1024_c_int64_t, TILE_ELEMS = 32768_c_int64_t, &
-                                     TILED_MIN_N = 1048576_c_int64_t
+    ! TILE_ELEMS: tile budget in elements over all operands (512 KiB, L2-resident); the tile is up to
+    ! TMAX logical rows wide (more useful bytes per page and cache-line visit), a multiple of 8 when >= 8.
+    integer(c_int64_t), parameter :: SMALL = 1024_c_int64_t, TILE_ELEMS = 65536_c_int64_t, &
+                                     TILED_MIN_N = 1048576_c_int64_t, TMAX = 64_c_int64_t
     real(dp) :: stackp(STACK_BLOCKS), ta(SMALL), tb(SMALL), tc(SMALL)
     real(dp), allocatable :: heapp(:), ha(:), hb(:), hc(:)
-    integer(c_int64_t) :: n, nbuf, nb, tt
+    integer(c_int64_t) :: n, nbuf, nb, tt, nops
     logical :: onheap, tiled
 
     n = product(shape)
@@ -74,7 +76,11 @@ contains
     if (nd >= 2) then
       tiled = abs(sa(1)) > 8 .and. sa(2) == 1 .and. (op == K_SUM .or. sb(2) == 1) .and. &
               (op /= K_MULADD .or. sc(2) == 1) .and. shape(2) > 1
-      if (tiled) tt = min(8_c_int64_t, shape(2), TILE_ELEMS / shape(1))
+      if (tiled) then
+        nops = merge(1_c_int64_t, merge(2_c_int64_t, 3_c_int64_t, op == K_SQDIST), op == K_SUM)
+        tt = min(TMAX, shape(2), TILE_ELEMS / (nops*shape(1)))
+        if (tt >= 8) tt = (tt / 8) * 8
+      end if
     end if
     if (tt >= 2 .and. n >= TILED_MIN_N) then
       allocate(ha(nbuf))
@@ -144,12 +150,14 @@ contains
     subroutine walk_tiled(ba, bb, bc)
       real(dp), intent(inout) :: ba(*), bb(*), bc(*)
       real(dp), allocatable :: ta(:, :), tb(:, :), tc(:, :)
-      integer(c_int64_t) :: idx(nd), pa, pb, pc, j, m, pos, take, j2, cnt, i, t
+      integer(c_int64_t) :: idx(nd), pa, pb, pc, m, pos, j2, cnt, i
       integer :: k
       m = shape(1)
-      allocate(ta(tt, m))
-      allocate(tb(tt, merge(m, 1_c_int64_t, op /= K_SUM)))
-      allocate(tc(tt, merge(m, 1_c_int64_t, op == K_MULADD)))
+      ! ta(m, tt): column t holds logical row j2+t, so the tile's memory order is exactly the logical
+      ! sequence and whole blocks are reduced straight from it (no second copy).
+      allocate(ta(m, tt))
+      allocate(tb(merge(m, 1_c_int64_t, op /= K_SUM), merge(tt, 1_c_int64_t, op /= K_SUM)))
+      allocate(tc(merge(m, 1_c_int64_t, op == K_MULADD), merge(tt, 1_c_int64_t, op == K_MULADD)))
       idx = 0
       pa = oa
       pb = ob
@@ -158,26 +166,12 @@ contains
       do
         do j2 = 0, shape(2) - 1, tt
           cnt = min(tt, shape(2) - j2)
-          do i = 0, m - 1                      ! one memory row of the tile per logical element
-            ta(1:cnt, i + 1) = a(pa + j2 + i*sa(1):pa + j2 + i*sa(1) + cnt - 1)
-            if (op /= K_SUM) tb(1:cnt, i + 1) = b(pb + j2 + i*sb(1):pb + j2 + i*sb(1) + cnt - 1)
-            if (op == K_MULADD) tc(1:cnt, i + 1) = c(pc + j2 + i*sc(1):pc + j2 + i*sc(1) + cnt - 1)
+          do i = 0, m - 1                      ! one memory row (cnt neighbouring elements) per logical element
+            ta(i + 1, 1:cnt) = a(pa + j2 + i*sa(1):pa + j2 + i*sa(1) + cnt - 1)
+            if (op /= K_SUM) tb(i + 1, 1:cnt) = b(pb + j2 + i*sb(1):pb + j2 + i*sb(1) + cnt - 1)
+            if (op == K_MULADD) tc(i + 1, 1:cnt) = c(pc + j2 + i*sc(1):pc + j2 + i*sc(1) + cnt - 1)
           end do
-          do t = 1, cnt                        ! logical rows j2+1..j2+cnt, in order
-            j = 0
-            do while (j < m)
-              take = min(m - j, BLOCK - pos)
-              ba(pos + 1:pos + take) = ta(t, j + 1:j + take)
-              if (op /= K_SUM) bb(pos + 1:pos + take) = tb(t, j + 1:j + take)
-              if (op == K_MULADD) bc(pos + 1:pos + take) = tc(t, j + 1:j + take)
-              pos = pos + take
-              j = j + take
-              if (pos == BLOCK) then
-                call store(blk(op, 1_c_int64_t, BLOCK, ba, bb, bc))
-                pos = 0
-              end if
-            end do
-          end do
+          call feed(ta, tb, tc, m*cnt, ba, bb, bc, pos)
         end do
         k = 3
         do while (k <= nd)
@@ -196,6 +190,39 @@ contains
       end do
       if (pos > 0) call store(blk(op, 1_c_int64_t, pos, ba, bb, bc))
     end subroutine walk_tiled
+
+    !> Appends L contiguous sequence elements (fa, fb, fc) to the block stream: the partial block in the
+    !> b* buffers is completed first, whole blocks are reduced in place, and the remainder is buffered.
+    subroutine feed(fa, fb, fc, L, ba, bb, bc, pos)
+      real(dp), intent(in) :: fa(*), fb(*), fc(*)
+      integer(c_int64_t), intent(in) :: L
+      real(dp), intent(inout) :: ba(*), bb(*), bc(*)
+      integer(c_int64_t), intent(inout) :: pos
+      integer(c_int64_t) :: off, take
+      off = 0
+      if (pos > 0) then
+        take = min(BLOCK - pos, L)
+        ba(pos + 1:pos + take) = fa(1:take)
+        if (op /= K_SUM) bb(pos + 1:pos + take) = fb(1:take)
+        if (op == K_MULADD) bc(pos + 1:pos + take) = fc(1:take)
+        pos = pos + take
+        off = take
+        if (pos == BLOCK) then
+          call store(blk(op, 1_c_int64_t, BLOCK, ba, bb, bc))
+          pos = 0
+        end if
+      end if
+      do while (L - off >= BLOCK)
+        call store(blk(op, off + 1, BLOCK, fa, fb, fc))
+        off = off + BLOCK
+      end do
+      if (off < L) then
+        ba(1:L - off) = fa(off + 1:L)
+        if (op /= K_SUM) bb(1:L - off) = fb(off + 1:L)
+        if (op == K_MULADD) bc(1:L - off) = fc(off + 1:L)
+        pos = L - off
+      end if
+    end subroutine feed
 
     subroutine store(v)
       real(dp), intent(in) :: v

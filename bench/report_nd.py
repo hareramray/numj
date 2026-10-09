@@ -175,17 +175,19 @@ def main():
     if jm or py:
         w("## Sums of a C-ordered [r, c] array (outputs reused)\n")
         w("`all` every element; `axis0` column sums; `axis1` row sums; `allT` every element of the transposed view "
-          "(numj sums in the view's logical order, which makes its result layout-independent but walks memory with a stride). "
+          "(numj sums in the view's logical order, which makes its result layout-independent but walks memory with a stride); "
+          "`allTmem` is the same sum with the opt-in `SumOrder.MEMORY` (memory order; compared with NumPy's `allT`). "
           "`java` and `numba` are sequential loops in memory order (one rounding chain; less accurate than numj or NumPy).\n")
         w("| kind | n | numj | java | numpy-out | numpy | numba | java/numj | numpy-out/numj | numpy/numj | numba/numj |")
         w("|---|---|---|---|---|---|---|---|---|---|---|")
-        for kind in ("all", "axis0", "axis1", "allT"):
+        for kind in ("all", "axis0", "axis1", "allT", "allTmem"):
             for n in (1000, 100000, 10000000):
                 nj = j(jm, "ReduceBench", "numj", n=n, kind=kind)
+                pk = "allT" if kind == "allTmem" else kind
                 jv = j(jm, "ReduceBench", "java", n=n, kind=kind)
-                po = py.get(("reduce", "sum", kind, n, "numpy-out"))
-                pa = py.get(("reduce", "sum", kind, n, "numpy"))
-                nb = py.get(("reduce", "sum", kind, n, "numba"))
+                po = py.get(("reduce", "sum", pk, n, "numpy-out"))
+                pa = py.get(("reduce", "sum", pk, n, "numpy"))
+                nb = py.get(("reduce", "sum", pk, n, "numba"))
                 for name, o in (("java", jv), ("numpy", po or pa), ("numba", nb)):
                     count("sum vs " + name, nj, o)
                 w(f"| {kind} | {n:,} | {fmt(nj and nj['median'])} | {fmt(jv and jv['median'])} | {fmt(po and po['median'])} | "
@@ -298,6 +300,25 @@ def main():
             w(f"| {name} | {size} | {fmt(b0 and b0['median'])} | {fmt(g0 and g0['median'])} | {fmt(t0 and t0['median'])} | "
               f"{fmt(a0 and a0['median'])} | {fmt(r0 and r0['median'])} | {r} | "
               f"{fmt(npv and npv['median'])} | {ratio(a0, npv)} |")
+        w("")
+
+    r3 = [load_jmh(f) for f in ("jmh_round3.json", "jmh_round3repeat.json", "jmh_round3third.json")]
+    py3 = load_py("python_round3.csv")
+    if r3[0] and py3:
+        w("## Round 3: sums of transposed views\n")
+        w("`allT` = default `SumOrder.LOGICAL` (layout-independent bits) after widening the tiles (up to 64 logical "
+          "rows, 512 KiB budget) and removing a copy; `allTmem` = opt-in `SumOrder.MEMORY` (memory order, deterministic "
+          "per layout, same error bound, not layout-independent). Three independent JMH runs (the third at 10^7 only) "
+          "and a NumPy run taken right after them (`python_round3.csv`). Round-2 `allT` for reference.\n")
+        w("| kind | n | round 2 | run 1 | run 2 | run 3 | NumPy (same session) | NumPy/numj (run 2) |")
+        w("|---|---|---|---|---|---|---|---|")
+        for kind in ("allT", "allTmem"):
+            for n in (1000, 100000, 10000000):
+                old = j(jm, "ReduceBench", "numj", n=n, kind="allT") if kind == "allT" else None
+                rs = [j(r, "ReduceBench", "numj", n=n, kind=kind) for r in r3]
+                npv = py3.get(("reduce", "sum", "allT", n, "numpy"))
+                w(f"| {kind} | {n:,} | {fmt(old and old['median'])} | " + " | ".join(fmt(x and x['median']) for x in rs)
+                  + f" | {fmt(npv and npv['median'])} | {ratio(rs[1], npv)} |")
         w("")
 
     # ---------------------------------------------------------------- decision benchmarks

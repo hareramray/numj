@@ -96,6 +96,8 @@ can be compared on the same benchmark.
 | **round 2: strided sums** (retained) | each 4096-element block is gathered into a buffer and reduced by the vectorised block kernel; for ≥ 2²⁰ elements with a unit-stride second axis, 8 neighbouring logical rows are read per memory row (tiled). Sum of a transposed view: 10³ 1.62 µs → 648 ns, 10⁵ 89 → 48 µs, 10⁷ 40.4 → 25.3 / 23.9 ms | 2–3× faster; still 0.25× NumPy at 10⁷ (the layout-independent order) |
 | **round 2: fused kernels on strided inputs** | the untiled gather *regressed* them (10⁵: 150 → 315 µs; 10⁷: 206 → 519 ms); tiling fixed 10⁷ (78 ms) but not ≤ 10⁵, where the original direct lane loop is fastest. An attempt to inline that loop into the gather function was still slow (~215 µs); restoring it verbatim as a separate function recovered 159 µs | dispatch: direct loop below 2²⁰ elements, tiled gather above. 10⁷ transposed: 206 → 76 / 84 ms, 2.5× faster than NumPy-out |
 | **round 2: rows of ≤ 8 elements** (retained) | closed form of the lane tree (`((a1+a5)+(a3+a7)) + ((a2+a6)+(a4+a8))`, exact because lanes are never −0.0): k = 2: 4.65 → 0.62 ms, k = 4: 0.84 → 0.42 ms | short-row sums now beat NumPy-out for k ≤ 8 (2.2–5.4×) and tie or beat plain Java |
+| **round 3: `SumOrder.MEMORY`** (added, opt-in) | memory-order sums of a transposed view vs NumPy measured in the same session: 10³ 176 ns vs 1.36 µs (7.7×), 10⁵ 5.1 µs vs 20.6 µs (4.0×), 10⁷ 8.1–9.3 ms vs 6.5 ms (0.8×, both memory-bound; numj's own contiguous sum is ~7 ms) | opt-in only: bits depend on the layout. Default stays `LOGICAL` |
+| **round 3: wider tiles for `LOGICAL`** (kept, gain unproven) | tiles up to 64 logical rows (512 KiB budget) and blocks reduced straight from the tile. Transposed sum at 10⁷ in three runs: 16.7, 14.8, 24.1 ms (round 2: 25.3 / 23.9 ms) | bit-identical, never slower in these runs, but the gain is within this laptop's noise; 0.26–0.44× NumPy remains |
 | **elementwise threads** | 8 threads: 1.10× at 10⁶, 1.10× at 4·10⁶, 1.31× at 1.6·10⁷ (memory-bound) | `EW_PARALLEL_MIN_ELEMENTS` = 2²³ (was 2¹⁸ for everything) |
 | **reduction threads** | 10⁵: 4–7× *slower* with 2–8 threads; 10⁶: 2.4× faster with 4 threads | `PARALLEL_MIN_ELEMENTS` = 2¹⁹ (nothing measured between 10⁵ and 10⁶, so the choice is conservative) |
 | **tail processing** | elementwise kernels: GCC emits a 32-byte vector body plus 16-byte and scalar epilogues (vectorisation report); `add` at n = 16, 32, 64 costs 16.8, 18.8, 21.4 ns, so tails show no measurable cliff. Reductions keep 0.1's +0.0-padded tail | no change |
@@ -113,8 +115,8 @@ can be compared on the same benchmark.
   is the same vectorised `ew_vv` used by the contiguous path, so the cause is not understood yet. Needs profiling.
 * **Column sums at 10⁷**: 6.1–6.4 ms versus NumPy's 5.2 ms after round 2 (was 7.7 ms). The remaining gap is the
   lane bookkeeping (16 accumulators per column) on top of a pure stream; within run-to-run noise of a tie.
-* **Sums of transposed views** (`allT`) at 10⁷: 24–25 ms versus NumPy's 6.4 ms after round 2 (was 40 ms). This is the
-  price of results that do not depend on layout. An opt-in "memory-order" reduction, deterministic for a given
-  layout but not across layouts, would remove it.
+* **Sums of transposed views** with the default `SumOrder.LOGICAL` at 10⁷: 15–24 ms versus NumPy's 6.5 ms (was
+  40 ms before round 2). This is the price of results that do not depend on layout. `SumOrder.MEMORY` (opt-in)
+  removes most of it (8–9 ms) and wins clearly up to 10⁵ elements.
 * **Run-to-run variability at 10⁷ elements** is large on this laptop: unchanged code measured 24.8 vs 15.1 ms
   (contiguous fused) and 6.3 vs 11.9 ms (row sums) in two runs. Verdicts at 10⁷ are therefore provisional.

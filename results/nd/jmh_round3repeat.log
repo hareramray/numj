@@ -1,0 +1,449 @@
+# JMH version: 1.37
+# VM version: JDK 25.0.4.1, OpenJDK 64-Bit Server VM, 25.0.4.1+1-LTS
+# VM invoker: C:\Users\Hareram ray\AI\numJ\.tools\jdk\bin\java.exe
+# VM options: --enable-native-access=ALL-UNNAMED --enable-native-access=ALL-UNNAMED -Xms2g -Xmx2g -XX:+AlwaysPreTouch
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 200 ms each
+# Measurement: 5 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: numj.ReduceBench.numj
+# Parameters: (kind = allT, n = 1000)
+
+# Run progress: 0.00% complete, ETA 00:00:36
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 1606.388 ns/op
+# Warmup Iteration   2: 608.549 ns/op
+# Warmup Iteration   3: 603.172 ns/op
+# Warmup Iteration   4: 617.468 ns/op
+# Warmup Iteration   5: 604.841 ns/op
+Iteration   1: 590.090 ns/op
+Iteration   2: 603.413 ns/op
+Iteration   3: 602.387 ns/op
+Iteration   4: 585.759 ns/op
+Iteration   5: 618.055 ns/op
+
+# Run progress: 5.56% complete, ETA 00:00:42
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 2083.084 ns/op
+# Warmup Iteration   2: 627.309 ns/op
+# Warmup Iteration   3: 644.203 ns/op
+# Warmup Iteration   4: 605.354 ns/op
+# Warmup Iteration   5: 626.406 ns/op
+Iteration   1: 616.280 ns/op
+Iteration   2: 601.469 ns/op
+Iteration   3: 610.769 ns/op
+Iteration   4: 598.008 ns/op
+Iteration   5: 620.343 ns/op
+
+# Run progress: 11.11% complete, ETA 00:00:40
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 2159.268 ns/op
+# Warmup Iteration   2: 619.422 ns/op
+# Warmup Iteration   3: 602.644 ns/op
+# Warmup Iteration   4: 612.259 ns/op
+# Warmup Iteration   5: 605.321 ns/op
+Iteration   1: 604.642 ns/op
+Iteration   2: 592.992 ns/op
+Iteration   3: 602.188 ns/op
+Iteration   4: 617.293 ns/op
+Iteration   5: 613.571 ns/op
+
+
+Result "numj.ReduceBench.numj":
+  605.151 ±(99.9%) 11.450 ns/op [Average]
+  (min, avg, max) = (585.759, 605.151, 620.343), stdev = 10.711
+  CI (99.9%): [593.700, 616.601] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.4.1, OpenJDK 64-Bit Server VM, 25.0.4.1+1-LTS
+# VM invoker: C:\Users\Hareram ray\AI\numJ\.tools\jdk\bin\java.exe
+# VM options: --enable-native-access=ALL-UNNAMED --enable-native-access=ALL-UNNAMED -Xms2g -Xmx2g -XX:+AlwaysPreTouch
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 200 ms each
+# Measurement: 5 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: numj.ReduceBench.numj
+# Parameters: (kind = allT, n = 100000)
+
+# Run progress: 16.67% complete, ETA 00:00:38
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 123742.376 ns/op
+# Warmup Iteration   2: 47841.797 ns/op
+# Warmup Iteration   3: 45343.448 ns/op
+# Warmup Iteration   4: 44852.715 ns/op
+# Warmup Iteration   5: 45714.932 ns/op
+Iteration   1: 45550.260 ns/op
+Iteration   2: 44769.375 ns/op
+Iteration   3: 43069.075 ns/op
+Iteration   4: 45367.842 ns/op
+Iteration   5: 45197.944 ns/op
+
+# Run progress: 22.22% complete, ETA 00:00:35
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 77517.373 ns/op
+# Warmup Iteration   2: 40481.983 ns/op
+# Warmup Iteration   3: 42086.569 ns/op
+# Warmup Iteration   4: 40206.217 ns/op
+# Warmup Iteration   5: 39790.995 ns/op
+Iteration   1: 39810.410 ns/op
+Iteration   2: 41399.711 ns/op
+Iteration   3: 41893.958 ns/op
+Iteration   4: 39935.751 ns/op
+Iteration   5: 39879.720 ns/op
+
+# Run progress: 27.78% complete, ETA 00:00:33
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 92393.977 ns/op
+# Warmup Iteration   2: 41175.291 ns/op
+# Warmup Iteration   3: 43804.806 ns/op
+# Warmup Iteration   4: 39798.538 ns/op
+# Warmup Iteration   5: 40314.059 ns/op
+Iteration   1: 40289.295 ns/op
+Iteration   2: 39022.963 ns/op
+Iteration   3: 40068.465 ns/op
+Iteration   4: 40244.480 ns/op
+Iteration   5: 40654.516 ns/op
+
+
+Result "numj.ReduceBench.numj":
+  41810.251 ±(99.9%) 2503.597 ns/op [Average]
+  (min, avg, max) = (39022.963, 41810.251, 45550.260), stdev = 2341.866
+  CI (99.9%): [39306.654, 44313.848] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.4.1, OpenJDK 64-Bit Server VM, 25.0.4.1+1-LTS
+# VM invoker: C:\Users\Hareram ray\AI\numJ\.tools\jdk\bin\java.exe
+# VM options: --enable-native-access=ALL-UNNAMED --enable-native-access=ALL-UNNAMED -Xms2g -Xmx2g -XX:+AlwaysPreTouch
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 200 ms each
+# Measurement: 5 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: numj.ReduceBench.numj
+# Parameters: (kind = allT, n = 10000000)
+
+# Run progress: 33.33% complete, ETA 00:00:30
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 23678333.333 ns/op
+# Warmup Iteration   2: 14685414.286 ns/op
+# Warmup Iteration   3: 14367635.714 ns/op
+# Warmup Iteration   4: 12779362.500 ns/op
+# Warmup Iteration   5: 13134937.500 ns/op
+Iteration   1: 13545000.000 ns/op
+Iteration   2: 13583013.333 ns/op
+Iteration   3: 13167912.500 ns/op
+Iteration   4: 15202107.143 ns/op
+Iteration   5: 17015908.333 ns/op
+
+# Run progress: 38.89% complete, ETA 00:00:28
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 23835166.667 ns/op
+# Warmup Iteration   2: 12372329.412 ns/op
+# Warmup Iteration   3: 14435885.714 ns/op
+# Warmup Iteration   4: 13701000.000 ns/op
+# Warmup Iteration   5: 13237931.250 ns/op
+Iteration   1: 14426092.857 ns/op
+Iteration   2: 13989453.333 ns/op
+Iteration   3: 14496050.000 ns/op
+Iteration   4: 14772392.857 ns/op
+Iteration   5: 15097678.571 ns/op
+
+# Run progress: 44.44% complete, ETA 00:00:25
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 25324925.000 ns/op
+# Warmup Iteration   2: 14559750.000 ns/op
+# Warmup Iteration   3: 14656821.429 ns/op
+# Warmup Iteration   4: 15296957.143 ns/op
+# Warmup Iteration   5: 13456566.667 ns/op
+Iteration   1: 14958214.286 ns/op
+Iteration   2: 13271906.250 ns/op
+Iteration   3: 15795261.538 ns/op
+Iteration   4: 16992975.000 ns/op
+Iteration   5: 17377658.333 ns/op
+
+
+Result "numj.ReduceBench.numj":
+  14912774.956 ±(99.9%) 1467592.639 ns/op [Average]
+  (min, avg, max) = (13167912.500, 14912774.956, 17377658.333), stdev = 1372787.065
+  CI (99.9%): [13445182.317, 16380367.595] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.4.1, OpenJDK 64-Bit Server VM, 25.0.4.1+1-LTS
+# VM invoker: C:\Users\Hareram ray\AI\numJ\.tools\jdk\bin\java.exe
+# VM options: --enable-native-access=ALL-UNNAMED --enable-native-access=ALL-UNNAMED -Xms2g -Xmx2g -XX:+AlwaysPreTouch
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 200 ms each
+# Measurement: 5 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: numj.ReduceBench.numj
+# Parameters: (kind = allTmem, n = 1000)
+
+# Run progress: 50.00% complete, ETA 00:00:23
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 608.304 ns/op
+# Warmup Iteration   2: 175.563 ns/op
+# Warmup Iteration   3: 183.261 ns/op
+# Warmup Iteration   4: 169.528 ns/op
+# Warmup Iteration   5: 174.604 ns/op
+Iteration   1: 184.031 ns/op
+Iteration   2: 175.237 ns/op
+Iteration   3: 173.125 ns/op
+Iteration   4: 171.028 ns/op
+Iteration   5: 172.255 ns/op
+
+# Run progress: 55.56% complete, ETA 00:00:20
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 925.137 ns/op
+# Warmup Iteration   2: 173.800 ns/op
+# Warmup Iteration   3: 170.956 ns/op
+# Warmup Iteration   4: 169.764 ns/op
+# Warmup Iteration   5: 173.536 ns/op
+Iteration   1: 172.012 ns/op
+Iteration   2: 177.515 ns/op
+Iteration   3: 175.692 ns/op
+Iteration   4: 181.647 ns/op
+Iteration   5: 181.621 ns/op
+
+# Run progress: 61.11% complete, ETA 00:00:18
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 779.641 ns/op
+# Warmup Iteration   2: 176.329 ns/op
+# Warmup Iteration   3: 175.552 ns/op
+# Warmup Iteration   4: 179.846 ns/op
+# Warmup Iteration   5: 171.774 ns/op
+Iteration   1: 186.310 ns/op
+Iteration   2: 178.523 ns/op
+Iteration   3: 177.897 ns/op
+Iteration   4: 172.117 ns/op
+Iteration   5: 172.906 ns/op
+
+
+Result "numj.ReduceBench.numj":
+  176.794 ±(99.9%) 5.153 ns/op [Average]
+  (min, avg, max) = (171.028, 176.794, 186.310), stdev = 4.821
+  CI (99.9%): [171.641, 181.948] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.4.1, OpenJDK 64-Bit Server VM, 25.0.4.1+1-LTS
+# VM invoker: C:\Users\Hareram ray\AI\numJ\.tools\jdk\bin\java.exe
+# VM options: --enable-native-access=ALL-UNNAMED --enable-native-access=ALL-UNNAMED -Xms2g -Xmx2g -XX:+AlwaysPreTouch
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 200 ms each
+# Measurement: 5 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: numj.ReduceBench.numj
+# Parameters: (kind = allTmem, n = 100000)
+
+# Run progress: 66.67% complete, ETA 00:00:15
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 9971.380 ns/op
+# Warmup Iteration   2: 5075.094 ns/op
+# Warmup Iteration   3: 5021.017 ns/op
+# Warmup Iteration   4: 5120.781 ns/op
+# Warmup Iteration   5: 5010.816 ns/op
+Iteration   1: 4973.527 ns/op
+Iteration   2: 5538.366 ns/op
+Iteration   3: 5330.125 ns/op
+Iteration   4: 5686.321 ns/op
+Iteration   5: 5404.131 ns/op
+
+# Run progress: 72.22% complete, ETA 00:00:12
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 11165.819 ns/op
+# Warmup Iteration   2: 6388.034 ns/op
+# Warmup Iteration   3: 6452.562 ns/op
+# Warmup Iteration   4: 5049.168 ns/op
+# Warmup Iteration   5: 5151.404 ns/op
+Iteration   1: 4995.533 ns/op
+Iteration   2: 4911.330 ns/op
+Iteration   3: 5509.162 ns/op
+Iteration   4: 5060.175 ns/op
+Iteration   5: 5126.206 ns/op
+
+# Run progress: 77.78% complete, ETA 00:00:10
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 10440.988 ns/op
+# Warmup Iteration   2: 5211.829 ns/op
+# Warmup Iteration   3: 4989.135 ns/op
+# Warmup Iteration   4: 5118.743 ns/op
+# Warmup Iteration   5: 5788.043 ns/op
+Iteration   1: 4980.123 ns/op
+Iteration   2: 5213.739 ns/op
+Iteration   3: 5110.395 ns/op
+Iteration   4: 5159.671 ns/op
+Iteration   5: 5037.457 ns/op
+
+
+Result "numj.ReduceBench.numj":
+  5202.417 ±(99.9%) 254.134 ns/op [Average]
+  (min, avg, max) = (4911.330, 5202.417, 5686.321), stdev = 237.717
+  CI (99.9%): [4948.284, 5456.551] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 25.0.4.1, OpenJDK 64-Bit Server VM, 25.0.4.1+1-LTS
+# VM invoker: C:\Users\Hareram ray\AI\numJ\.tools\jdk\bin\java.exe
+# VM options: --enable-native-access=ALL-UNNAMED --enable-native-access=ALL-UNNAMED -Xms2g -Xmx2g -XX:+AlwaysPreTouch
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 200 ms each
+# Measurement: 5 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: numj.ReduceBench.numj
+# Parameters: (kind = allTmem, n = 10000000)
+
+# Run progress: 83.33% complete, ETA 00:00:07
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 9949452.381 ns/op
+# Warmup Iteration   2: 7491285.185 ns/op
+# Warmup Iteration   3: 6719180.645 ns/op
+# Warmup Iteration   4: 8676191.667 ns/op
+# Warmup Iteration   5: 8039608.000 ns/op
+Iteration   1: 8102992.000 ns/op
+Iteration   2: 8079520.000 ns/op
+Iteration   3: 7416853.571 ns/op
+Iteration   4: 8376092.000 ns/op
+Iteration   5: 7130875.862 ns/op
+
+# Run progress: 88.89% complete, ETA 00:00:05
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 11316455.556 ns/op
+# Warmup Iteration   2: 7309410.714 ns/op
+# Warmup Iteration   3: 7860026.923 ns/op
+# Warmup Iteration   4: 9051469.565 ns/op
+# Warmup Iteration   5: 8289484.000 ns/op
+Iteration   1: 9079500.000 ns/op
+Iteration   2: 8641495.833 ns/op
+Iteration   3: 8390308.333 ns/op
+Iteration   4: 7309910.714 ns/op
+Iteration   5: 7199575.000 ns/op
+
+# Run progress: 94.44% complete, ETA 00:00:02
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/C:/Users/Hareram%20ray/AI/numJ/.tools/jmh/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 9699523.810 ns/op
+# Warmup Iteration   2: 8133260.000 ns/op
+# Warmup Iteration   3: 8860821.739 ns/op
+# Warmup Iteration   4: 5977547.059 ns/op
+# Warmup Iteration   5: 7051662.069 ns/op
+Iteration   1: 6364743.750 ns/op
+Iteration   2: 7337585.714 ns/op
+Iteration   3: 8156900.000 ns/op
+Iteration   4: 8175332.000 ns/op
+Iteration   5: 7109672.414 ns/op
+
+
+Result "numj.ReduceBench.numj":
+  7791423.813 ±(99.9%) 777670.436 ns/op [Average]
+  (min, avg, max) = (6364743.750, 7791423.813, 9079500.000), stdev = 727433.408
+  CI (99.9%): [7013753.377, 8569094.248] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:00:46
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark          (kind)       (n)  Mode  Cnt         Score         Error  Units
+ReduceBench.numj     allT      1000  avgt   15       605.151 ±      11.450  ns/op
+ReduceBench.numj     allT    100000  avgt   15     41810.251 ±    2503.597  ns/op
+ReduceBench.numj     allT  10000000  avgt   15  14912774.956 ± 1467592.639  ns/op
+ReduceBench.numj  allTmem      1000  avgt   15       176.794 ±       5.153  ns/op
+ReduceBench.numj  allTmem    100000  avgt   15      5202.417 ±     254.134  ns/op
+ReduceBench.numj  allTmem  10000000  avgt   15   7791423.813 ±  777670.436  ns/op
+
+Benchmark result is saved to results\nd\jmh_round3repeat.json
