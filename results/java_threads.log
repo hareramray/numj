@@ -1,0 +1,54 @@
+# java 25.0.4.1+1-LTS | OpenJDK 64-Bit Server VM
+# native C:\Users\Hareram ray\AI\numJ\build\native\numj.dll
+# build GCC version 16.2.0 | -march=x86-64-v3 -mthreads -O3 -Wall -Wextra -Wno-compare-reals -std=f2018 -fopenmp -frecursive -ffp-contract=off -J C:\Users\Hareram ray\AI\numJ\build\obj\numj
+# criticalMaxElements=65536 availableProcessors=12
+sqdist          [262144]         numj                   compute  t=1  median     64.44 us  p10     58.23 us  p90     92.29 us  cv  32.0%
+sumsq_muladd    [262144]         numj                   compute  t=1  median    207.01 us  p10    166.41 us  p90     1.143 ms  cv 106.1%
+sqdist          [262144]         numj                   compute  t=2  median     93.60 us  p10     66.52 us  p90    206.50 us  cv  53.1%
+sumsq_muladd    [262144]         numj                   compute  t=2  median    368.87 us  p10    139.11 us  p90    642.82 us  cv  68.4%
+sqdist          [262144]         numj                   compute  t=4  median     54.19 us  p10     44.91 us  p90    162.99 us  cv  83.7%
+sumsq_muladd    [262144]         numj                   compute  t=4  median     56.88 us  p10     55.03 us  p90     59.91 us  cv   3.8%
+sqdist          [262144]         numj                   compute  t=8  median     63.82 us  p10     60.09 us  p90     83.02 us  cv  16.0%
+sumsq_muladd    [262144]         numj                   compute  t=8  median     82.71 us  p10     66.74 us  p90    419.89 us  cv  81.6%
+normalize_rows  [2621,100]       numj                   compute  t=1  median    275.92 us  p10    221.52 us  p90    411.17 us  cv  44.8%
+normalize_rows  [2621,100]       numj                   compute  t=2  median    308.14 us  p10    253.53 us  p90    353.45 us  cv  20.7%
+normalize_rows  [2621,100]       numj                   compute  t=4  median    305.30 us  p10    232.17 us  p90    347.38 us  cv  17.0%
+normalize_rows  [2621,100]       numj                   compute  t=8  median    254.54 us  p10    223.66 us  p90    412.08 us  cv  47.6%
+sqdist          [1000000]        numj                   compute  t=1  median     1.229 ms  p10     1.058 ms  p90     1.348 ms  cv  10.5%
+sumsq_muladd    [1000000]        numj                   compute  t=1  median     2.963 ms  p10     1.852 ms  p90     5.272 ms  cv  39.6%
+sqdist          [1000000]        numj                   compute  t=2  median     1.419 ms  p10    878.48 us  p90     2.204 ms  cv  40.6%
+sumsq_muladd    [1000000]        numj                   compute  t=2  median     1.435 ms  p10     1.164 ms  p90     2.048 ms  cv  34.5%
+sqdist          [1000000]        numj                   compute  t=4  median     1.362 ms  p10     1.024 ms  p90     1.903 ms  cv  23.5%
+sumsq_muladd    [1000000]        numj                   compute  t=4  median     1.479 ms  p10     1.081 ms  p90     1.924 ms  cv  21.8%
+sqdist          [1000000]        numj                   compute  t=8  median     1.286 ms  p10    800.57 us  p90     1.544 ms  cv  21.5%
+sumsq_muladd    [1000000]        numj                   compute  t=8  median     1.416 ms  p10     1.162 ms  p90     1.661 ms  cv  15.3%
+normalize_rows  [10000,100]      numj                   compute  t=1  median     4.737 ms  p10     2.897 ms  p90     6.097 ms  cv  29.5%
+normalize_rows  [10000,100]      numj                   compute  t=2  median     2.229 ms  p10     1.445 ms  p90     3.416 ms  cv  34.2%
+normalize_rows  [10000,100]      numj                   compute  t=4  median     1.451 ms  p10     1.313 ms  p90     1.795 ms  cv  16.3%
+normalize_rows  [10000,100]      numj                   compute  t=8  median    863.68 us  p10    800.92 us  p90     1.240 ms  cv  22.7%
+sqdist          [10000000]       numj                   compute  t=1  median    12.749 ms  p10    12.045 ms  p90    15.148 ms  cv  13.5%
+sumsq_muladd    [10000000]       numj                   compute  t=1  median    29.419 ms  p10    24.353 ms  p90    39.363 ms  cv  24.0%
+sqdist          [10000000]       numj                   compute  t=2  median    14.598 ms  p10    12.462 ms  p90    18.525 ms  cv  20.0%
+sumsq_muladd    [10000000]       numj                   compute  t=2  median    21.500 ms  p10    16.978 ms  p90    27.551 ms  cv  43.1%
+sqdist          [10000000]       numj                   compute  t=4  median    12.331 ms  p10    10.804 ms  p90    15.752 ms  cv  15.1%
+sumsq_muladd    [10000000]       numj                   compute  t=4  median    15.522 ms  p10    14.468 ms  p90    17.804 ms  cv   9.6%
+sqdist          [10000000]       numj                   compute  t=8  median     9.149 ms  p10     8.693 ms  p90    15.983 ms  cv  61.0%
+sumsq_muladd    [10000000]       numj                   compute  t=8  median    13.033 ms  p10    12.392 ms  p90    15.027 ms  cv   7.6%
+normalize_rows  [100000,100]     numj                   compute  t=1  median    19.308 ms  p10    15.622 ms  p90    22.785 ms  cv  15.2%
+normalize_rows  [100000,100]     numj                   compute  t=2  median    16.427 ms  p10    15.743 ms  p90    17.063 ms  cv   3.3%
+normalize_rows  [100000,100]     numj                   compute  t=4  median    14.496 ms  p10    12.300 ms  p90    16.144 ms  cv  10.9%
+normalize_rows  [100000,100]     numj                   compute  t=8  median    11.372 ms  p10    11.008 ms  p90    12.441 ms  cv   5.2%
+sqdist          [50000000]       numj                   compute  t=1  median    43.542 ms  p10    41.256 ms  p90    47.936 ms  cv   9.7%
+sumsq_muladd    [50000000]       numj                   compute  t=1  median    71.683 ms  p10    61.991 ms  p90    77.902 ms  cv  10.1%
+sqdist          [50000000]       numj                   compute  t=2  median    49.571 ms  p10    45.352 ms  p90    71.218 ms  cv  20.5%
+sumsq_muladd    [50000000]       numj                   compute  t=2  median    84.956 ms  p10    67.153 ms  p90   102.080 ms  cv  17.6%
+sqdist          [50000000]       numj                   compute  t=4  median    44.945 ms  p10    42.210 ms  p90    48.701 ms  cv   8.7%
+sumsq_muladd    [50000000]       numj                   compute  t=4  median    56.430 ms  p10    52.633 ms  p90    58.688 ms  cv   4.3%
+sqdist          [50000000]       numj                   compute  t=8  median    38.668 ms  p10    35.358 ms  p90    42.608 ms  cv   7.1%
+sumsq_muladd    [50000000]       numj                   compute  t=8  median    56.572 ms  p10    55.724 ms  p90    58.664 ms  cv   2.8%
+normalize_rows  [500000,100]     numj                   compute  t=1  median    71.134 ms  p10    68.025 ms  p90    75.435 ms  cv   4.9%
+normalize_rows  [500000,100]     numj                   compute  t=2  median    64.189 ms  p10    63.047 ms  p90    73.525 ms  cv   7.6%
+normalize_rows  [500000,100]     numj                   compute  t=4  median    57.631 ms  p10    54.242 ms  p90    60.676 ms  cv   6.5%
+normalize_rows  [500000,100]     numj                   compute  t=8  median    57.441 ms  p10    56.817 ms  p90    61.279 ms  cv   3.4%
+# wrote results\java_threads.csv
+# sink 4.6940289671284485E10

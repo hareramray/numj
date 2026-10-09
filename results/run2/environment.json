@@ -1,0 +1,22 @@
+﻿{
+    "date":  "2026-10-09T23:28:24",
+    "cpu":  "13th Gen Intel(R) Core(TM) i5-13420H",
+    "cores":  8,
+    "logical":  12,
+    "l2_kb":  7168,
+    "l3_kb":  12288,
+    "ram_gb":  15.7,
+    "os":  "Microsoft Windows 11 Home Single Language 10.0.26200 build 26200",
+    "power_plan":  "Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)",
+    "on_ac_power":  true,
+    "affinity_mask":  "0xFF",
+    "java":  "openjdk version \"25.0.4.1\" 2026-08-18 LTS | OpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS) | OpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)",
+    "java_flags":  "--enable-native-access=ALL-UNNAMED -Xms4g -Xmx4g -XX:+AlwaysPreTouch -cp build\\classes;build\\bench-classes",
+    "gfortran":  "GNU Fortran (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.2.0",
+    "fortran_flags":  [
+                          "\u0027numj\u0027       = @(\u0027-O3\u0027, \u0027-march=x86-64-v3\u0027, \u0027-ffp-contract=off\u0027)",
+                          "\u0027numj-sse2\u0027  = @(\u0027-O3\u0027, \u0027-march=x86-64\u0027,    \u0027-ffp-contract=off\u0027)",
+                          "\u0027numj-novec\u0027 = @(\u0027-O3\u0027, \u0027-march=x86-64-v3\u0027, \u0027-ffp-contract=off\u0027, \u0027-fno-tree-vectorize\u0027, \u0027-fno-tree-slp-vectorize\u0027)",
+                          "\u0027numj-fast\u0027  = @(\u0027-O3\u0027, \u0027-march=x86-64-v3\u0027, \u0027-ffast-math\u0027)"
+                      ]
+}

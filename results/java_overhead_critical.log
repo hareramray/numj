@@ -1,0 +1,11 @@
+# java 25.0.4.1+1-LTS | OpenJDK 64-Bit Server VM
+# native C:\Users\Hareram ray\AI\numJ\build\native\numj.dll
+# build GCC version 16.2.0 | -march=x86-64-v3 -mthreads -O3 -Wall -Wextra -Wno-compare-reals -std=f2018 -fopenmp -frecursive -ffp-contract=off -J C:\Users\Hareram ray\AI\numJ\build\obj\numj
+# criticalMaxElements=65536 availableProcessors=12
+sqdist          [0]              numj-critical          compute  t=1  median       8.2 ns  p10       8.1 ns  p90       8.5 ns  cv   2.4%
+sqdist          [1]              numj-critical          compute  t=1  median      18.3 ns  p10      17.9 ns  p90      19.2 ns  cv   3.5%
+sqdist          [16]             numj-critical          compute  t=1  median      10.0 ns  p10       9.7 ns  p90      10.9 ns  cv   4.8%
+sqdist          [17]             numj-critical          compute  t=1  median      21.7 ns  p10      18.3 ns  p90      24.0 ns  cv  12.2%
+sqdist          [256]            numj-critical          compute  t=1  median      24.5 ns  p10      23.1 ns  p90      24.9 ns  cv   2.8%
+# wrote results\java_overhead_critical.csv
+# sink 9.585313073152014E9

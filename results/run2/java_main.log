@@ -1,0 +1,69 @@
+# java 25.0.4.1+1-LTS | OpenJDK 64-Bit Server VM
+# native C:\Users\Hareram ray\AI\numJ\build\native\numj.dll
+# build GCC version 16.2.0 | -march=x86-64-v3 -mthreads -O3 -Wall -Wextra -Wno-compare-reals -std=f2018 -fopenmp -frecursive -ffp-contract=off -J C:\Users\Hareram ray\AI\numJ\build\obj\numj
+# criticalMaxElements=65536 availableProcessors=12
+sqdist          [16]             numj                   compute  t=1  median       9.8 ns  p10       9.3 ns  p90      11.0 ns  cv   7.3%
+sumsq_muladd    [16]             numj                   compute  t=1  median      12.5 ns  p10      12.0 ns  p90      16.1 ns  cv  23.9%
+sqdist          [16]             numj                   e2e      t=1  median     173.0 ns  p10     163.6 ns  p90     206.8 ns  cv   8.8%
+sqdist          [16]             java-naive             compute  t=1  median       6.4 ns  p10       6.1 ns  p90       7.2 ns  cv   6.9%
+sqdist          [16]             java-blocked           compute  t=1  median      10.5 ns  p10      10.0 ns  p90      12.4 ns  cv  33.1%
+sumsq_muladd    [16]             numj                   e2e      t=1  median     259.8 ns  p10     213.3 ns  p90     341.5 ns  cv  28.8%
+sumsq_muladd    [16]             java-naive             compute  t=1  median       8.2 ns  p10       7.4 ns  p90      11.5 ns  cv  27.4%
+sumsq_muladd    [16]             java-blocked           compute  t=1  median      15.6 ns  p10      13.9 ns  p90      17.5 ns  cv  15.9%
+sqdist          [1000]           numj                   compute  t=1  median      77.4 ns  p10      74.1 ns  p90      81.5 ns  cv   3.9%
+sumsq_muladd    [1000]           numj                   compute  t=1  median     101.5 ns  p10     100.2 ns  p90     104.4 ns  cv   1.8%
+sqdist          [1000]           numj                   e2e      t=1  median     472.5 ns  p10     463.1 ns  p90     537.4 ns  cv   6.2%
+sqdist          [1000]           java-naive             compute  t=1  median     424.8 ns  p10     421.0 ns  p90     433.7 ns  cv   2.4%
+sqdist          [1000]           java-blocked           compute  t=1  median     334.6 ns  p10     331.1 ns  p90     355.8 ns  cv   5.6%
+sumsq_muladd    [1000]           numj                   e2e      t=1  median     742.9 ns  p10     719.9 ns  p90     763.4 ns  cv   2.4%
+sumsq_muladd    [1000]           java-naive             compute  t=1  median     428.4 ns  p10     425.2 ns  p90     440.0 ns  cv   1.6%
+sumsq_muladd    [1000]           java-blocked           compute  t=1  median     524.5 ns  p10     513.9 ns  p90     548.7 ns  cv   2.5%
+sqdist          [100000]         numj                   compute  t=1  median     15.18 us  p10     14.97 us  p90     16.92 us  cv   5.8%
+sumsq_muladd    [100000]         numj                   compute  t=1  median     30.44 us  p10     28.87 us  p90     35.34 us  cv   8.4%
+sqdist          [100000]         numj                   e2e      t=1  median    148.85 us  p10    144.49 us  p90    152.85 us  cv   3.6%
+sqdist          [100000]         java-naive             compute  t=1  median     45.24 us  p10     44.90 us  p90     48.57 us  cv   4.3%
+sqdist          [100000]         java-blocked           compute  t=1  median     39.97 us  p10     36.49 us  p90     42.86 us  cv   5.8%
+sumsq_muladd    [100000]         numj                   e2e      t=1  median    228.46 us  p10    221.15 us  p90    251.28 us  cv  33.5%
+sumsq_muladd    [100000]         java-naive             compute  t=1  median     49.32 us  p10     44.97 us  p90     55.99 us  cv   8.9%
+sumsq_muladd    [100000]         java-blocked           compute  t=1  median    143.13 us  p10    110.59 us  p90    578.23 us  cv  82.1%
+sqdist          [10000000]       numj                   compute  t=1  median    10.669 ms  p10     9.908 ms  p90    11.942 ms  cv   8.2%
+sumsq_muladd    [10000000]       numj                   compute  t=1  median   117.185 ms  p10    26.488 ms  p90   133.544 ms  cv  40.2%
+sqdist          [10000000]       numj                   e2e      t=1  median   312.795 ms  p10   126.267 ms  p90   510.325 ms  cv  54.6%
+sqdist          [10000000]       java-naive             compute  t=1  median    15.653 ms  p10    11.912 ms  p90    27.266 ms  cv  40.6%
+sqdist          [10000000]       java-blocked           compute  t=1  median    16.731 ms  p10    13.086 ms  p90    20.112 ms  cv  16.4%
+sumsq_muladd    [10000000]       numj                   e2e      t=1  median   125.119 ms  p10   118.863 ms  p90   160.234 ms  cv  12.2%
+sumsq_muladd    [10000000]       java-naive             compute  t=1  median    15.489 ms  p10    14.296 ms  p90    23.284 ms  cv  25.6%
+sumsq_muladd    [10000000]       java-blocked           compute  t=1  median    17.544 ms  p10    13.631 ms  p90    32.570 ms  cv  35.8%
+normalize_rows  [4,4]            numj                   compute  t=1  median      49.3 ns  p10      46.3 ns  p90      56.6 ns  cv  11.3%
+normalize_rows  [4,4]            numj                   e2e      t=1  median     221.1 ns  p10     204.3 ns  p90     255.9 ns  cv  20.1%
+normalize_rows  [4,4]            java-naive             compute  t=1  median      36.6 ns  p10      34.7 ns  p90      43.6 ns  cv  21.5%
+normalize_rows  [4,4]            java-blocked           compute  t=1  median      30.7 ns  p10      28.0 ns  p90      36.8 ns  cv  13.9%
+normalize_rows  [100,10]         numj                   compute  t=1  median      3.29 us  p10      3.13 us  p90      4.18 us  cv  12.6%
+normalize_rows  [100,10]         numj                   e2e      t=1  median      4.54 us  p10      4.07 us  p90      4.83 us  cv   7.4%
+normalize_rows  [100,10]         java-naive             compute  t=1  median      1.11 us  p10      1.11 us  p90      1.15 us  cv   1.5%
+normalize_rows  [100,10]         java-blocked           compute  t=1  median      1.17 us  p10      1.16 us  p90      1.17 us  cv   2.7%
+normalize_rows  [1000,100]       numj                   compute  t=1  median     51.64 us  p10     51.00 us  p90     54.14 us  cv  12.7%
+normalize_rows  [1000,100]       numj                   e2e      t=1  median    220.25 us  p10    206.00 us  p90    235.36 us  cv   9.8%
+normalize_rows  [1000,100]       java-naive             compute  t=1  median     57.77 us  p10     56.67 us  p90     59.33 us  cv   2.1%
+normalize_rows  [1000,100]       java-blocked           compute  t=1  median    114.98 us  p10    110.54 us  p90    120.02 us  cv   3.4%
+normalize_rows  [100000,100]     numj                   compute  t=1  median    14.412 ms  p10    13.876 ms  p90    15.334 ms  cv   4.8%
+normalize_rows  [100000,100]     numj                   e2e      t=1  median    96.448 ms  p10    93.942 ms  p90   101.041 ms  cv   2.7%
+normalize_rows  [100000,100]     java-naive             compute  t=1  median    13.657 ms  p10    12.971 ms  p90    14.508 ms  cv   4.3%
+normalize_rows  [100000,100]     java-blocked           compute  t=1  median    16.559 ms  p10    15.193 ms  p90    17.133 ms  cv   4.5%
+sqdist_rows     [1000,16]        numj                   compute  t=1  median      5.59 us  p10      5.20 us  p90      6.97 us  cv  21.6%
+sqdist_rows     [1000,16]        numj-per-row-calls     compute  t=1  median      9.70 us  p10      9.37 us  p90     10.03 us  cv   3.8%
+sqdist_rows     [1000,16]        numj                   e2e      t=1  median     14.90 us  p10     13.26 us  p90     16.34 us  cv  13.1%
+sqdist_rows     [1000,16]        java-naive             compute  t=1  median      6.42 us  p10      6.04 us  p90      6.86 us  cv   5.9%
+sqdist_rows     [1000,16]        java-blocked           compute  t=1  median     10.60 us  p10      9.92 us  p90     12.61 us  cv   9.7%
+sqdist_rows     [10000,100]      numj                   compute  t=1  median    246.74 us  p10    228.39 us  p90    264.41 us  cv   5.3%
+sqdist_rows     [10000,100]      numj-per-row-calls     compute  t=1  median    342.94 us  p10    297.22 us  p90    388.95 us  cv  10.2%
+sqdist_rows     [10000,100]      numj                   e2e      t=1  median     3.565 ms  p10     3.406 ms  p90     3.760 ms  cv   4.6%
+sqdist_rows     [10000,100]      java-naive             compute  t=1  median    393.29 us  p10    364.16 us  p90    444.58 us  cv  12.2%
+sqdist_rows     [10000,100]      java-blocked           compute  t=1  median    516.96 us  p10    460.70 us  p90    550.35 us  cv   7.3%
+sqdist_rows     [100000,100]     numj                   compute  t=1  median     5.160 ms  p10     4.944 ms  p90     5.568 ms  cv   6.0%
+sqdist_rows     [100000,100]     numj-per-row-calls     compute  t=1  median     5.894 ms  p10     5.376 ms  p90     6.224 ms  cv   5.8%
+sqdist_rows     [100000,100]     numj                   e2e      t=1  median    41.159 ms  p10    38.554 ms  p90    48.500 ms  cv   9.8%
+sqdist_rows     [100000,100]     java-naive             compute  t=1  median     6.824 ms  p10     6.297 ms  p90     7.411 ms  cv   8.0%
+sqdist_rows     [100000,100]     java-blocked           compute  t=1  median     7.423 ms  p10     7.161 ms  p90     7.670 ms  cv   3.0%
+# wrote results\run2\java_main.csv
+# sink 6.520406614874245E10

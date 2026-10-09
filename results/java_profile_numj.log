@@ -1,0 +1,21 @@
+# java 25.0.4.1+1-LTS | OpenJDK 64-Bit Server VM
+# native C:\Users\Hareram ray\AI\numJ\build\native\numj.dll
+# build GCC version 16.2.0 | -march=x86-64-v3 -mthreads -O3 -Wall -Wextra -Wno-compare-reals -std=f2018 -fopenmp -frecursive -ffp-contract=off -J C:\Users\Hareram ray\AI\numJ\build\obj\numj
+# criticalMaxElements=65536 availableProcessors=12
+sqdist          [16]             numj                   compute  t=1  median       9.6 ns  p10       9.3 ns  p90      10.1 ns  cv  10.0%
+sumsq_muladd    [16]             numj                   compute  t=1  median      11.9 ns  p10      11.7 ns  p90      13.3 ns  cv  13.7%
+sqdist          [1000]           numj                   compute  t=1  median      75.2 ns  p10      73.0 ns  p90      79.1 ns  cv  18.0%
+sumsq_muladd    [1000]           numj                   compute  t=1  median      99.3 ns  p10      97.8 ns  p90     103.5 ns  cv   2.8%
+sqdist          [100000]         numj                   compute  t=1  median     19.07 us  p10     16.18 us  p90     21.87 us  cv  22.8%
+sumsq_muladd    [100000]         numj                   compute  t=1  median     31.16 us  p10     28.93 us  p90     34.99 us  cv  15.9%
+sqdist          [10000000]       numj                   compute  t=1  median     9.049 ms  p10     8.659 ms  p90     9.443 ms  cv   9.8%
+sumsq_muladd    [10000000]       numj                   compute  t=1  median    13.092 ms  p10    12.698 ms  p90    13.996 ms  cv   4.2%
+normalize_rows  [4,4]            numj                   compute  t=1  median      46.9 ns  p10      44.6 ns  p90      54.2 ns  cv  11.3%
+normalize_rows  [100,10]         numj                   compute  t=1  median      4.76 us  p10      4.46 us  p90      5.06 us  cv   4.6%
+normalize_rows  [1000,100]       numj                   compute  t=1  median     99.89 us  p10     55.55 us  p90    105.37 us  cv  25.6%
+normalize_rows  [100000,100]     numj                   compute  t=1  median    16.332 ms  p10    14.214 ms  p90    40.098 ms  cv  49.2%
+sqdist_rows     [1000,16]        numj                   compute  t=1  median      4.47 us  p10      4.29 us  p90      5.00 us  cv   7.3%
+sqdist_rows     [10000,100]      numj                   compute  t=1  median    224.76 us  p10    220.76 us  p90    237.15 us  cv   5.1%
+sqdist_rows     [100000,100]     numj                   compute  t=1  median     5.241 ms  p10     5.072 ms  p90     5.794 ms  cv   7.4%
+# wrote results\java_profile_numj.csv
+# sink 3.6427245139997574E10

@@ -1,0 +1,6 @@
+suite,kernel,shape,n,impl,mode,threads,profile,median_ns,min_ns,p10_ns,p90_ns,mean_ns,stdev_ns,samples,reps,result
+overhead,sqdist,"[0]",0,numj-critical,compute,1,numj,8.216,8.040,8.087,8.462,8.277,0.200,21,3392374,0.0000000000000000
+overhead,sqdist,"[1]",1,numj-critical,compute,1,numj,18.317,17.658,17.886,19.205,18.507,0.640,21,1328089,0.0024261848680000830
+overhead,sqdist,"[16]",16,numj-critical,compute,1,numj,10.005,9.709,9.711,10.898,10.195,0.486,21,2384250,3.2993049081332300
+overhead,sqdist,"[17]",17,numj-critical,compute,1,numj,21.715,17.763,18.304,23.957,21.609,2.638,21,944308,4.0921173251374940
+overhead,sqdist,"[256]",256,numj-critical,compute,1,numj,24.547,23.056,23.139,24.930,24.264,0.669,21,986577,164.58154836461978

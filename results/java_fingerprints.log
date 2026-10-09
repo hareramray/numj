@@ -1,0 +1,10 @@
+# java 25.0.4.1+1-LTS | OpenJDK 64-Bit Server VM
+# native C:\Users\Hareram ray\AI\numJ\build\native\numj.dll
+# build GCC version 16.2.0 | -march=x86-64-v3 -mthreads -O3 -Wall -Wextra -Wno-compare-reals -std=f2018 -fopenmp -frecursive -ffp-contract=off -J C:\Users\Hareram ray\AI\numJ\build\obj\numj
+# criticalMaxElements=65536 availableProcessors=12
+fingerprint splitmix(1,1000) 7e6a42200dedc835
+fingerprint splitmix(2,1000) 134d946e957f6dc7
+fingerprint splitmix(3,1000) 4fd267fd64b1a427
+fingerprint splitmix(4,10000) 2a5c48a878295155
+fingerprint splitmix(5,100) 27679dc1a32f7c1d
+# sink 0.0

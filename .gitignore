@@ -1,0 +1,8 @@
+# toolchain and environments fetched by scripts/bootstrap.ps1
+.tools/
+.venv/
+# build outputs
+build/
+# raw benchmark logs are kept; uncomment to ignore regenerated results
+# results/
+__pycache__/
