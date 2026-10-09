@@ -56,8 +56,10 @@ Copy-Item 'build\native\numj.dll' "$stage\x86-64-v3\numj.dll"
 Copy-Item 'build\native\numj-sse2.dll' "$stage\baseline\numj.dll"
 
 # 3. maven: package (+ sign and upload when publishing)
-$mvnArgs = @('-B', '-ntp', 'clean')
-if ($Publish) { $mvnArgs += @('deploy', "-Dgpg.executable=$Gpg") } else { $mvnArgs += @('verify', '-Dgpg.skip=true') }
+# Publishing runs Maven interactively (no -B): in batch mode maven-gpg-plugin passes "--pinentry-mode error" to gpg,
+# which forbids the passphrase dialog ("signing failed: No pinentry"). Dry runs do not sign and stay in batch mode.
+if ($Publish) { $mvnArgs = @('-ntp', 'clean', 'deploy', "-Dgpg.executable=$Gpg") }
+else { $mvnArgs = @('-B', '-ntp', 'clean', 'verify', '-Dgpg.skip=true') }
 & $Mvn @mvnArgs
 if ($LASTEXITCODE -ne 0) { throw 'maven failed' }
 
